@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "editor.formatOnSave": true,
+    "cSpell.words": ["planetscale", "tailwindcss"],
+    "files.associations": {
+      "*.css": "tailwindcss"
+    },
+    "editor.quickSuggestions": {
+      "strings": "on"
+    },
+    "editor.tabSize": 2
+  }
+}
