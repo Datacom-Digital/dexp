@@ -1,4 +1,4 @@
-import { Nav } from "@/components/layout/nav"
+import { Nav } from "@/components/nav"
 
 import { PropsWithChildren } from "react"
 
@@ -11,9 +11,9 @@ const Slide = ({ children }: PropsWithChildren) => (
 export default function Home() {
   return (
     <main className="h-screen">
-      <nav className="group h-10 w-full pb-2">
-        <Nav />
-      </nav>
+      <div className="group h-10 w-screen pb-2">
+        <Nav className="opacity-0 transition-all duration-300 group-hover:opacity-100" />
+      </div>
       <div className="max-h-[calc(100vh-40px)] snap-y snap-mandatory flex-col overflow-y-scroll [-ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden">
         <Slide>
           <h1>Any Old Type</h1>

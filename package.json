@@ -12,6 +12,7 @@
     "lint:prettier": "prettier --check \"**/*.{ts,tsx,js,jsx,css,md,json}\""
   },
   "dependencies": {
+    "classix": "^2.1.34",
     "concurrently": "^8.2.1",
     "forcem-ipsum": "^3.0.0",
     "next": "13.4.19",

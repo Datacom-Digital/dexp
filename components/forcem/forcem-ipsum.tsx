@@ -4,7 +4,7 @@ import { Episode } from "@/lib/forcem/generate-episode"
 import { useState } from "react"
 import { ForcemEpisode } from "./forcem-episode"
 import { ForcemGenerate } from "./forcem-generate"
-import { Nav } from "../layout/nav"
+import { Nav } from "../nav"
 
 export const ForcemIpsum = ({
   initialEpisode,
@@ -15,20 +15,24 @@ export const ForcemIpsum = ({
   const { title, content } = episode
 
   return (
-    <>
+    <main>
       <div className="group h-10 w-screen pb-2">
-        <Nav />
+        <Nav className="" />
         <div className="container">
-          <div className="float-right w-fit space-x-2">
-            <ForcemGenerate episode={episode} setEpisode={setEpisode} />
-          </div>
+          <ForcemGenerate
+            className="float-right w-fit space-x-2"
+            episode={episode}
+            setEpisode={setEpisode}
+          />
         </div>
       </div>
       <section className="flex w-full justify-center">
-        <div className="container max-w-screen-md space-y-3">
-          <ForcemEpisode title={title} content={content} />
-        </div>
+        <ForcemEpisode
+          className="container max-w-screen-md space-y-3"
+          title={title}
+          content={content}
+        />
       </section>
-    </>
+    </main>
   )
 }

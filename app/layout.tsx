@@ -1,7 +1,8 @@
 import "@/app/globals.css"
-import { Albert_Sans } from "next/font/google"
+import cx from "classix"
+import { Montserrat } from "next/font/google"
 
-const font = Albert_Sans({ subsets: ["latin"] })
+const font = Montserrat({ subsets: ["latin"] })
 
 export const metadata = {
   title: "Any Old Type",
@@ -11,7 +12,14 @@ export const metadata = {
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
-      <body className={font.className}>{children}</body>
+      <body
+        className={cx(
+          font.className,
+          "dark:text-light dark:bg-dark bg-light text-dark",
+        )}
+      >
+        {children}
+      </body>
     </html>
   )
 }

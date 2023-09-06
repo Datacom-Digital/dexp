@@ -2,45 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
-}
-
 .h0 {
-  @apply text-3xl font-bold md:text-5xl;
+  @apply text-3xl md:text-5xl;
 }
 
 h1,
 .h1 {
-  @apply text-2xl font-bold md:text-4xl;
+  @apply text-2xl md:text-4xl;
 }
 
 h2,
 .h2 {
-  @apply text-xl font-bold md:text-3xl;
+  @apply text-xl md:text-3xl;
 }
 
 h3,
 .h3 {
-  @apply text-lg font-bold md:text-2xl;
+  @apply text-lg md:text-2xl;
 }
 
 h4,
 .h4 {
-  @apply text-base font-bold md:text-lg;
+  @apply text-base md:text-lg;
 }
 
 body,
@@ -52,16 +35,10 @@ select,
 .select,
 input,
 .input {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
-  @apply rounded border-2 border-blue-500 px-3 py-1;
-}
-
-.navlink {
-  @apply bg-gray-500 px-3 py-1 text-white hover:bg-gray-700;
+  @apply dark:text-light dark:bg-dark bg-light text-dark border-light-primary rounded border-2 px-3 py-1;
 }
 
 button,
 .btn {
-  @apply rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-700;
+  @apply text-light bg-light-primary hover:bg-light-secondary rounded px-3 py-1;
 }

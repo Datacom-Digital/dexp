@@ -4,21 +4,22 @@ import {
   generateEpisode,
 } from "@/lib/forcem/generate-episode"
 import { useState } from "react"
-import { Nav } from "../layout/nav"
-import Link from "next/link"
+import cx from "classix"
 
 export const ForcemGenerate = ({
   episode: { id, content },
   setEpisode,
+  className,
 }: {
   episode: Episode
   setEpisode: (episode: Episode) => void
+  className?: string
 }) => {
   const [episodeName, setEpisodeName] = useState(id)
   const [length, setLength] = useState(content.length)
 
   return (
-    <>
+    <div className={cx(className)}>
       <select
         value={episodeName}
         onChange={(event) =>
@@ -43,6 +44,6 @@ export const ForcemGenerate = ({
       <button onClick={() => setEpisode(generateEpisode(episodeName, length))}>
         Generate
       </button>
-    </>
+    </div>
   )
 }
