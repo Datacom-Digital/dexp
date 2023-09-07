@@ -17,6 +17,5 @@ declare module "forcem-ipsum" {
     limit?: number,
   ): string[]
 
-  // function forcemIpsum(option: any, limit: any): any[]
   export default forcemIpsum
 }

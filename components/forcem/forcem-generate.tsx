@@ -3,8 +3,7 @@ import {
   episodes,
   generateEpisode,
 } from "@/lib/forcem/generate-episode"
-import { useState } from "react"
-import cx from "classix"
+import { cn } from "@/lib/utils"
 
 export const ForcemGenerate = ({
   episode: { id, content },
@@ -15,15 +14,16 @@ export const ForcemGenerate = ({
   setEpisode: (episode: Episode) => void
   className?: string
 }) => {
-  const [episodeName, setEpisodeName] = useState(id)
-  const [length, setLength] = useState(content.length)
+  const { length } = content
 
   return (
-    <div className={cx(className)}>
+    <div className={cn(className)}>
       <select
-        value={episodeName}
+        value={id}
         onChange={(event) =>
-          setEpisodeName(event.currentTarget.value as Episode["id"])
+          setEpisode(
+            generateEpisode(event.currentTarget.value as Episode["id"], length),
+          )
         }
       >
         {episodes.map(({ id, title }) => (
@@ -38,12 +38,10 @@ export const ForcemGenerate = ({
         id="paragraphs"
         type="number"
         value={length}
-        onChange={(event) => setLength(event.currentTarget.valueAsNumber)}
+        onChange={(event) => {
+          setEpisode(generateEpisode(id, event.currentTarget.valueAsNumber))
+        }}
       />
-
-      <button onClick={() => setEpisode(generateEpisode(episodeName, length))}>
-        Generate
-      </button>
     </div>
   )
 }

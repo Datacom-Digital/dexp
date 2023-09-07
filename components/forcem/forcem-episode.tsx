@@ -1,5 +1,5 @@
 import { Episode } from "@/lib/forcem/generate-episode"
-import cx from "classix"
+import { cn } from "@/lib/utils"
 
 export const ForcemEpisode = ({
   title,
@@ -7,7 +7,7 @@ export const ForcemEpisode = ({
   className,
 }: Pick<Episode, "title" | "content"> & { className?: string }) => {
   return (
-    <div className={cx(className)}>
+    <div className={cn(className)}>
       <h1>{title}</h1>
       {content.map(({ id, text }) => (
         <p key={id}>{text}</p>

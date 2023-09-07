@@ -1,5 +1,5 @@
+import { generateContent } from "./generate-content"
 import { romanize } from "./romanise"
-import forcemIpsum from "forcem-ipsum"
 
 const episodeIds = [
   "episode 1",
@@ -21,23 +21,19 @@ export type Episode = {
   content: Array<{ id: string; text: string }>
 }
 
-const getTitle = (id: EpisodeId) => `Episode ${romanize(id.slice(8))}`
+const getEpisodeNumber = (id: EpisodeId) => id.slice(8)
 
 export const episodes = episodeIds.map((id) => {
   return {
     id,
-    title: getTitle(id),
+    title: `Episode ${getEpisodeNumber(id)}`,
   }
 })
 
 export const generateEpisode = (id: EpisodeId, limit?: number) => {
-  const title = getTitle(id)
   return {
     id,
-    title,
-    content: forcemIpsum(id, limit).map((text, id) => ({
-      id: id.toString(),
-      text,
-    })),
+    title: `Episode ${romanize(getEpisodeNumber(id))}`,
+    content: generateContent(id, limit),
   }
 }
