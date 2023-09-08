@@ -3,40 +3,52 @@ import {
   episodes,
   generateEpisode,
 } from "@/lib/forcem/generate-episode"
-import { cn } from "@/lib/utils"
+import { CNProps, cn } from "@/lib/utils"
+import { Input } from "../ui/input"
+import { Label } from "../ui/label"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select"
 
 export const ForcemGenerate = ({
   episode: { id, content },
   setEpisode,
   className,
-}: {
+}: CNProps<{
   episode: Episode
   setEpisode: (episode: Episode) => void
-  className?: string
-}) => {
+}>) => {
   const { length } = content
 
   return (
     <div className={cn(className)}>
-      <select
+      <Select
         value={id}
-        onChange={(event) =>
-          setEpisode(
-            generateEpisode(event.currentTarget.value as Episode["id"], length),
-          )
+        onValueChange={(value) =>
+          setEpisode(generateEpisode(value as Episode["id"], length))
         }
       >
-        {episodes.map(({ id, title }) => (
-          <option key={id} value={id}>
-            {title}
-          </option>
-        ))}
-      </select>
-      <label htmlFor="paragraphs">Paragraphs:</label>
-      <input
+        <SelectTrigger>
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          {episodes.map(({ id, title }) => (
+            <SelectItem key={id} value={id}>
+              {title}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      <Label htmlFor="paragraphs">Paragraphs:</Label>
+      <Input
         className="w-16"
         id="paragraphs"
         type="number"
+        min="1"
         value={length}
         onChange={(event) => {
           setEpisode(generateEpisode(id, event.currentTarget.valueAsNumber))

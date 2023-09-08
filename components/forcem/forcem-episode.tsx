@@ -7,11 +7,11 @@ export const ForcemEpisode = ({
   className,
 }: Pick<Episode, "title" | "content"> & { className?: string }) => {
   return (
-    <div className={cn(className)}>
+    <article className={cn(className)}>
       <h1>{title}</h1>
       {content.map(({ id, text }) => (
         <p key={id}>{text}</p>
       ))}
-    </div>
+    </article>
   )
 }

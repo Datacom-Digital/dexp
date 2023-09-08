@@ -6,11 +6,11 @@
   "tailwind": {
     "config": "tailwind.config.js",
     "css": "app/globals.css",
-    "baseColor": "ui",
-    "cssVariables": false
+    "baseColor": "stone",
+    "cssVariables": true
   },
   "aliases": {
-    "components": "@/components/ui",
+    "components": "@/components",
     "utils": "@/lib/utils"
   }
 }

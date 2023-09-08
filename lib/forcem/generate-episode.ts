@@ -30,7 +30,7 @@ export const episodes = episodeIds.map((id) => {
   }
 })
 
-export const generateEpisode = (id: EpisodeId, limit?: number) => {
+export const generateEpisode = (id: EpisodeId, limit?: number): Episode => {
   return {
     id,
     title: `Episode ${romanize(getEpisodeNumber(id))}`,

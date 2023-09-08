@@ -8,9 +8,18 @@ import type { Config } from "tailwindcss"
 --color-datacom-blue-base: #00125e;
 --color-action-blue: #002bfe;
 --color-action-blue-hover: #0022cb;
-*/
 
-import colors from "tailwindcss/colors"
+        dark: {
+          DEFAULT: "#151515",
+          primary: "#00125e",
+          secondary: "#334f8c",
+        },
+        light: {
+          DEFAULT: "#ffffff",
+          primary: "#002bfe",
+          secondary: "#0022cb",
+        },
+*/
 
 const config: Config = {
   darkMode: ["class"],
@@ -28,17 +37,49 @@ const config: Config = {
         },
       },
       colors: {
-        dark: {
-          DEFAULT: "#151515",
-          primary: "#00125e",
-          secondary: "#334f8c",
+        nav: {
+          DEFAULT: "hsl(var(--nav))",
+          accent: "hsl(var(--nav-accent))",
+          foreground: "hsl(var(--nav-foreground))",
         },
-        light: {
-          DEFAULT: "#ffffff",
-          primary: "#002bfe",
-          secondary: "#0022cb",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
-        ui: colors.stone,
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
         "accordion-down": {
@@ -56,7 +97,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 }
 
 export default config

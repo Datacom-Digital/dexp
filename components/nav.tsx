@@ -1,22 +1,26 @@
 import Link from "next/link"
-import { cn } from "@/lib/utils"
+import { CNProps, cn } from "@/lib/utils"
 import { ComponentProps } from "react"
+import { ModeToggle } from "./mode-toggle"
 
 const NavLink = ({ className, ...rest }: ComponentProps<typeof Link>) => (
   <Link
     className={cn(
+      "text-nav-foreground bg-nav hover:bg-nav-accent px-3 py-1",
       className,
-      " text-light bg-dark-primary hover:bg-dark-secondary px-3 py-1",
     )}
     {...rest}
   />
 )
 
-export const Nav = ({ className }: { className?: string }) => {
+export const Nav = ({ className }: CNProps) => {
   return (
-    <div className={cn(className, "float-left w-min")}>
-      <NavLink href="/">Slides</NavLink>
-      <NavLink href="/forcem">Episodes</NavLink>
+    <div className={cn("flex w-full justify-between", className)}>
+      <nav>
+        <NavLink href="/">Slides</NavLink>
+        <NavLink href="/forcem">Episodes</NavLink>
+      </nav>
+      <ModeToggle />
     </div>
   )
 }

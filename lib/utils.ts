@@ -1,5 +1,6 @@
-import { ClassNameValue, twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from "clsx"
+import { PropsWithChildren } from "react"
+import { twMerge } from "tailwind-merge"
 
-export function cn(...inputs: ClassNameValue[]) {
-  return twMerge(inputs)
-}
+export type CNProps<T = unknown> = PropsWithChildren<T & { className?: string }>
+export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs))
