@@ -1,10 +1,14 @@
-import { generateEpisode } from "@/lib/forcem/generate-episode"
+import { generateEpisodeAction } from "@/components/forcem/actions"
+import { episodes } from "@/lib/forcem/generate-episode"
+
 import { CNProps, cn } from "@/lib/utils"
+import { randomInt } from "crypto"
+import { Suspense } from "react"
 
 const Slide = ({ children, className }: CNProps) => (
   <section
     className={cn(
-      "grid h-screen w-full snap-start gap-2 pt-8 lg:gap-6 lg:pt-16",
+      "grid h-screen w-full snap-start gap-2 overflow-y-scroll pt-8 lg:gap-6 lg:pt-16",
       className,
     )}
   >
@@ -15,13 +19,26 @@ const Slide = ({ children, className }: CNProps) => (
 const Prose = ({ children, className }: CNProps) => (
   <div
     className={cn(
-      "prose prose-xl lg:prose-2xl dark:prose-invert h-fit w-full px-2 sm:px-6",
+      "prose prose-xl h-fit w-full px-2 dark:prose-invert lg:prose-2xl sm:px-6",
       className,
     )}
   >
     {children}
   </div>
 )
+
+const RandomProse = async () => {
+  const episode = await generateEpisodeAction({ length: 20 })
+
+  return (
+    <>
+      <h3>{episode.title}</h3>
+      {episode.content.map(({ id, text }) => (
+        <p key={id}>{text}</p>
+      ))}
+    </>
+  )
+}
 
 export default function Home() {
   return (
@@ -32,11 +49,9 @@ export default function Home() {
           <p>Some words and stuff</p>
         </Prose>
         <Prose>
-          {generateEpisode({ id: "episode 1", length: 2 }).content.map(
-            ({ id, text }) => (
-              <p key={id}>{text}</p>
-            ),
-          )}
+          <Suspense>
+            <RandomProse />
+          </Suspense>
         </Prose>
       </Slide>
       <Slide className="content-start justify-items-center">

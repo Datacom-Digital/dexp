@@ -1,4 +1,3 @@
-import { Episode, defaultQuery, episodes } from "@/lib/forcem/generate-episode"
 import { CNProps, cn } from "@/lib/utils"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
@@ -9,28 +8,31 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select"
-import { useState } from "react"
-import { generateEpisodeAsync } from "@/lib/forcem/actions"
+import { useDeferredValue, useEffect, useState } from "react"
+import { Episode, defaultQuery, episodes } from "@/lib/forcem/generate-episode"
+import { generateEpisodeAction } from "./actions"
 
 export const ForcemGenerate = ({
-  onChange: parentOnChange,
+  onChange,
   className,
 }: CNProps<{
   onChange: (episode: Promise<Episode>) => void
 }>) => {
-  const [{ id, length }, setQuery] = useState(defaultQuery)
+  const [query, setQuery] = useState(defaultQuery)
 
-  const onChange = async (props: { id: Episode["id"]; length: number }) => {
-    setQuery(props)
-    parentOnChange(generateEpisodeAsync(props))
-  }
+  const deferredQuery = useDeferredValue(query)
+  const { id, length } = query
+
+  useEffect(() => {
+    onChange(generateEpisodeAction(deferredQuery))
+  }, [deferredQuery, onChange])
 
   return (
     <div className={cn(className)}>
       <Select
         value={id}
         onValueChange={(value) =>
-          onChange({ id: value as Episode["id"], length })
+          setQuery({ id: value as Episode["id"], length })
         }
       >
         <SelectTrigger>
@@ -52,7 +54,7 @@ export const ForcemGenerate = ({
         min="1"
         value={length}
         onChange={(event) =>
-          onChange({
+          setQuery({
             id,
             length: event.currentTarget.valueAsNumber,
           })

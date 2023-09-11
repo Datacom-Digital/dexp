@@ -1,3 +1,4 @@
+import { getRandomInt, wait } from "@/lib/utils"
 import { generateContent } from "./generate-content"
 import { romanize } from "./romanise"
 
@@ -13,15 +14,15 @@ export const episodeIds = [
   "episode 9",
 ] as const
 
-type EpisodeId = (typeof episodeIds)[number]
-
 export type Episode = {
-  id: EpisodeId
+  id: (typeof episodeIds)[number]
   title: string
   content: Array<{ id: string; text: string }>
 }
 
-const getEpisodeNumber = (id: EpisodeId) => id.slice(8)
+const getEpisodeNumber = (id: Episode["id"]) => id.slice(8)
+const randomId = () => episodeIds[getRandomInt(0, 9)]
+const randomLength = () => getRandomInt(1, 6)
 
 export const episodes = episodeIds.map((id) => {
   return {
@@ -35,15 +36,15 @@ export const defaultQuery = {
   length: 3,
 }
 
-export type GenerateEpisodeProps = {
-  id: EpisodeId
+export type GenerateEpisodeQuery = {
+  id?: Episode["id"]
   length?: number
 }
 
 export const generateEpisode = ({
-  id,
-  length,
-}: GenerateEpisodeProps): Episode => {
+  id = randomId(),
+  length = randomLength(),
+}: GenerateEpisodeQuery): Episode => {
   return {
     id,
     title: `Episode ${romanize(getEpisodeNumber(id))}`,
