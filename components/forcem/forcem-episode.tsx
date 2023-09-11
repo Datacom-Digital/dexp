@@ -1,11 +1,14 @@
 import { Episode } from "@/lib/forcem/generate-episode"
 import { cn } from "@/lib/utils"
 
-export const ForcemEpisode = ({
-  title,
-  content,
+export const ForcemEpisode = async ({
+  episode,
   className,
-}: Pick<Episode, "title" | "content"> & { className?: string }) => {
+}: {
+  episode: Promise<Episode>
+  className?: string
+}) => {
+  const { title, content } = await episode
   return (
     <article className={cn(className)}>
       <h1>{title}</h1>

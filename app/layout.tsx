@@ -1,7 +1,7 @@
 import "@/app/globals.css"
-import { Nav } from "@/components/nav"
 import { cn } from "@/lib/utils"
 import { Montserrat } from "next/font/google"
+import Providers from "./providers"
 
 const font = Montserrat({ subsets: ["latin"] })
 
@@ -31,7 +31,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         <script dangerouslySetInnerHTML={{ __html: darkmode }} />
       </head>
       <body className={cn(font.className, "bg-background text-foreground")}>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

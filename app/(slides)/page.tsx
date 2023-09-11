@@ -15,7 +15,7 @@ const Slide = ({ children, className }: CNProps) => (
 const Prose = ({ children, className }: CNProps) => (
   <div
     className={cn(
-      "prose prose-xl lg:prose-2xl dark:prose-invert h-fit w-full",
+      "prose prose-xl lg:prose-2xl dark:prose-invert h-fit w-full px-2 sm:px-6",
       className,
     )}
   >
@@ -32,9 +32,11 @@ export default function Home() {
           <p>Some words and stuff</p>
         </Prose>
         <Prose>
-          {generateEpisode("episode 1", 2).content.map(({ id, text }) => (
-            <p key={id}>{text}</p>
-          ))}
+          {generateEpisode({ id: "episode 1", length: 2 }).content.map(
+            ({ id, text }) => (
+              <p key={id}>{text}</p>
+            ),
+          )}
         </Prose>
       </Slide>
       <Slide className="content-start justify-items-center">

@@ -1,7 +1,7 @@
 import { generateContent } from "./generate-content"
 import { romanize } from "./romanise"
 
-const episodeIds = [
+export const episodeIds = [
   "episode 1",
   "episode 2",
   "episode 3",
@@ -30,10 +30,23 @@ export const episodes = episodeIds.map((id) => {
   }
 })
 
-export const generateEpisode = (id: EpisodeId, limit?: number): Episode => {
+export const defaultQuery = {
+  id: "episode 1" as Episode["id"],
+  length: 3,
+}
+
+export type GenerateEpisodeProps = {
+  id: EpisodeId
+  length?: number
+}
+
+export const generateEpisode = ({
+  id,
+  length,
+}: GenerateEpisodeProps): Episode => {
   return {
     id,
     title: `Episode ${romanize(getEpisodeNumber(id))}`,
-    content: generateContent(id, limit),
+    content: generateContent(id, length),
   }
 }
