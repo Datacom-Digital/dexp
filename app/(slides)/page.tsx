@@ -1,6 +1,4 @@
-import { Suspense } from "react"
-import { generateEpisodeAction } from "@/components/forcem/actions"
-
+import { ForcemContent } from "@/components/forcem/forcem-content"
 import { CNProps, cn } from "@/lib/utils"
 
 const Slide = ({ children, className }: CNProps) => (
@@ -25,19 +23,6 @@ const Prose = ({ children, className }: CNProps) => (
   </div>
 )
 
-const RandomProse = async () => {
-  const episode = await generateEpisodeAction({ length: 20 })
-
-  return (
-    <>
-      <h3>{episode.title}</h3>
-      {episode.content.map(({ id, text }) => (
-        <p key={id}>{text}</p>
-      ))}
-    </>
-  )
-}
-
 export default function Home() {
   return (
     <main className="max-h-screen w-full snap-y snap-mandatory overflow-y-scroll [-ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden">
@@ -47,9 +32,7 @@ export default function Home() {
           <p>Some words and stuff</p>
         </Prose>
         <Prose>
-          <Suspense>
-            <RandomProse />
-          </Suspense>
+          <ForcemContent length={4} />
         </Prose>
       </Slide>
       <Slide className="content-start justify-items-center">

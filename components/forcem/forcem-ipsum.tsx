@@ -4,6 +4,7 @@ import { Suspense, useState } from "react"
 import { ForcemEpisode } from "./forcem-episode"
 import { ForcemGenerate } from "./forcem-generate"
 import { Episode } from "@/lib/forcem/generate-episode"
+import { Spinner } from "@/components/ui/spinner"
 
 export const ForcemIpsum = ({ initial }: { initial: Promise<Episode> }) => {
   const [episode, setEpisode] = useState<Promise<Episode>>(initial)
@@ -17,7 +18,7 @@ export const ForcemIpsum = ({ initial }: { initial: Promise<Episode> }) => {
         />
       </div>
 
-      <Suspense fallback="???">
+      <Suspense fallback={<Spinner />}>
         <ForcemEpisode
           episode={episode}
           className="prose mx-auto pt-10 dark:prose-invert"
