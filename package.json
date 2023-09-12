@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "concurrently -n next,pretty,type \"npm:lint:next\" \"npm:lint:prettier\" \"npm:lint:types\"",
+    "lint:fix": "concurrently -n next,pretty \"npm:lint:next -- --fix\" \"npm:lint:prettier -- -w\"",
     "lint:next": "next lint",
     "lint:types": "tsc -p tsconfig.json --pretty --noEmit",
     "lint:prettier": "prettier --check \"**/*.{ts,tsx,js,jsx,css,md,json}\"",

@@ -41,10 +41,7 @@ export const ForcemGenerate = ({
         </SelectTrigger>
         <SelectContent>
           {episodes.map(({ id, title }) => (
-            <SelectItem
-              key={id}
-              value={id}
-            >
+            <SelectItem key={id} value={id}>
               {title}
             </SelectItem>
           ))}
