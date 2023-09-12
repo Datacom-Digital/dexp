@@ -4,7 +4,7 @@ import { CNProps, cn } from "@/lib/utils"
 const Slide = ({ children, className }: CNProps) => (
   <section
     className={cn(
-      "grid h-screen w-full snap-start gap-2 overflow-y-scroll pt-8 lg:gap-6 lg:pt-16",
+      "grid h-screen w-full snap-start gap-2 pt-8 lg:gap-6 lg:pt-16",
       className,
     )}
   >
@@ -29,10 +29,11 @@ export default function Home() {
       <Slide className="content-start justify-items-center">
         <Prose>
           <h2>Any Old Type</h2>
-          <p>Some words and stuff</p>
+          <ForcemContent length={2} />
         </Prose>
         <Prose>
-          <ForcemContent length={4} />
+          <h3>More stuff</h3>
+          <ForcemContent length={2} />
         </Prose>
       </Slide>
       <Slide className="content-start justify-items-center">
