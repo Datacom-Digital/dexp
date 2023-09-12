@@ -1,9 +1,7 @@
-import { generateEpisodeAction } from "/components/forcem/actions"
-import { episodes } from "/lib/forcem/generate-episode"
-
-import { CNProps, cn } from "/lib/utils"
-import { randomInt } from "crypto"
 import { Suspense } from "react"
+import { generateEpisodeAction } from "@/components/forcem/actions"
+
+import { CNProps, cn } from "@/lib/utils"
 
 const Slide = ({ children, className }: CNProps) => (
   <section

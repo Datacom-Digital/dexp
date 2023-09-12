@@ -1,6 +1,6 @@
-import { getRandomInt, wait } from "/lib/utils"
 import { generateContent } from "./generate-content"
 import { romanize } from "./romanise"
+import { getRandomInt } from "@/lib/utils"
 
 export const episodeIds = [
   "episode 1",
@@ -21,7 +21,8 @@ export type Episode = {
 }
 
 const getEpisodeNumber = (id: Episode["id"]) => id.slice(8)
-const randomId = () => episodeIds[getRandomInt(0, 9)]
+const randomId = () =>
+  episodeIds[getRandomInt(0, episodeIds.length)] as Episode["id"]
 const randomLength = () => getRandomInt(1, 6)
 
 export const episodes = episodeIds.map((id) => {

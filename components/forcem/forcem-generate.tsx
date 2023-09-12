@@ -3,15 +3,15 @@ import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 
 import { generateEpisodeAction } from "./actions"
-import { Episode, defaultQuery, episodes } from "/lib/forcem/generate-episode"
-import { CNProps, cn } from "/lib/utils"
+import { Episode, defaultQuery, episodes } from "@/lib/forcem/generate-episode"
+import { CNProps, cn } from "@/lib/utils"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "/components/ui/select"
+} from "@/components/ui/select"
 
 export const ForcemGenerate = ({
   onChange,

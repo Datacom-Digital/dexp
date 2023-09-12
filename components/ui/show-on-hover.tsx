@@ -1,8 +1,8 @@
 "use client"
 
-import { useLoaded } from "/lib/hooks"
-import { cn } from "/lib/utils"
 import { PropsWithChildren } from "react"
+import { useLoaded } from "@/lib/hooks"
+import { cn } from "@/lib/utils"
 
 export const ShowOnHover = ({ children }: PropsWithChildren) => {
   const transitionOnLoad = useLoaded()

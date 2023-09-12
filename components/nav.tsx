@@ -1,7 +1,7 @@
 import Link from "next/link"
-import { CNProps, cn } from "/lib/utils"
 import { ComponentProps } from "react"
 import { ModeToggle } from "./mode-toggle"
+import { CNProps, cn } from "@/lib/utils"
 
 const NavLink = ({ className, ...rest }: ComponentProps<typeof Link>) => (
   <Link
