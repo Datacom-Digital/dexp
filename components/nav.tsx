@@ -6,7 +6,7 @@ import { ModeToggle } from "./mode-toggle"
 const NavLink = ({ className, ...rest }: ComponentProps<typeof Link>) => (
   <Link
     className={cn(
-      "text-nav-foreground bg-nav hover:bg-nav-accent px-3 py-1",
+      "bg-nav px-3 py-1 text-nav-foreground hover:bg-nav-accent",
       className,
     )}
     {...rest}
