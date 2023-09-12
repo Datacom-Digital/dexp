@@ -1,5 +1,5 @@
-import { Episode } from "@/lib/forcem/generate-episode"
-import { cn } from "@/lib/utils"
+import { Episode } from "/lib/forcem/generate-episode"
+import { cn } from "/lib/utils"
 
 export const ForcemEpisode = async ({
   episode,

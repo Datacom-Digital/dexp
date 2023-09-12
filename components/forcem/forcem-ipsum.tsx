@@ -3,7 +3,7 @@
 import { Suspense, useState } from "react"
 import { ForcemEpisode } from "./forcem-episode"
 import { ForcemGenerate } from "./forcem-generate"
-import { Episode } from "@/lib/forcem/generate-episode"
+import { Episode } from "/lib/forcem/generate-episode"
 
 export const ForcemIpsum = ({ initial }: { initial: Promise<Episode> }) => {
   const [episode, setEpisode] = useState<Promise<Episode>>(initial)

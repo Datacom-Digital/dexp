@@ -1,16 +1,17 @@
-import { CNProps, cn } from "@/lib/utils"
+import { useDeferredValue, useEffect, useState } from "react"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
+
+import { generateEpisodeAction } from "./actions"
+import { Episode, defaultQuery, episodes } from "/lib/forcem/generate-episode"
+import { CNProps, cn } from "/lib/utils"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select"
-import { useDeferredValue, useEffect, useState } from "react"
-import { Episode, defaultQuery, episodes } from "@/lib/forcem/generate-episode"
-import { generateEpisodeAction } from "./actions"
+} from "/components/ui/select"
 
 export const ForcemGenerate = ({
   onChange,

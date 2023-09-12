@@ -1,6 +1,6 @@
-import { generateEpisodeAction } from "@/components/forcem/actions"
-import { ForcemIpsum } from "@/components/forcem/forcem-ipsum"
-import { defaultQuery } from "@/lib/forcem/generate-episode"
+import { generateEpisodeAction } from "/components/forcem/actions"
+import { ForcemIpsum } from "/components/forcem/forcem-ipsum"
+import { defaultQuery } from "/lib/forcem/generate-episode"
 
 export const metadata = {
   title: "Any Old Type - forcem",

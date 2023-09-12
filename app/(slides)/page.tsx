@@ -1,7 +1,7 @@
-import { generateEpisodeAction } from "@/components/forcem/actions"
-import { episodes } from "@/lib/forcem/generate-episode"
+import { generateEpisodeAction } from "/components/forcem/actions"
+import { episodes } from "/lib/forcem/generate-episode"
 
-import { CNProps, cn } from "@/lib/utils"
+import { CNProps, cn } from "/lib/utils"
 import { randomInt } from "crypto"
 import { Suspense } from "react"
 

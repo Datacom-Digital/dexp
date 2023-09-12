@@ -1,4 +1,4 @@
-import { getRandomInt, wait } from "@/lib/utils"
+import { getRandomInt, wait } from "/lib/utils"
 import { generateContent } from "./generate-content"
 import { romanize } from "./romanise"
 

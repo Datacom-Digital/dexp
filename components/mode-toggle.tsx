@@ -1,13 +1,13 @@
 "use client"
 
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
-import { Button } from "@/components/ui/button"
+import { Button } from "/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "/components/ui/dropdown-menu"
 
 const setTheme = (theme: "light" | "dark" | "system") => {
   if (theme === "system") {

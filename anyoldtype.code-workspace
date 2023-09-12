@@ -6,8 +6,15 @@
   ],
   "settings": {
     "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.preferences.importModuleSpecifier": "non-relative",
     "editor.formatOnSave": true,
-    "cSpell.words": ["planetscale", "tailwindcss"],
+    "editor.codeActionsOnSave": ["source.fixAll.eslint"],
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact"
+    ],
     "files.associations": {
       "*.css": "tailwindcss"
     },
@@ -16,6 +23,6 @@
     },
     "editor.tabSize": 2,
     "files.eol": "\n",
-    "prettier.useEditorConfig": false
+    "eslint.format.enable": true
   }
 }

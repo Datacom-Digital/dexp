@@ -1,5 +1,5 @@
 import "@/app/globals.css"
-import { cn } from "@/lib/utils"
+import { cn } from "/lib/utils"
 import { Montserrat } from "next/font/google"
 import Providers from "./providers"
 
