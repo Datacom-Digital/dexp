@@ -1,9 +1,11 @@
-import { useDeferredValue, useEffect, useState } from "react"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 
-import { generateEpisodeAction } from "../../lib/forcem/actions"
-import { Episode, defaultQuery, episodes } from "@/lib/forcem/generate-episode"
+import {
+  Episode,
+  GenerateEpisodeQuery,
+  episodes,
+} from "@/lib/forcem/generate-episode"
 import { CNProps, cn } from "@/lib/utils"
 import {
   Select,
@@ -14,19 +16,14 @@ import {
 } from "@/components/ui/select"
 
 export const ForcemGenerate = ({
-  onChange,
+  query,
+  setQuery,
   className,
 }: CNProps<{
-  onChange: (episode: Promise<Episode>) => void
+  query: GenerateEpisodeQuery
+  setQuery: (query: GenerateEpisodeQuery) => void
 }>) => {
-  const [query, setQuery] = useState(defaultQuery)
-
-  const deferredQuery = useDeferredValue(query)
   const { id, length } = query
-
-  useEffect(() => {
-    onChange(generateEpisodeAction(deferredQuery))
-  }, [deferredQuery, onChange])
 
   return (
     <div className={cn(className)}>

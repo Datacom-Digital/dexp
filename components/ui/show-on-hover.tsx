@@ -1,11 +1,11 @@
 "use client"
 
 import { PropsWithChildren } from "react"
-import { useLoaded } from "@/lib/hooks"
+import { useMounted } from "@/lib/hooks"
 import { cn } from "@/lib/utils"
 
 export const ShowOnHover = ({ children }: PropsWithChildren) => {
-  const transitionOnLoad = useLoaded()
+  const transitionOnLoad = useMounted()
 
   return (
     <div

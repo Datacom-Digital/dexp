@@ -1,9 +1,8 @@
-import { type ClassValue, clsx } from "clsx"
 import { PropsWithChildren } from "react"
-import { twMerge } from "tailwind-merge"
+import { ClassNameValue, twMerge } from "tailwind-merge"
 
 export type CNProps<T = unknown> = PropsWithChildren<T & { className?: string }>
-export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs))
+export const cn = (...inputs: ClassNameValue[]) => twMerge(inputs)
 
 /**
  * Returns a promise that resolves after ms
@@ -14,8 +13,8 @@ export const wait = (ms: number) => {
   })
 }
 
-export function getRandomInt(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1) + min)
+export function getRandomInt(start: number, size: number) {
+  return Math.floor(Math.random() * size + start)
 }
 
 export function suspend<T extends unknown>(promise: Promise<T>) {
