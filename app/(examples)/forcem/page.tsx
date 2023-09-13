@@ -1,4 +1,4 @@
-import { generateEpisodeAction } from "@/components/forcem/actions"
+import { generateEpisodeAction } from "@/lib/forcem/actions"
 import { ForcemIpsum } from "@/components/forcem/forcem-ipsum"
 import { defaultQuery } from "@/lib/forcem/generate-episode"
 

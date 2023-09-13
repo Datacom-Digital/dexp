@@ -2,7 +2,7 @@ import { useDeferredValue, useEffect, useState } from "react"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 
-import { generateEpisodeAction } from "./actions"
+import { generateEpisodeAction } from "../../lib/forcem/actions"
 import { Episode, defaultQuery, episodes } from "@/lib/forcem/generate-episode"
 import { CNProps, cn } from "@/lib/utils"
 import {

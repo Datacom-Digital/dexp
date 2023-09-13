@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import { generateEpisodeAction } from "@/components/forcem/actions"
+import { generateEpisodeAction } from "@/lib/forcem/actions"
 import { Episode } from "@/lib/forcem/generate-episode"
 import { Spinner } from "@/components/ui/spinner"
 

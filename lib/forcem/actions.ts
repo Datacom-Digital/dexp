@@ -7,6 +7,6 @@ import {
 import { wait } from "@/lib/utils"
 
 export const generateEpisodeAction = async (query: GenerateEpisodeQuery) => {
-  await wait(2000)
+  await wait(500)
   return generateEpisode(query)
 }
