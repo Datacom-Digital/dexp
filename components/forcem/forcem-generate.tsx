@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { Button } from "@/components/ui/button"
 
 export const ForcemGenerate = ({
   query,
@@ -58,6 +59,9 @@ export const ForcemGenerate = ({
           })
         }
       />
+      <Button variant={"outline"} onClick={() => setQuery({ id, length })}>
+        Generate
+      </Button>
     </div>
   )
 }

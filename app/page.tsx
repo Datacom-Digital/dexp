@@ -2,11 +2,13 @@ import { ForcemContent } from "@/components/forcem/forcem-content"
 import { Prose } from "@/components/slideshow/prose"
 import { Slide, SlideContainer } from "@/components/slideshow/slide"
 import { ShowOnVisible } from "@/components/ui/show-on-visible"
+import { HideNav } from "@/components/ui/hide-nav"
 
 export default function Home() {
   return (
     <SlideContainer>
-      <ShowOnVisible fadeIn ratio={1}>
+      <HideNav />
+      <ShowOnVisible fadeIn>
         <Slide className="content-start justify-items-center">
           <Prose>
             <h2>Any Old Type</h2>
@@ -14,7 +16,7 @@ export default function Home() {
           </Prose>
         </Slide>
       </ShowOnVisible>
-      <ShowOnVisible fadeIn ratio={1}>
+      <ShowOnVisible fadeIn>
         <Slide className="content-start justify-items-center">
           <Prose>
             <h2>Any is bad</h2>
@@ -29,7 +31,7 @@ export default function Home() {
         </Slide>
       </ShowOnVisible>
 
-      <ShowOnVisible fadeIn ratio={1}>
+      <ShowOnVisible fadeIn>
         <Slide className="content-start justify-items-center">
           <Prose>
             <h2>Conclusion</h2>

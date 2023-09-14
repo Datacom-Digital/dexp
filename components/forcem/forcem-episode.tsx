@@ -15,9 +15,11 @@ export const ForcemEpisode = async ({
   const { title, content } = await episode
   return (
     <article className={cn(className)}>
-      <h1>{title}</h1>
+      <ShowOnVisible fadeIn fadeOut margin={"-40px 0px -40px"}>
+        <h1>{title}</h1>
+      </ShowOnVisible>
       {content.map(({ id, text }) => (
-        <ShowOnVisible key={id} fadeIn fadeOut margin={"-72px"}>
+        <ShowOnVisible key={id} fadeIn fadeOut margin={"-40px 0px -40px"}>
           <p>{text}</p>
         </ShowOnVisible>
       ))}

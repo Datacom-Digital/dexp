@@ -11,7 +11,7 @@ export const ForcemIpsum = () => {
   const [episode, setEpisode] = useState<Promise<Episode>>()
   const [query, setQuery] = useState<GenerateEpisodeQuery>({
     id: "episode 1",
-    length: 9,
+    length: 12,
   })
   const deferredQuery = useDeferredValue(query)
 
@@ -23,7 +23,7 @@ export const ForcemIpsum = () => {
     <main>
       <div className="flex h-10 w-full justify-center">
         <ForcemGenerate
-          className="top-0 z-20 grid h-10 grid-flow-col items-center space-x-2 bg-background md:fixed"
+          className="top-0 z-20 grid h-10 grid-flow-col items-center space-x-2 bg-background p-1 md:fixed"
           query={query}
           setQuery={setQuery}
         />
@@ -32,7 +32,7 @@ export const ForcemIpsum = () => {
       <Suspense fallback={<Spinner />}>
         <ForcemEpisode
           episode={episode}
-          className="prose mx-auto  pt-6 dark:prose-invert"
+          className="prose mx-auto pt-6 dark:prose-invert"
         />
       </Suspense>
     </main>
