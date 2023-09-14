@@ -5,7 +5,7 @@ export type CNProps<T = unknown> = PropsWithChildren<T & { className?: string }>
 export const cn = (...inputs: ClassNameValue[]) => twMerge(inputs)
 
 /**
- * Returns a promise that resolves after ms
+ * Returns a promise that resolves after @param ms
  */
 export const wait = (ms: number) => {
   return new Promise((resolve) => {
@@ -13,10 +13,23 @@ export const wait = (ms: number) => {
   })
 }
 
-export function getRandomInt(start: number, size: number) {
-  return Math.floor(Math.random() * size + start)
+/**
+ * Returns a random integer with
+ * @param start lower bound
+ * @param range
+ */
+export function getRandomInt(start: number, range: number) {
+  return Math.floor(Math.random() * range + start)
 }
 
+/**
+ * Turn a promise into a react suspense object
+ * @param promise
+ * @returns an object with a read method that either
+ * 1) throws the current promise
+ * 2) throws an error
+ * 3) returns the result
+ */
 export function suspend<T extends unknown>(promise: Promise<T>) {
   let status = "pending"
 

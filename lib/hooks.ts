@@ -32,27 +32,3 @@ export function useIsVisible(
 
   return isVisible
 }
-
-/*
-export function useIsVisible(ref: RefObject<HTMLElement>, rootMargin?: "64px", ratio: number = 1) {
-  const [isVisible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setVisible(entry.intersectionRatio >= ratio)
-      },
-      { threshold: [ratio], rootMargin: "64px" },
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-    return () => {
-      observer.disconnect()
-    }
-  }, [ref, ratio])
-
-  return isVisible
-}
-*/
