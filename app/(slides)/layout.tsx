@@ -7,6 +7,7 @@ export default function SlidesLayout({ children }: React.PropsWithChildren) {
       <ShowOnHover>
         <Nav className="fixed" />
       </ShowOnHover>
+
       {children}
     </>
   )

@@ -6,7 +6,7 @@ import { CNProps, cn } from "@/lib/utils"
 const NavLink = ({ className, ...rest }: ComponentProps<typeof Link>) => (
   <Link
     className={cn(
-      "bg-nav px-3 py-1 text-nav-foreground hover:bg-nav-accent",
+      "rounded bg-nav px-3 py-1 text-nav-foreground hover:bg-nav-accent",
       className,
     )}
     {...rest}
@@ -15,8 +15,13 @@ const NavLink = ({ className, ...rest }: ComponentProps<typeof Link>) => (
 
 export const Nav = ({ className }: CNProps) => {
   return (
-    <div className={cn("flex w-full justify-between", className)}>
-      <nav>
+    <div
+      className={cn(
+        "z-10 grid h-10 w-full grid-flow-col items-center justify-between bg-background",
+        className,
+      )}
+    >
+      <nav className="flex gap-1 pl-1">
         <NavLink href="/">Slides</NavLink>
         <NavLink href="/forcem">Episodes</NavLink>
       </nav>

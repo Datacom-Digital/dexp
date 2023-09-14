@@ -1,4 +1,3 @@
-import { FadeOnVisible } from "@/components/ui/fade-on-visible"
 import { CNProps, cn } from "@/lib/utils"
 
 export const SlideContainer = ({ children, className }: CNProps) => {

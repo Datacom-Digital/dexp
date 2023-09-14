@@ -8,13 +8,18 @@ export const useMounted = () => {
   return mounted
 }
 
-export function useIsVisible(ref: RefObject<HTMLElement>) {
-  const [isIntersecting, setIntersecting] = useState(false)
+export function useIsVisible(
+  ref: RefObject<HTMLElement>,
+  { margin: rootMargin, ratio = 0 }: { margin?: string; ratio?: number },
+) {
+  const [isVisible, setVisible] = useState(false)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => setIntersecting(entry.isIntersecting),
-      { threshold: [1, 1] },
+      ([entry]) => {
+        setVisible(entry.isIntersecting)
+      },
+      { threshold: [ratio], rootMargin },
     )
 
     if (ref.current) {
@@ -23,7 +28,31 @@ export function useIsVisible(ref: RefObject<HTMLElement>) {
     return () => {
       observer.disconnect()
     }
-  }, [ref])
+  }, [ref, rootMargin, ratio])
 
-  return isIntersecting
+  return isVisible
 }
+
+/*
+export function useIsVisible(ref: RefObject<HTMLElement>, rootMargin?: "64px", ratio: number = 1) {
+  const [isVisible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setVisible(entry.intersectionRatio >= ratio)
+      },
+      { threshold: [ratio], rootMargin: "64px" },
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+    return () => {
+      observer.disconnect()
+    }
+  }, [ref, ratio])
+
+  return isVisible
+}
+*/

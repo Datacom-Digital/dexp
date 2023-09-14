@@ -32,11 +32,6 @@ export const episodes = episodeIds.map((id) => {
   }
 })
 
-export const defaultQuery = {
-  id: "episode 1" as Episode["id"],
-  length: 3,
-}
-
 export type GenerateEpisodeQuery = {
   id?: Episode["id"]
   length?: number

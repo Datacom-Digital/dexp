@@ -3,18 +3,17 @@
 import { Suspense, useDeferredValue, useEffect, useState } from "react"
 import { ForcemEpisode } from "./forcem-episode"
 import { ForcemGenerate } from "./forcem-generate"
-import {
-  Episode,
-  GenerateEpisodeQuery,
-  defaultQuery,
-} from "@/lib/forcem/generate-episode"
+import { Episode, GenerateEpisodeQuery } from "@/lib/forcem/generate-episode"
 import { Spinner } from "@/components/ui/spinner"
 import { generateEpisodeAction } from "@/lib/forcem/actions"
-import { FadeOnVisible } from "@/components/ui/fade-on-visible"
+import { ShowOnVisible } from "@/components/ui/show-on-visible"
 
-export const ForcemIpsum = ({ initial }: { initial: Promise<Episode> }) => {
-  const [episode, setEpisode] = useState<Promise<Episode>>(initial)
-  const [query, setQuery] = useState<GenerateEpisodeQuery>(defaultQuery)
+export const ForcemIpsum = () => {
+  const [episode, setEpisode] = useState<Promise<Episode>>()
+  const [query, setQuery] = useState<GenerateEpisodeQuery>({
+    id: "episode 1",
+    length: 9,
+  })
   const deferredQuery = useDeferredValue(query)
 
   useEffect(() => {
@@ -23,21 +22,19 @@ export const ForcemIpsum = ({ initial }: { initial: Promise<Episode> }) => {
 
   return (
     <main>
-      <div className="flex w-full justify-center">
+      <div className="flex h-10 w-full justify-center">
         <ForcemGenerate
-          className="top-0 flex items-center space-x-2 bg-background md:fixed"
+          className="top-0 z-20 grid h-10 grid-flow-col items-center space-x-2 bg-background md:fixed"
           query={query}
           setQuery={setQuery}
         />
       </div>
 
       <Suspense fallback={<Spinner />}>
-        <FadeOnVisible fadeIn>
-          <ForcemEpisode
-            episode={episode}
-            className="prose mx-auto pt-10 dark:prose-invert"
-          />
-        </FadeOnVisible>
+        <ForcemEpisode
+          episode={episode}
+          className="prose mx-auto  pt-6 dark:prose-invert"
+        />
       </Suspense>
     </main>
   )

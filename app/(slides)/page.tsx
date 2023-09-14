@@ -1,20 +1,20 @@
 import { ForcemContent } from "@/components/forcem/forcem-content"
 import { Prose } from "@/components/slideshow/prose"
 import { Slide, SlideContainer } from "@/components/slideshow/slide"
-import { FadeOnVisible } from "@/components/ui/fade-on-visible"
+import { ShowOnVisible } from "@/components/ui/show-on-visible"
 
 export default function Home() {
   return (
     <SlideContainer>
-      <FadeOnVisible fadeIn>
+      <ShowOnVisible fadeIn ratio={1}>
         <Slide className="content-start justify-items-center">
           <Prose>
             <h2>Any Old Type</h2>
             <ForcemContent length={3} />
           </Prose>
         </Slide>
-      </FadeOnVisible>
-      <FadeOnVisible fadeIn>
+      </ShowOnVisible>
+      <ShowOnVisible fadeIn ratio={1}>
         <Slide className="content-start justify-items-center">
           <Prose>
             <h2>Any is bad</h2>
@@ -27,8 +27,9 @@ export default function Home() {
             <ForcemContent length={1} />
           </Prose>
         </Slide>
-      </FadeOnVisible>
-      <FadeOnVisible fadeIn>
+      </ShowOnVisible>
+
+      <ShowOnVisible fadeIn ratio={1}>
         <Slide className="content-start justify-items-center">
           <Prose>
             <h2>Conclusion</h2>
@@ -39,7 +40,7 @@ export default function Home() {
             </ul>
           </Prose>
         </Slide>
-      </FadeOnVisible>
+      </ShowOnVisible>
     </SlideContainer>
   )
 }

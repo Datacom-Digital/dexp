@@ -5,16 +5,16 @@ import { useMounted } from "@/lib/hooks"
 import { cn } from "@/lib/utils"
 
 export const ShowOnHover = ({ children }: PropsWithChildren) => {
-  const transitionOnLoad = useMounted()
+  const mounted = useMounted()
 
   return (
-    <div
+    <span
       className={cn(
-        "transition-all duration-300 hover:opacity-100",
-        transitionOnLoad && "opacity-0",
+        "opacity-100 transition-all duration-300 hover:opacity-100 hover:delay-0",
+        mounted && "opacity-0 delay-300",
       )}
     >
       {children}
-    </div>
+    </span>
   )
 }
