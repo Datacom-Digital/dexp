@@ -6,7 +6,6 @@ import { ForcemGenerate } from "./forcem-generate"
 import { Episode, GenerateEpisodeQuery } from "@/lib/forcem/generate-episode"
 import { Spinner } from "@/components/ui/spinner"
 import { generateEpisodeAction } from "@/lib/forcem/actions"
-import { ShowOnVisible } from "@/components/ui/show-on-visible"
 
 export const ForcemIpsum = () => {
   const [episode, setEpisode] = useState<Promise<Episode>>()
