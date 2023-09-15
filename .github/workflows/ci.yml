@@ -50,7 +50,7 @@ jobs:
       - name: Install
         run: npm ci
       - name: Package
-        run: npm run edge:build
+        run: npm run cf:build
       - name: Store build
         uses: actions/upload-artifact@v3
         with:
