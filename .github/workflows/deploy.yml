@@ -1,0 +1,38 @@
+name: Deploy to Cloudflare
+
+on:
+  workflow_call:
+    inputs:
+      env:
+        required: true
+        type: string
+    secrets: inherit
+
+jobs:
+  deploy:
+    environment:
+      name: ${{ inputs.env }}
+      url: ${{ steps.wrangler.outputs.url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Retrieve build
+        uses: actions/download-artifact@v3
+        with:
+          name: anyoldtype
+          path: .vercel/output/static
+
+      - name: Push to Cloudflare
+        id: wrangler
+        uses: cloudflare/pages-action@1
+        with:
+          branch: ${{ github.head_ref }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: anyoldtype
+          directory: .vercel/output/static
+          wranglerVersion: "3"
