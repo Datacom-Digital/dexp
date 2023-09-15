@@ -39,6 +39,8 @@
     --radius: 0.5rem;
   }
 
+  /* 69, 100%, 50% */
+
   .dark {
     --background: 24, 10%, 10%;
     --foreground: 60, 9%, 98%;

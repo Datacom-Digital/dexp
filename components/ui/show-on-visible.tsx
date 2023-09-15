@@ -1,8 +1,32 @@
 "use client"
 
-import { useRef } from "react"
-import { useIsVisible } from "@/lib/hooks"
+import { RefObject, useEffect, useRef, useState } from "react"
 import { CNProps, cn } from "@/lib/utils"
+
+function useIsVisible(
+  ref: RefObject<HTMLElement>,
+  { margin: rootMargin, ratio = 0 }: { margin?: string; ratio?: number },
+) {
+  const [isVisible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setVisible(entry.isIntersecting)
+      },
+      { threshold: [ratio], rootMargin },
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+    return () => {
+      observer.disconnect()
+    }
+  }, [ref, rootMargin, ratio])
+
+  return isVisible
+}
 
 export const ShowOnVisible = ({
   children,

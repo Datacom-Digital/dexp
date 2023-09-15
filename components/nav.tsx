@@ -1,7 +1,6 @@
-"use client"
 import Link from "next/link"
-import { useContext } from "react"
-import { CNProps, cn } from "@/lib/utils"
+import { Route } from "next"
+import { CNProps } from "@/lib/utils"
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -10,34 +9,27 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { ModeToggle } from "@/components/mode-toggle"
-import { NavContext } from "@/app/providers"
+
+const menu: Array<{ href: Route | URL; label: string }> = [
+  { href: "/", label: "D" },
+  { href: "/slides", label: "Slides" },
+  { href: "/theme", label: "Theme" },
+  { href: "/forcem", label: "Episodes" },
+]
 
 export const Nav = ({ className }: CNProps) => {
-  const { isVisible } = useContext(NavContext)
-
   return (
-    <NavigationMenu
-      className={cn(
-        "opacity-100 transition-all duration-300 ease-in",
-        !isVisible && "opacity-0 hover:opacity-100 hover:delay-0",
-        className,
-      )}
-    >
+    <NavigationMenu className={className}>
       <NavigationMenuList>
-        <NavigationMenuItem>
-          <Link href="/" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Slides
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/forcem" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Episodes
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
+        {menu.map(({ label, href }) => (
+          <NavigationMenuItem key={label}>
+            <Link href={href} legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                {label}
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        ))}
       </NavigationMenuList>
       <ModeToggle />
     </NavigationMenu>

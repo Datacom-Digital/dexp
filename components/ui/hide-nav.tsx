@@ -1,10 +1,12 @@
 "use client"
 
 import { useContext, useEffect } from "react"
-import { NavContext } from "@/app/providers"
+import { ThemeContext } from "@/app/providers"
 
 export const HideNav = () => {
-  const { show, hide } = useContext(NavContext)
+  const {
+    nav: { show, hide },
+  } = useContext(ThemeContext)
   useEffect(() => {
     hide()
     return () => show()

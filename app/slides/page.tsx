@@ -1,22 +1,22 @@
 import { ForcemContent } from "@/components/forcem/forcem-content"
-import { Prose } from "@/components/slideshow/prose"
-import { Slide, SlideContainer } from "@/components/slideshow/slide"
+import { Slide, SlideContainer } from "@/components/ui/slide"
 import { HideNav } from "@/components/ui/hide-nav"
+import { Prose } from "@/components/ui/prose"
 
 export default function Home() {
   return (
     <SlideContainer>
       <HideNav />
 
-      <Slide className="content-start justify-items-center">
-        <Prose>
+      <Slide>
+        <Prose className="prose-xl h-full w-full lg:prose-2xl lg:pt-32">
           <h2>Any Old Type</h2>
           <ForcemContent length={3} />
         </Prose>
       </Slide>
 
-      <Slide className="content-start justify-items-center">
-        <Prose>
+      <Slide>
+        <Prose className="prose-xl h-full w-full lg:prose-2xl lg:pt-32">
           <h2>Any is bad</h2>
           <h3>Reasons why any is bad</h3>
           <ul>
@@ -28,8 +28,8 @@ export default function Home() {
         </Prose>
       </Slide>
 
-      <Slide className="content-start justify-items-center">
-        <Prose>
+      <Slide>
+        <Prose className="prose-xl h-full w-full lg:prose-2xl lg:pt-32">
           <h2>Conclusion</h2>
           <h3>More</h3>
           <ul>

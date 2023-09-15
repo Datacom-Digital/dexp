@@ -21,19 +21,16 @@ export const ForcemIpsum = () => {
 
   return (
     <main>
-      <div className="flex h-10 w-full justify-center">
+      <div className="flex w-full justify-center">
         <ForcemGenerate
-          className="top-0 z-20 grid h-10 grid-flow-col items-center space-x-2 bg-background p-1 md:fixed"
+          className="top-0 z-20 grid h-12 grid-flow-col items-center space-x-2 bg-background p-1 lg:fixed"
           query={query}
           setQuery={setQuery}
         />
       </div>
 
       <Suspense fallback={<Spinner />}>
-        <ForcemEpisode
-          episode={episode}
-          className="prose mx-auto pt-6 dark:prose-invert"
-        />
+        <ForcemEpisode episode={episode} className="mx-auto" />
       </Suspense>
     </main>
   )

@@ -2,23 +2,27 @@
 
 import { PropsWithChildren, createContext, useState } from "react"
 
-export const NavContext = createContext({
-  isVisible: true,
-  hide: () => {},
-  show: () => {},
+export const ThemeContext = createContext({
+  nav: {
+    isHidden: false,
+    hide: () => {},
+    show: () => {},
+  },
 })
 
 export default function Providers({ children }: PropsWithChildren) {
-  const [isVisible, setVisible] = useState(true)
+  const [isHidden, setHidden] = useState(false)
   return (
-    <NavContext.Provider
+    <ThemeContext.Provider
       value={{
-        isVisible,
-        hide: () => setVisible(false),
-        show: () => setVisible(true),
+        nav: {
+          isHidden: isHidden,
+          hide: () => setHidden(true),
+          show: () => setHidden(false),
+        },
       }}
     >
       {children}
-    </NavContext.Provider>
+    </ThemeContext.Provider>
   )
 }

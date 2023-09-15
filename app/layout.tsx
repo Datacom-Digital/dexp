@@ -1,8 +1,10 @@
+export const runtime = "edge"
+
 import "@/app/globals.css"
 import { Montserrat } from "next/font/google"
 import Providers from "./providers"
 import { cn } from "@/lib/utils"
-import { Nav } from "@/components/nav"
+import { PageLayout } from "@/components/page-layout"
 
 const font = Montserrat({ subsets: ["latin"] })
 
@@ -33,8 +35,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
       </head>
       <body className={cn(font.className, "bg-background text-foreground")}>
         <Providers>
-          <Nav />
-          {children}
+          <PageLayout>{children}</PageLayout>
         </Providers>
       </body>
     </html>
