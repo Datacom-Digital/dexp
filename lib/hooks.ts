@@ -10,7 +10,7 @@ export const useMounted = () => {
 
 export function useIsVisible(
   ref: RefObject<HTMLElement>,
-  { margin: rootMargin, ratio = 1 }: { margin?: string; ratio?: number },
+  { margin: rootMargin, ratio = 0 }: { margin?: string; ratio?: number },
 ) {
   const [isVisible, setVisible] = useState(false)
 

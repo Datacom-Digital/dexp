@@ -24,10 +24,10 @@ export const ShowOnVisible = ({
       ref={ref}
       className={cn(
         "opacity-0 transition-none duration-300 ease-in-out",
+        className,
         fadeOut && "transition-all",
         isVisible && "opacity-100",
         isVisible && fadeIn && "transition-all",
-        className,
       )}
     >
       {children}
