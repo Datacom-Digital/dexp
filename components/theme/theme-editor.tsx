@@ -77,7 +77,7 @@ const Theme = ({ theme }: { theme: typeof defaultTheme }) => (
 )
 
 export const ThemeEditor = () => {
-  const [theme, setTheme] = useState(defaultTheme)
+  const [theme, _setTheme] = useState(defaultTheme)
 
   return (
     <DropdownMenu>
@@ -86,7 +86,7 @@ export const ThemeEditor = () => {
         <Button variant="outline">Theme</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {defaultTheme.map(({ id, light, dark }) => {
+        {defaultTheme.map(({ id, light: _light, dark: _dark }) => {
           return <DropdownMenuItem key={id}>{id}</DropdownMenuItem>
         })}
       </DropdownMenuContent>
