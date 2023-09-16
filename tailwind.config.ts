@@ -16,11 +16,6 @@ const config: Config = {
         },
       },
       colors: {
-        nav: {
-          DEFAULT: "hsl(var(--nav))",
-          accent: "hsl(var(--nav-accent))",
-          foreground: "hsl(var(--nav-foreground))",
-        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

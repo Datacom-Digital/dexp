@@ -9,11 +9,11 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { ModeToggle } from "@/components/mode-toggle"
+import { ThemeEditor } from "@/components/theme/theme-editor"
 
 const menu: Array<{ href: Route | URL; label: string }> = [
   { href: "/", label: "D" },
   { href: "/slides", label: "Slides" },
-  { href: "/theme", label: "Theme" },
   { href: "/forcem", label: "Episodes" },
 ]
 
@@ -31,7 +31,10 @@ export const Nav = ({ className }: CNProps) => {
           </NavigationMenuItem>
         ))}
       </NavigationMenuList>
-      <ModeToggle />
+      <NavigationMenuList>
+        <ThemeEditor />
+        <ModeToggle />
+      </NavigationMenuList>
     </NavigationMenu>
   )
 }

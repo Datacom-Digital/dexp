@@ -17,6 +17,7 @@ const technologies: Array<{ label: string; href: Route }> = [
   { label: "shadcn/ui", href: "https://ui.shadcn.com/" },
   { label: "Zod", href: "https://zod.dev/" },
   { label: "Radix", href: "https://www.radix-ui.com/" },
+  { label: "DOMPurify", href: "https://www.npmjs.com/package/dompurify" },
 ]
 const textSizes = ["text-xl", "text-2xl", "text-3xl", "text-4xl"]
 
