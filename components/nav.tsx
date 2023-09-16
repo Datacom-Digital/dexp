@@ -32,8 +32,8 @@ export const Nav = ({ className }: CNProps) => {
         ))}
       </NavigationMenuList>
       <NavigationMenuList>
-        <ThemeEditor />
         <ModeToggle />
+        <ThemeEditor />
       </NavigationMenuList>
     </NavigationMenu>
   )
