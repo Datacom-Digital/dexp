@@ -9,14 +9,14 @@ export default function Home() {
       <HideNav />
 
       <Slide>
-        <Prose className="prose-xl h-full w-full lg:prose-2xl lg:pt-32">
+        <Prose className="h-full w-full lg:prose-2xl lg:pt-32">
           <h2>Any Old Type</h2>
-          <ForcemContent length={3} />
+          <ForcemContent length={1} />
         </Prose>
       </Slide>
 
       <Slide>
-        <Prose className="prose-xl h-full w-full lg:prose-2xl lg:pt-32">
+        <Prose className="h-full w-full lg:prose-2xl lg:pt-32">
           <h2>Any is bad</h2>
           <h3>Reasons why any is bad</h3>
           <ul>
@@ -29,7 +29,7 @@ export default function Home() {
       </Slide>
 
       <Slide>
-        <Prose className="prose-xl h-full w-full lg:prose-2xl lg:pt-32">
+        <Prose className="h-full w-full lg:prose-2xl lg:pt-32">
           <h2>Conclusion</h2>
           <h3>More</h3>
           <ul>

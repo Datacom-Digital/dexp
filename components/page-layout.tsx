@@ -14,7 +14,8 @@ export const PageLayout = ({ children }: PropsWithChildren) => {
       <Nav
         className={cn(
           "h-12 opacity-100 transition-all duration-300 ease-in",
-          isHidden && "opacity-0 hover:opacity-100 hover:delay-0",
+          isHidden &&
+            "opacity-[var(--hover-hide)] hover:opacity-100 hover:delay-0",
         )}
       />
       <div className={cn(!isHidden && "pt-12")}>{children}</div>
