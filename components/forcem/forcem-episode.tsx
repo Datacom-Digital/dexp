@@ -1,5 +1,5 @@
+import { FadeOnVisible } from "@/components/forcem/fade-on-visible"
 import { Prose } from "@/components/ui/prose"
-import { ShowOnVisible } from "@/components/ui/show-on-visible"
 import { Episode } from "@/lib/forcem/generate-episode"
 import { cn } from "@/lib/utils"
 
@@ -16,19 +16,13 @@ export const ForcemEpisode = async ({
   const { title, content } = await episode
   return (
     <Prose className={cn(className)}>
-      <ShowOnVisible fadeIn fadeOut margin={"-72px"} className="opacity-20">
+      <FadeOnVisible>
         <h1>{title}</h1>
-      </ShowOnVisible>
+      </FadeOnVisible>
       {content.map(({ id, text }) => (
-        <ShowOnVisible
-          key={id}
-          fadeIn
-          fadeOut
-          margin={"-72px"}
-          className="opacity-20"
-        >
+        <FadeOnVisible key={id}>
           <p>{text}</p>
-        </ShowOnVisible>
+        </FadeOnVisible>
       ))}
     </Prose>
   )
