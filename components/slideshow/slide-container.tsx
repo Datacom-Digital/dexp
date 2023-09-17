@@ -1,4 +1,3 @@
-import { ShowOnVisible } from "@/components/ui/show-on-visible"
 import { CNProps, cn } from "@/lib/utils"
 
 export const SlideContainer = ({ children, className }: CNProps) => {
@@ -11,20 +10,5 @@ export const SlideContainer = ({ children, className }: CNProps) => {
     >
       {children}
     </main>
-  )
-}
-
-export const Slide = ({ children, className }: CNProps) => {
-  return (
-    <ShowOnVisible fadeIn ratio={1}>
-      <section
-        className={cn(
-          "grid h-screen w-full snap-start place-items-center",
-          className,
-        )}
-      >
-        {children}
-      </section>
-    </ShowOnVisible>
   )
 }
