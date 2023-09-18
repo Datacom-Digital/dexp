@@ -9,15 +9,15 @@ export default function Home() {
     <SlideContainer>
       <HideNav />
 
-      <Slide className="flex flex-col items-center pt-12 lg:pt-32">
-        <Prose className="w-full lg:prose-2xl">
+      <Slide className="pt-nav flex flex-col items-center lg:pt-32">
+        <Prose className="h-full w-full lg:prose-2xl">
           <h2>Any Old Type</h2>
           <ForcemContent length={1} />
         </Prose>
       </Slide>
 
-      <Slide className="flex flex-col items-center pt-12 lg:pt-32">
-        <Prose className="w-full lg:prose-2xl">
+      <Slide className="pt-nav flex flex-col items-center lg:pt-32">
+        <Prose className="h-full w-full lg:prose-2xl">
           <h2>Any is bad</h2>
           <h3>Reasons why any is bad</h3>
           <ul>
@@ -29,8 +29,8 @@ export default function Home() {
         </Prose>
       </Slide>
 
-      <Slide className="flex flex-col items-center pt-12 lg:pt-32">
-        <Prose className="w-full lg:prose-2xl">
+      <Slide className="pt-nav flex flex-col items-center lg:pt-32">
+        <Prose className="h-full w-full lg:prose-2xl">
           <h2>Conclusion</h2>
           <h3>More</h3>
           <ul>

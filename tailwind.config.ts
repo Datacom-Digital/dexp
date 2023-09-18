@@ -11,6 +11,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      spacing: {
+        nav: "var(--nav-height)",
+      },
       container: {
         center: true,
         padding: "2rem",
