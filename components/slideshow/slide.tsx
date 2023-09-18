@@ -9,10 +9,11 @@ export const Slide = ({ children, className }: CNProps) => {
   const isVisible = useIsVisible(ref, { ratio: 1 })
   return (
     <section
+      ref={ref}
       className={cn(
-        "grid h-screen w-full snap-start place-items-center transition-all ease-in-out lg:opacity-0",
-        isVisible && "opacity-100 duration-300",
+        "h-screen w-full snap-start opacity-0 transition-all duration-0 ease-in-out",
         className,
+        isVisible && "opacity-100 duration-300",
       )}
     >
       {children}

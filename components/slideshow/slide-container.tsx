@@ -4,7 +4,7 @@ export const SlideContainer = ({ children, className }: CNProps) => {
   return (
     <main
       className={cn(
-        "max-h-screen w-screen snap-y snap-mandatory overflow-y-scroll [-ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden",
+        "max-h-screen w-full snap-y snap-mandatory overflow-y-scroll [-ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden",
         className,
       )}
     >
