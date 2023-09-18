@@ -85,6 +85,10 @@ const copyToClipboard = (theme: typeof defaultTheme) =>
 
   @layer base {
     :root {
+      --nav-height: 3rem;
+      --radius: 0.5rem;
+  
+      /* light */
       ${theme
         .map((t) => (t.light ? `  --${t.id}: ${t.light};` : ""))
         .join("\n")}
