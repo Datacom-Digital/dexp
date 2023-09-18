@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input"
 import { ThemeContext } from "@/app/providers"
 
 const defaultTheme = [
-  { id: "background", light: "100 100.1% 100.1%", dark: "24 10% 10%" },
+  { id: "background", light: "60 9% 98%", dark: "24 10% 10%" },
   { id: "foreground", light: "24 10% 10%", dark: "60 9% 98%" },
 
   { id: "card", light: "60 9% 98%", dark: "24 10% 10%" },
