@@ -13,7 +13,7 @@ export const Slide = ({ children, className }: CNProps) => {
       className={cn(
         "h-screen w-full snap-start border-4 border-green-700 transition-all duration-0 ease-in supports-[height:100dvh]:h-[100dvh] supports-[height:100dvh]:opacity-0",
         className,
-        isVisible && "opacity-100 duration-300",
+        isVisible && "duration-300 supports-[height:100dvh]:opacity-100",
       )}
     >
       {children}
