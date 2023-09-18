@@ -1,7 +1,7 @@
 "use client"
 
 import { useServerInsertedHTML } from "next/navigation"
-import { Fragment, useState } from "react"
+import { ChangeEvent, Fragment, useContext, useState } from "react"
 import { createStyleRegistry, StyleRegistry } from "styled-jsx"
 import { Label } from "@radix-ui/react-dropdown-menu"
 import { ClipboardCopyIcon } from "@radix-ui/react-icons"
@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { ThemeContext } from "@/app/providers"
 
 const defaultTheme = [
   { id: "background", light: "100 100.1% 100.1%", dark: "24 10% 10%" },
@@ -41,8 +42,6 @@ const defaultTheme = [
   { id: "border", light: "20 5.9% 90%", dark: "12 6.5% 15.1%" },
   { id: "input", light: "229 100% 18%" },
   { id: "ring", light: "221 47% 37%" },
-
-  { id: "radius", light: "0.5rem" },
 ]
 
 const StyledJsxRegistry = ({ children }: { children: React.ReactNode }) => {
@@ -59,35 +58,91 @@ const StyledJsxRegistry = ({ children }: { children: React.ReactNode }) => {
   return <StyleRegistry registry={jsxStyleRegistry}>{children}</StyleRegistry>
 }
 
-const Theme = ({ theme }: { theme: typeof defaultTheme }) => (
+const ApplyTheme = ({ theme }: { theme: typeof defaultTheme }) => (
   <StyledJsxRegistry>
     <style jsx global>
       {`
         :root {
-          ${theme.map((t) => `--${t.id}: ${t.light};`)}
+          ${theme
+            .map((t) => (t.light ? `  --${t.id}: ${t.light};` : ""))
+            .join("\n")}
         }
         .dark {
-          ${theme.map((t) => `--${t.id}: ${t.dark};`)}
+          ${theme
+            .map((t) => (t.dark ? `  --${t.id}: ${t.dark};` : ""))
+            .join("\n")}
         }
       `}
     </style>
   </StyledJsxRegistry>
 )
+/* <style> requires a string literal to parse, repeat it here for copy to clipboard */
+const copyToClipboard = (theme: typeof defaultTheme) =>
+  navigator.clipboard.writeText(`
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
 
-export const ThemeEditor = () => {
+  @layer base {
+    :root {
+      ${theme
+        .map((t) => (t.light ? `  --${t.id}: ${t.light};` : ""))
+        .join("\n")}
+    }
+    .dark {
+      ${theme.map((t) => (t.dark ? `  --${t.id}: ${t.dark};` : "")).join("\n")}
+    }
+  }
+
+  @layer base {
+    * {
+      @apply border-border;
+    }
+  }
+`)
+
+export const ThemeEditorMenu = () => {
   const [theme, setTheme] = useState(defaultTheme)
+  const {
+    mode: { setMode },
+  } = useContext(ThemeContext)
+
+  const onInputChange =
+    (id: string, mode: "light" | "dark") =>
+    (event: ChangeEvent<HTMLInputElement>) =>
+      setTheme(
+        theme.map((t) => ({
+          ...t,
+          ...(t.id === id && {
+            [mode]: event.currentTarget.value,
+          }),
+        })),
+      )
 
   return (
     <DropdownMenu>
-      <Theme theme={theme} />
+      <ApplyTheme theme={theme} />
       <DropdownMenuTrigger asChild>
         <Button variant="outline">Theme</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <div className="grid grid-cols-[max-content,max-content,max-content] items-center  text-sm">
+        <div className="grid grid-cols-[max-content,max-content,max-content] items-center gap-x-2 gap-y-0 p-2 text-sm">
           <div></div>
-          <Label className="w-min justify-self-center">light</Label>
-          <Label className="w-min justify-self-center">dark</Label>
+          <Button
+            variant="ghost"
+            className="w-full justify-self-center bg-accent text-xs dark:bg-inherit"
+            onClick={() => setMode("light")}
+          >
+            light
+          </Button>
+          <Button
+            variant="ghost"
+            className="w-full justify-self-center bg-inherit dark:bg-accent"
+            onClick={() => setMode("dark")}
+          >
+            dark
+          </Button>
+
           {theme.map(({ id, light, dark }) => {
             return (
               <Fragment key={id}>
@@ -97,32 +152,14 @@ export const ThemeEditor = () => {
                   id={`${id}-light`}
                   size={15}
                   value={light}
-                  onChange={(event) =>
-                    setTheme(
-                      theme.map((t) => ({
-                        ...t,
-                        ...(t.id === id && {
-                          light: event.currentTarget.value,
-                        }),
-                      })),
-                    )
-                  }
+                  onChange={onInputChange(id, "light")}
                 />
                 <Input
                   className="border-0 px-2 py-0"
                   id={`${id}-dark`}
                   value={dark}
                   size={15}
-                  onChange={(event) =>
-                    setTheme(
-                      theme.map((t) => ({
-                        ...t,
-                        ...(t.id === id && {
-                          dark: event.currentTarget.value,
-                        }),
-                      })),
-                    )
-                  }
+                  onChange={onInputChange(id, "dark")}
                 />
               </Fragment>
             )
@@ -130,6 +167,7 @@ export const ThemeEditor = () => {
           <Button
             variant={"secondary"}
             className="col-span-3 justify-self-center"
+            onClick={() => copyToClipboard(theme)}
           >
             <ClipboardCopyIcon className="h-max w-max pr-2" />
             Copy theme to clipboard
