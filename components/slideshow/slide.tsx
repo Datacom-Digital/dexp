@@ -11,7 +11,7 @@ export const Slide = ({ children, className }: CNProps) => {
     <section
       ref={ref}
       className={cn(
-        "h-screen w-full snap-start border-4 border-green-700 transition-all duration-0 ease-in supports-[height:100svh]:h-[100svh] supports-[height:100lvh]:border-red-700 supports-[height:100svh]:opacity-30",
+        "h-screen w-full snap-start transition-all duration-0 ease-in supports-[height:100svh]:h-[100svh] supports-[height:100svh]:opacity-0",
         className,
         isVisible && "duration-300 supports-[height:100svh]:opacity-100",
       )}
