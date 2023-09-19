@@ -14,6 +14,7 @@ import { ThemeEditorMenu } from "@/components/theme-editor"
 const menu: Array<{ href: Route | URL; label: string }> = [
   { href: "/", label: "D" },
   { href: "/slides", label: "Slides" },
+  { href: "/dashboard", label: "Cards" },
   { href: "/forcem", label: "Episodes" },
 ]
 

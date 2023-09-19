@@ -21,7 +21,7 @@ const technologies: Array<{ label: string; href: Route }> = [
 ]
 const textSizes = ["text-xl", "text-2xl", "text-3xl", "text-4xl"]
 
-export default async function Home() {
+export default async function Page() {
   return (
     <div className="grid w-full place-items-center">
       <Prose className="mx-auto">

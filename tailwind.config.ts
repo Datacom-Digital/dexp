@@ -9,6 +9,7 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./lib/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@datacom-dexp/ui-sample-component/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {

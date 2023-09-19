@@ -125,13 +125,12 @@ export const ThemeEditorMenu = () => {
 
   return (
     <DropdownMenu>
-      <ApplyTheme theme={theme} />
       <DropdownMenuTrigger asChild>
         <Button variant="outline">Theme</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <div className="grid grid-cols-[max-content,max-content,max-content] items-center gap-x-2 gap-y-0 p-2 text-sm">
-          <div></div>
+          <ApplyTheme theme={theme} />
           <Button
             variant="ghost"
             className="w-full justify-self-center bg-accent text-xs dark:bg-inherit"

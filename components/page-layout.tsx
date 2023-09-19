@@ -1,6 +1,6 @@
 "use client"
 import { PropsWithChildren, useContext } from "react"
-import { Nav } from "@/components/nav"
+import { Nav } from "@/components/nav/nav"
 import { cn } from "@/lib/utils"
 import { ThemeContext } from "@/app/providers"
 

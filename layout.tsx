@@ -1,4 +1,4 @@
-import { Nav } from "@/components/nav"
+import { Nav } from "@/components/nav/nav"
 
 export default function SlidesLayout({ children }: React.PropsWithChildren) {
   return (

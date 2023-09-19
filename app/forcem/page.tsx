@@ -5,6 +5,6 @@ export const metadata = {
   description: "Descussing typescript types and any other unknowns",
 }
 
-export default async function Forecem() {
+export default async function Page() {
   return <ForcemIpsum />
 }
