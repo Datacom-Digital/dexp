@@ -1,5 +1,5 @@
 "use client"
-import { SampleComponent } from "@datacom-dexp/ui-sample-component/dist"
+import { SampleComponent } from "@datacom-dexp/ui-sample-component"
 
 export const Dashboard = () => {
   return (
