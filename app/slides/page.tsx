@@ -1,7 +1,7 @@
 import { ForcemContent } from "@/components/forcem/forcem-content"
 import { Slide } from "@/components/slideshow/slide"
 import { SlideContainer } from "@/components/slideshow/slide-container"
-import { HideNav } from "@/components/ui/hide-nav"
+import { HideNav } from "@/components/hide-nav"
 import { Prose } from "@/components/ui/prose"
 
 export default function Home() {
