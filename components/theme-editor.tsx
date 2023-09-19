@@ -133,14 +133,14 @@ export const ThemeEditorMenu = () => {
           <ApplyTheme theme={theme} />
           <Button
             variant="ghost"
-            className="w-full justify-self-center bg-accent text-xs dark:bg-inherit"
+            className="col-start-2 w-full justify-self-center bg-accent text-xs dark:bg-inherit"
             onClick={() => setMode("light")}
           >
             light
           </Button>
           <Button
             variant="ghost"
-            className="w-full justify-self-center bg-inherit dark:bg-accent"
+            className="col-start-3 w-full justify-self-center bg-inherit dark:bg-accent"
             onClick={() => setMode("dark")}
           >
             dark
