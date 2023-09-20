@@ -154,13 +154,13 @@ export const ThemeEditorMenu = () => {
                   className="border-0 px-2 py-0"
                   id={`${id}-light`}
                   size={15}
-                  value={light}
+                  value={light || ""}
                   onChange={onInputChange(id, "light")}
                 />
                 <Input
                   className="border-0 px-2 py-0"
                   id={`${id}-dark`}
-                  value={dark}
+                  value={dark || ""}
                   size={15}
                   onChange={onInputChange(id, "dark")}
                 />
