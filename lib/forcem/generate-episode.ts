@@ -47,3 +47,17 @@ export const generateEpisode = ({
     content: generateContent(id, length),
   }
 }
+
+export const generateEpisodeStrict = ({
+  id,
+  length = randomLength(),
+}: GenerateEpisodeQuery): Episode => {
+  if (!id) {
+    throw Error("No id supplied")
+  }
+  return {
+    id,
+    title: `Episode ${romanize(getEpisodeNumber(id))}`,
+    content: generateContent(id, length),
+  }
+}
