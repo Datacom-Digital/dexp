@@ -12,7 +12,7 @@ import {
   CardsShare,
   CardsStats,
   CardsTeamMembers,
-} from "@datacom-dexp/ui-sample-components/cards"
+} from "@datacom-digital/ui-sample-components/cards"
 
 export const Dashboard = () => {
   return (
