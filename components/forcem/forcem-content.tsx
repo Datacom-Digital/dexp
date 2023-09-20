@@ -13,8 +13,14 @@ const SuspendedEpisode = async ({ episode }: { episode: Promise<Episode> }) => {
   )
 }
 
-export const ForcemContent = ({ length }: { length: number }) => {
-  const episode = generateEpisodeAction({ length })
+export const ForcemContent = ({
+  length,
+  id,
+}: {
+  length: number
+  id?: Episode["id"]
+}) => {
+  const episode = generateEpisodeAction({ length, id })
   return (
     <Suspense fallback={<Spinner />}>
       <SuspendedEpisode episode={episode} />

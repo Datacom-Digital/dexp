@@ -24,7 +24,7 @@ export const romanize = (arabic: string) => {
   }
 
   for (i in lookup) {
-    var q = Math.floor(num / lookup[i])
+    const q = Math.floor(num / lookup[i])
     num -= q * lookup[i]
     str += i.repeat(q)
   }

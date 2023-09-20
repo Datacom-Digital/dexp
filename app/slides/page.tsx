@@ -4,6 +4,10 @@ import { SlideContainer } from "@/components/slideshow/slide-container"
 import { HideNav } from "@/components/nav/hide-nav"
 import { Prose } from "@/components/ui/prose"
 
+const a = {}
+
+console.log(a)
+
 export default function Page() {
   return (
     <SlideContainer>
@@ -12,7 +16,7 @@ export default function Page() {
       <Slide className="flex flex-col items-center pt-nav lg:pt-32">
         <Prose className="h-full w-full lg:prose-2xl">
           <h2>Any Old Type</h2>
-          <ForcemContent length={1} />
+          <ForcemContent length={2} />
         </Prose>
       </Slide>
 

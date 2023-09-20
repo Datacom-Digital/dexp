@@ -32,14 +32,14 @@ export function getRandomInt(start: number, range: number) {
  * 2) throws an error
  * 3) returns the result
  */
-export function suspend<T extends unknown>(promise: Promise<T>) {
+export function suspend<T>(promise: Promise<T>) {
   let status = "pending"
 
   // 1. Keep track of the Promise's state. The `status`
   //    variable will update as the Promise moves from
   //    pending to success or error.
   let result: T
-  let suspender = promise.then(
+  const suspender = promise.then(
     (res) => {
       // On success, update the status to "success"
       status = "success"
