@@ -10,16 +10,17 @@ const font = Montserrat({ subsets: ["latin"] })
 
 // Inline script to prevent fouc
 // suppressHydrationWarning added to html tag
-const darkmode = `
-if (
-  localStorage.theme === "dark" ||
-  (!("theme" in localStorage) &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches)
-) {
-  document.documentElement.classList.add("dark")
-} else {
-  document.documentElement.classList.remove("dark")
-}
+const setDarkMode = `
+const isDarkMode = () => {
+  if (typeof localStorage !== "undefined" && localStorage.theme === "dark") {
+    return true
+  }
+  if (typeof localStorage !== "undefined" && localStorage.theme === "light") {
+    return false
+  }
+  return window?.matchMedia("(prefers-color-scheme: dark)").matches
+};
+if (isDarkMode()) document.documentElement.classList.add("dark");
 `
 
 export const metadata = {
@@ -31,7 +32,11 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: darkmode }} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: setDarkMode,
+          }}
+        />
       </head>
       <body className={cn(font.className, "bg-background text-foreground")}>
         <Providers>

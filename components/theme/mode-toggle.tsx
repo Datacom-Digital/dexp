@@ -1,7 +1,6 @@
 "use client"
 
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
-import { useContext } from "react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -9,12 +8,28 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { ThemeContext } from "@/app/providers"
+
+export const setMode = (theme: "light" | "dark" | "system") => {
+  if (theme === "system") {
+    localStorage?.removeItem("theme")
+
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.classList.add("dark")
+    }
+  }
+
+  if (theme === "light") {
+    localStorage?.setItem("theme", "light")
+    document.documentElement.classList.remove("dark")
+  }
+
+  if (theme === "dark") {
+    localStorage?.setItem("theme", "dark")
+    document.documentElement.classList.add("dark")
+  }
+}
 
 export const ModeToggle = () => {
-  const {
-    mode: { setMode },
-  } = useContext(ThemeContext)
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
