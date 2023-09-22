@@ -81,4 +81,4 @@ jobs:
       - name: Build Project Artifacts
         run: npx vercel build --prod --token=${{ secrets.VERCEL_API_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        run: npx vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }}
+        run: npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }}
