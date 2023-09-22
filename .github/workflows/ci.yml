@@ -44,8 +44,8 @@ jobs:
       - name: Add preview URL comment
         uses: marocchino/sticky-pull-request-comment@v2
         with:
-        message: |
-          Preview deploy available at ${{ env.PREVIEW_URL }}
+          message: |
+            Preview deploy available at ${{ env.PREVIEW_URL }}
 
   lint:
     name: Lint
