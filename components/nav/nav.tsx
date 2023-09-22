@@ -35,7 +35,7 @@ export const Nav = ({ className }: CNProps) => {
       <NavigationMenuList>
         <NavigationMenuItem>
           <Link
-            href="https://github.com/Datacom-Digital/anyoldtype"
+            href="https://github.com/Datacom-Digital/dexp"
             legacyBehavior
             passHref
           >

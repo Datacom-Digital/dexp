@@ -34,6 +34,28 @@ jobs:
         run: |
           echo "OUTPUT: ${{ steps.set.outputs.environment }}"
 
+  preview:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+          cache: "npm"
+      - name: Install
+        run: npm ci
+      - name: Pull Vercel Environment Information
+        run: npx vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: npx vercel build --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+      
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -49,13 +71,15 @@ jobs:
           cache: "npm"
       - name: Install
         run: npm ci
+      - name: Pull Vercel Environment Information
+        run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - name: Package
-        run: npm run cf:build
+        run: npx vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Store build
         uses: actions/upload-artifact@v3
         with:
-          name: anyoldtype
-          path: .vercel/output/static
+          name: dexp
+          path: .vercel/output
 
   lint:
     name: Lint
@@ -83,19 +107,22 @@ jobs:
       url: ${{ steps.wrangler.outputs.url }}
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+          cache: "npm"
+
       - name: Retrieve build
         uses: actions/download-artifact@v3
         with:
-          name: anyoldtype
-          path: .vercel/output/static
+          name: dexp
+          path: .vercel/output
 
-      - name: Push to Cloudflare
-        id: wrangler
-        uses: cloudflare/pages-action@1
-        with:
-          branch: ${{ github.head_ref }}
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: anyoldtype
-          directory: .vercel/output/static
-          wranglerVersion: "3"
+      - name: Deploy Project Artifacts to Vercel
+        run: npx vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
