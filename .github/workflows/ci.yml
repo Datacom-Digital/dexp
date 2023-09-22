@@ -41,7 +41,10 @@ jobs:
       - name: Deploy Project Artifacts to Vercel
         id: deploy
         run: echo "PREVIEW_URL=$(npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }})" >> $GITHUB_ENV
-      - name: Add preview URL comment
+      - name: Add preview URL to job summary
+        run: |
+          echo "Preview deploy available at ${{ env.PREVIEW_URL }} >> $GITHUB_STEP_SUMMARY
+      - name: Add preview URL to PR
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: |
@@ -87,4 +90,7 @@ jobs:
       - name: Build Project Artifacts
         run: npx vercel build --prod --token=${{ secrets.VERCEL_API_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        run: npx vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }}
+        run: echo "DEPLOY_URL=$(npx vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }})" >> $GITHUB_ENV
+      - name: Add deploy URL to job summary
+        run: |
+          echo "Production deploy available at ${{ env.DEPLOY_URL }} >> $GITHUB_STEP_SUMMARY
