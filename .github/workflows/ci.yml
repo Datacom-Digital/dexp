@@ -21,6 +21,7 @@ jobs:
   preview:
     name: Preview
     runs-on: ubuntu-latest
+    environment: preview
     if: github.ref != 'refs/heads/main' && github.event_name == 'pull_request'
     steps:
       - name: Checkout
@@ -71,6 +72,7 @@ jobs:
   deploy:
     name: Deploy
     needs: [lint]
+    environment: production
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     steps:
