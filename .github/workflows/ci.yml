@@ -21,6 +21,7 @@ jobs:
   preview:
     name: Preview
     runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/main' && github.event_name == 'pull_request'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -39,31 +40,6 @@ jobs:
         run: npx vercel build --token=${{ secrets.VERCEL_API_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
         run: npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }}
-      
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18.x"
-          cache: "npm"
-      - name: Install
-        run: npm ci
-      - name: Pull Vercel Environment Information
-        run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_API_TOKEN }}
-      - name: Package
-        run: npx vercel build --prod --token=${{ secrets.VERCEL_API_TOKEN }}
-      - name: Store build
-        uses: actions/upload-artifact@v3
-        with:
-          name: dexp
-          path: .vercel/output
 
   lint:
     name: Lint
@@ -85,25 +61,24 @@ jobs:
 
   deploy:
     name: Deploy
-    needs: [build, lint]
+    needs: [lint]
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "18.x"
           cache: "npm"
-
-      - name: Retrieve build
-        uses: actions/download-artifact@v3
-        with:
-          name: dexp
-          path: .vercel/output
-
+      - name: Install
+        run: npm ci
+      - name: Pull Vercel Environment Information
+        run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_API_TOKEN }}
+      - name: Build Project Artifacts
+        run: npx vercel build --prod --token=${{ secrets.VERCEL_API_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        run: npx vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }}
+        run: npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }}
