@@ -15,7 +15,7 @@ const menu: Array<{ href: Route | URL; label: string }> = [
   { href: "/", label: "D" },
   { href: "/slides", label: "Slides" },
   { href: "/dashboard", label: "Cards" },
-  { href: "/forcem", label: "Episodes" },
+  { href: "/forcem", label: "Forcem" },
 ]
 
 export const Nav = ({ className }: CNProps) => {

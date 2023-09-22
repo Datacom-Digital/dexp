@@ -8,8 +8,7 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   root: true,
   rules: {
-    //"@typescript-eslint/explicit-function-return-type": "error",
-    //"@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-explicit-any": "error",
     // ensure consistant imports
     "import/order": "error",
     // conflicts with the the smarter tsc version
