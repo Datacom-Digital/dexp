@@ -1,5 +1,3 @@
-export const runtime = "edge"
-
 import "@/app/globals.css"
 import { Montserrat } from "next/font/google"
 import Providers from "./providers"
