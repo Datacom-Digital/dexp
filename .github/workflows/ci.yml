@@ -93,16 +93,13 @@ jobs:
     env:
       STATUS: "${{ contains(needs.*.result, 'failure') && 'failed' || 'passed'}}"
     steps:
-      - name: Add test status to job summary
-        run: |
-          echo "Test suite ${{ env.STATUS }}" >> "$GITHUB_STEP_SUMMARY"
       - name: Add test status to PR
         if: github.event_name == 'pull_request'
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           Append: true
           message: |
-            "Test suite ${{ env.STATUS }}"
+            Test suite ${{ env.STATUS }}
       - name: Failing deploy
         if: ${{ env.STATUS == 'failed' }}
         run: exit 1
