@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: preview
     outputs:
-      url: steps.deploy.outputs.url
+      url: ${{ steps.deploy.outputs.url }}
     if: github.ref != 'refs/heads/main' && github.event_name == 'pull_request'
     steps:
       - name: Checkout
