@@ -46,4 +46,4 @@ jobs:
         run: npx vercel build ${{ env.PROD_FLAG }} --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }}
       - name: Deploy Project Artifacts to Vercel
         id: deploy
-        run: echo "url=$(npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }})" >> "$GITHUB_OUTPUT" --scope ${{ vars.VERCEL_SCOPE }}
+        run: echo "url=$(npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }})" >> "$GITHUB_OUTPUT"
