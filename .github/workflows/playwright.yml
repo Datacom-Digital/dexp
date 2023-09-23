@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.35.1-jammy
+    env:
+      # Must be the length of the shardIndex array beloy
+      shardTotal: 2
     strategy:
       fail-fast: false
-      env:
-        # Must be the length of the shardIndex array
-        shardTotal: 2
       matrix:
         project: [chromium, webkit, firefox, chrome-mobile, safari-mobile]
         shardIndex: [1, 2]
