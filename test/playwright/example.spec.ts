@@ -16,3 +16,13 @@ test("@smoke link", async ({ page }) => {
   // Expects page to have a heading with the name of Installation.
   await expect(page.getByRole("heading", { name: /Episode/ })).toBeVisible()
 })
+
+test("@smoke forcem", async ({ page }) => {
+  await page.goto("/forcem")
+
+  // Click the get started link.
+  await page.getByRole("button", { name: "Generate" }).click()
+
+  // Expects page to have a heading with the name of Installation.
+  await expect(page.getByRole("heading", { name: /Episode/ })).toBeVisible()
+})
