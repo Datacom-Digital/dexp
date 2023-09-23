@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: preview
     outputs:
-      URL: env.PREVIEW_URL
+      url: steps.deploy.outputs.url
     if: github.ref != 'refs/heads/main' && github.event_name == 'pull_request'
     steps:
       - name: Checkout
@@ -61,22 +61,22 @@ jobs:
         run: npx vercel build --token=${{ secrets.VERCEL_API_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
         id: deploy
-        run: echo "PREVIEW_URL=$(npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }})" >> "$GITHUB_ENV"
+        run: echo "url=$(npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }})" >> "$GITHUB_OUTPUT"
       - name: Add preview URL to job summary
         run: |
-          echo "Preview deploy available at ${{ env.PREVIEW_URL }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Preview deploy available at ${{ steps.deploy.outputs.url }}" >> "$GITHUB_STEP_SUMMARY"
       - name: Add preview URL to PR
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: |
-            Preview deploy available at ${{ env.PREVIEW_URL }}
+            Preview deploy available at ${{ steps.deploy.outputs.url }}
 
   test:
     needs: [preview]
     if: github.event_name != 'pull_request_target'
     uses: ./.github/workflows/playwright.yml
     with:
-      url: ${{ needs.preview.outputs.URL }}
+      url: ${{ needs.preview.outputs.url }}
 
   deploy:
     name: Deploy
