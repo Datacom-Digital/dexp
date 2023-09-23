@@ -40,7 +40,7 @@ jobs:
       environment: "${{ ( github.ref == 'refs/heads/main' && github.event_name == 'push' ) && 'production' || 'preview' }} "
 
   report:
-    name: Report
+    name: Deploy URL
     needs: [deploy]
     runs-on: ubuntu-latest
     steps:
@@ -62,7 +62,7 @@ jobs:
       url: ${{ needs.deploy.outputs.url }}
 
   status:
-    name: Success
+    name: CI Status
     needs: [test]
     if: success() || failure()
     runs-on: ubuntu-latest
