@@ -61,7 +61,7 @@ jobs:
         run: npx vercel build --token=${{ secrets.VERCEL_API_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
         id: deploy
-        run: echo "URL=$(npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }})" >> "$GITHUB_ENV"
+        run: echo "PREVIEW_URL=$(npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }})" >> "$GITHUB_ENV"
       - name: Add preview URL to job summary
         run: |
           echo "Preview deploy available at ${{ env.PREVIEW_URL }}" >> "$GITHUB_STEP_SUMMARY"
