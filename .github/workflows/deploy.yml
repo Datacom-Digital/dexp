@@ -21,13 +21,13 @@ on:
 jobs:
   deploy:
     name: Deploy to Vercel
-    runs-on: ubuntu-latest
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
       PROD_FLAG: "${{ inputs.environment == 'production' && '--prod' || '' }}"
     outputs:
       url: ${{ steps.deploy.outputs.url }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -41,9 +41,9 @@ jobs:
       - name: Install
         run: npm ci
       - name: Pull Vercel Environment Information
-        run: npx vercel pull --yes --environment=${{ inputs.environment }} --token=${{ secrets.VERCEL_API_TOKEN }}
+        run: npx vercel pull --yes --environment=${{ inputs.environment }} --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }}
       - name: Build Project Artifacts
-        run: npx vercel build ${{ env.PROD_FLAG }} --token=${{ secrets.VERCEL_API_TOKEN }}
+        run: npx vercel build ${{ env.PROD_FLAG }} --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }}
       - name: Deploy Project Artifacts to Vercel
         id: deploy
-        run: echo "url=$(npx vercel deploy ${{ env.PROD_FLAG }} --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }})" >> "$GITHUB_OUTPUT"
+        run: echo "url=$(npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }})" >> "$GITHUB_OUTPUT"
