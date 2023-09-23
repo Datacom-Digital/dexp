@@ -65,6 +65,7 @@ jobs:
     name: Success
     needs: [lint, deploy, test]
     if: success() || failure()
+    runs-on: ubuntu-latest
     steps:
       - name: Successful deploy
         if: ${{ !(contains(needs.*.result, 'failure')) }}
