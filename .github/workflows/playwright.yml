@@ -12,6 +12,7 @@ jobs:
     name: Test frontend
     runs-on: ubuntu-latest
     container:
+      # should match the installed version
       image: mcr.microsoft.com/playwright:v1.38.1-jammy
     defaults:
       run:
