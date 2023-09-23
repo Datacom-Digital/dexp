@@ -1,0 +1,47 @@
+name: Playwright tests
+
+on:
+  workflow_call:
+    inputs:
+      url:
+        required: true
+        type: string
+
+jobs:
+  playwright:
+    name: Test frontend
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.35.1-jammy
+    strategy:
+      fail-fast: false
+      env:
+        # Must be the length of the shardIndex array
+        shardTotal: 2
+      matrix:
+        project: [chromium, webkit, firefox, chrome-mobile, safari-mobile]
+        shardIndex: [1, 2]
+    defaults:
+      run:
+        working-directory: "./frontend"
+    env:
+      PLAYWRIGHT_URL: ${{ inputs.url }}
+      PLAYWRIGHT_HEADER: ""
+      PLAYWRIGHT_DEV_SERVER: false
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        # HOME=/root https://github.com/microsoft/playwright/issues/6500
+        run: npx cross-env HOME=/root playwright test --grep @smoke --project=${{ matrix.project }} --shard=${{ matrix.shardIndex }}/${{ env.shardTotal }}
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: Playwright report
+          path: test/report
+          retention-days: 10
