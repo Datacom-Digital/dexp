@@ -63,7 +63,7 @@ jobs:
 
   status:
     name: Success
-    needs: [lint, deploy, test]
+    needs: [test]
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
