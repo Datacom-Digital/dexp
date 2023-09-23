@@ -49,3 +49,5 @@ jobs:
   success:
     name: Test success
     needs: [playwright]
+    steps:
+      name: Testing matrix complete
