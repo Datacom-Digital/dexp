@@ -80,7 +80,7 @@ jobs:
           node-version: "18.x"
           cache: "npm"
       - name: Alias build to production
-        run: echo "npx vercel alias ${{ needs.deploy.outputs.url }} ${{ vars.VERCEL_ALIAS }} --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }}" >> "$GITHUB_STEP_SUMMARY"
+        run: echo "$(npx vercel alias ${{ needs.deploy.outputs.url }} ${{ vars.VERCEL_ALIAS }} --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }})" >> "$GITHUB_STEP_SUMMARY"
       - name: Add test status to job summary
         run: |
           echo "Test suite ${{ env.STATUS }}"
