@@ -38,7 +38,7 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     secrets: inherit
     with:
-      environment: "${{ ( github.ref == 'refs/heads/main' && github.event_name == 'push' ) && 'production' || 'preview' }} "
+      environment: "${{ ( github.ref == 'refs/heads/production' && github.event_name == 'push' ) && 'production' || 'preview' }} "
 
   report:
     name: Deploy URL
@@ -81,7 +81,7 @@ jobs:
           node-version: "18.x"
           cache: "npm"
       - name: Alias build to production
-        run: npx vercel alias ${{ needs.deploy.outputs.url }} ${{ vars.DOMAIN_ALIAS }} --token=${{ secrets.VERCEL_API_TOKEN }}
+        run: npx vercel alias ${{ needs.deploy.outputs.url }} ${{ vars.VERCEL_ALIAS }} --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }}
 
   status:
     name: CI Status
