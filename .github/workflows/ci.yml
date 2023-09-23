@@ -72,7 +72,7 @@ jobs:
             Preview deploy available at ${{ steps.deploy.outputs.URL }}
 
   test:
-    needs: [lint, preview]
+    needs: [preview]
     if: github.event_name != 'pull_request_target'
     uses: ./.github/workflows/playwright.yml
     with:
