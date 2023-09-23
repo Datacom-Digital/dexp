@@ -13,18 +13,17 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.35.1-jammy
-    env:
-      # Must be the length of the shardIndex array beloy
-      shardTotal: 2
+    defaults:
+      run:
+        working-directory: "./"
     strategy:
       fail-fast: false
       matrix:
         project: [chromium, webkit, firefox, chrome-mobile, safari-mobile]
         shardIndex: [1, 2]
-    defaults:
-      run:
-        working-directory: "./frontend"
     env:
+      # Must be the length of the shardIndex array
+      SHARD_INDEX_LENGTH: 2
       PLAYWRIGHT_URL: ${{ inputs.url }}
       PLAYWRIGHT_HEADER: ""
       PLAYWRIGHT_DEV_SERVER: false
@@ -38,7 +37,7 @@ jobs:
         run: npm ci
       - name: Run tests
         # HOME=/root https://github.com/microsoft/playwright/issues/6500
-        run: npx cross-env HOME=/root playwright test --grep @smoke --project=${{ matrix.project }} --shard=${{ matrix.shardIndex }}/${{ env.shardTotal }}
+        run: npx cross-env HOME=/root playwright test --grep @smoke --project=${{ matrix.project }} --shard=${{ matrix.shardIndex }}/${{ env.SHARD_INDEX_LENGTH }}
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
