@@ -50,4 +50,4 @@ jobs:
     name: Test success
     needs: [playwright]
     steps:
-      name: Testing matrix complete
+      run: echo "Testing matrix complete"
