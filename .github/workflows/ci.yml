@@ -1,9 +1,5 @@
 name: CI
 
-env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
 on:
   push:
     branches:
@@ -36,74 +32,32 @@ jobs:
       - name: Package
         run: npm run lint
 
-  preview:
-    name: Preview
-    runs-on: ubuntu-latest
-    environment: preview
-    outputs:
-      url: ${{ steps.deploy.outputs.url }}
-    if: github.ref != 'refs/heads/main' && github.event_name == 'pull_request'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18.x"
-          cache: "npm"
-      - name: Install
-        run: npm ci
-      - name: Pull Vercel Environment Information
-        run: npx vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_API_TOKEN }}
-      - name: Build Project Artifacts
-        run: npx vercel build --token=${{ secrets.VERCEL_API_TOKEN }}
-      - name: Deploy Project Artifacts to Vercel
-        id: deploy
-        run: echo "url=$(npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }})" >> "$GITHUB_OUTPUT"
-      - name: Add preview URL to job summary
-        run: |
-          echo "Preview deploy available at ${{ steps.deploy.outputs.url }}" >> "$GITHUB_STEP_SUMMARY"
-      - name: Add preview URL to PR
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          message: |
-            Preview deploy available at ${{ steps.deploy.outputs.url }}
-      - name: Test
-        uses: ./.github/workflows/playwright.yml
-        with:
-          url: ${{ steps.deploy.outputs.url }}
-
   deploy:
     name: Deploy
     needs: [lint]
-    environment: production
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
+    with:
+      environment: ${{ ( github.ref == 'refs/heads/main' && github.event_name == 'push' ) && "production" || "preview" }}
+
+  report:
+    name: Report
+    needs: [deploy]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18.x"
-          cache: "npm"
-      - name: Install
-        run: npm ci
-      - name: Pull Vercel Environment Information
-        run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_API_TOKEN }}
-      - name: Build Project Artifacts
-        run: npx vercel build --prod --token=${{ secrets.VERCEL_API_TOKEN }}
-      - name: Deploy Project Artifacts to Vercel
-        id: deploy
-        run: echo "url=$(npx vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }})" >> $GITHUB_OUTPUTS
-      - name: Add deploy URL to job summary
+      - name: Add preview URL to job summary
         run: |
-          echo "Production deploy available at ${{ steps.deploy.outputs.url }}" >> $GITHUB_STEP_SUMMARY
-      - name: Test
-        uses: ./.github/workflows/playwright.yml
+          echo "Deployed to ${{ needs.deploy.outputs.url }}" >> "$GITHUB_STEP_SUMMARY"
+      - name: Add preview URL to PR
+        if: github.event_name == 'pull_request'
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
-          url: ${{ steps.deploy.outputs.url }}
+          message: |
+            Latest deployment available at ${{ needs.deploy.outputs.url }}
+
+  test:
+    name: Test
+    needs: [deploy]
+    uses: ./.github/workflows/playwright.yml
+    with:
+      url: ${{ needs.deploy.outputs.url }}
