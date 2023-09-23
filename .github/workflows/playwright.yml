@@ -49,5 +49,6 @@ jobs:
   success:
     name: Test success
     needs: [playwright]
+    runs-on: ubuntu-latest
     steps:
       - run: echo "Testing matrix complete"
