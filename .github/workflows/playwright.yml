@@ -45,3 +45,7 @@ jobs:
           name: Playwright report
           path: test/report
           retention-days: 10
+
+  success:
+    name: Test success
+    needs: [playwright]
