@@ -104,5 +104,5 @@ jobs:
           message: |
             "Test suite ${{ env.STATUS }}"
       - name: Failing deploy
-        if: ${{ env.STATUS == failure }}
+        if: ${{ env.STATUS == 'failed' }}
         run: exit 1
