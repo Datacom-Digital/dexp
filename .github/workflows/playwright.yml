@@ -38,7 +38,7 @@ jobs:
         run: npm ci
       - name: Run tests
         # HOME=/root https://github.com/microsoft/playwright/issues/6500
-        run: npx playwright test --grep @smoke --project=${{ matrix.project }} --shard=${{ matrix.shardIndex }}/${{ env.SHARD_INDEX_LENGTH }}
+        run: HOME=/root npx playwright test --grep @smoke --project=${{ matrix.project }} --shard=${{ matrix.shardIndex }}/${{ env.SHARD_INDEX_LENGTH }}
       - uses: actions/upload-artifact@v3
         if: failure()
         with:

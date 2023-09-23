@@ -70,13 +70,10 @@ jobs:
         with:
           message: |
             Preview deploy available at ${{ steps.deploy.outputs.url }}
-
-  test:
-    needs: [preview]
-    if: github.event_name != 'pull_request_target'
-    uses: ./.github/workflows/playwright.yml
-    with:
-      url: ${{ needs.preview.outputs.url }}
+      - name: Test
+        uses: ./.github/workflows/playwright.yml
+        with:
+          url: ${{ steps.deploy.outputs.url }}
 
   deploy:
     name: Deploy
@@ -101,7 +98,12 @@ jobs:
       - name: Build Project Artifacts
         run: npx vercel build --prod --token=${{ secrets.VERCEL_API_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        run: echo "DEPLOY_URL=$(npx vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }})" >> $GITHUB_ENV
+        id: deploy
+        run: echo "url=$(npx vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }})" >> $GITHUB_OUTPUTS
       - name: Add deploy URL to job summary
         run: |
-          echo "Production deploy available at ${{ env.DEPLOY_URL }}" >> $GITHUB_STEP_SUMMARY
+          echo "Production deploy available at ${{ steps.deploy.outputs.url }}" >> $GITHUB_STEP_SUMMARY
+      - name: Test
+        uses: ./.github/workflows/playwright.yml
+        with:
+          url: ${{ steps.deploy.outputs.url }}
