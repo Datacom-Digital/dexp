@@ -18,10 +18,30 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+          cache: "npm"
+      - name: Install
+        run: npm ci
+      - name: Package
+        run: npm run lint
+
   preview:
     name: Preview
     runs-on: ubuntu-latest
     environment: preview
+    outputs:
+      URL: env.PREVIEW_URL
     if: github.ref != 'refs/heads/main' && github.event_name == 'pull_request'
     steps:
       - name: Checkout
@@ -41,33 +61,22 @@ jobs:
         run: npx vercel build --token=${{ secrets.VERCEL_API_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
         id: deploy
-        run: echo "PREVIEW_URL=$(npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }})" >> $GITHUB_ENV
+        run: echo "PREVIEW_URL=$(npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }})" >> "$GITHUB_ENV"
       - name: Add preview URL to job summary
         run: |
-          echo "Preview deploy available at ${{ env.PREVIEW_URL }}" >> $GITHUB_STEP_SUMMARY
+          echo "Preview deploy available at ${{ env.PREVIEW_URL }}" >> "$GITHUB_STEP_SUMMARY"
       - name: Add preview URL to PR
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: |
             Preview deploy available at ${{ env.PREVIEW_URL }}
 
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18.x"
-          cache: "npm"
-      - name: Install
-        run: npm ci
-      - name: Package
-        run: npm run lint
+  test:
+    needs: [preview]
+    if: github.event_name != 'pull_request_target'
+    uses: ./.github/workflows/playwright.yml
+    with:
+      url: ${{ needs.preview.outputs.URL }}
 
   deploy:
     name: Deploy
