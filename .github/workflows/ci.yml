@@ -65,7 +65,7 @@ jobs:
   promote:
     name: Promote deployment to production
     needs: [deploy, test]
-    if: ${{ ( github.ref == 'refs/heads/production' }}
+    if: ${{ github.ref == 'refs/heads/production' }}
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
