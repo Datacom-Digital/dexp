@@ -34,7 +34,6 @@ jobs:
 
   deploy:
     name: Deploy
-    needs: [lint]
     uses: ./.github/workflows/deploy.yml
     secrets: inherit
     with:
@@ -61,3 +60,15 @@ jobs:
     uses: ./.github/workflows/playwright.yml
     with:
       url: ${{ needs.deploy.outputs.url }}
+
+  status:
+    name: Success
+    needs: [lint, deploy, test]
+    if: success() || failure()
+    steps:
+      - name: Successful deploy
+        if: ${{ !(contains(needs.*.result, 'failure')) }}
+        run: exit 0
+      - name: Failing deploy
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1
