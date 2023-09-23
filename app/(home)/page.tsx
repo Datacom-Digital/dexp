@@ -23,6 +23,7 @@ const technologies: Array<{ label: string; href: Route }> = [
     label: "npm",
     href: "https://www.npmjs.com/package/@datacom-digital/ui-sample-components",
   },
+  { label: "Playwright", href: "https://playwright.dev" },
 ]
 const textSizes = ["text-xl", "text-2xl", "text-3xl", "text-4xl"]
 
