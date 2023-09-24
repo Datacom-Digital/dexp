@@ -24,6 +24,7 @@ const technologies: Array<{ label: string; href: Route }> = [
     href: "https://www.npmjs.com/package/@datacom-digital/ui-sample-components",
   },
   { label: "Playwright", href: "https://playwright.dev" },
+  { label: "Jest", href: "https://jestjs.io/" },
 ]
 const textSizes = ["text-xl", "text-2xl", "text-3xl", "text-4xl"]
 
