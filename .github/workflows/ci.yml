@@ -32,6 +32,24 @@ jobs:
       - name: Package
         run: npm run lint
 
+  unit-test:
+    name: Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+          cache: "npm"
+      - name: Install
+        run: npm ci
+      - name: Package
+        run: npm run test:unit:ci
+
   deploy:
     name: Deploy
     uses: ./.github/workflows/deploy.yml
@@ -39,7 +57,7 @@ jobs:
     with:
       environment: "${{ ( github.ref == 'refs/heads/main' && github.event_name == 'push' ) && 'production' || 'preview' }} "
 
-  report:
+  deploy-status:
     name: Deploy Status
     needs: [deploy]
     runs-on: ubuntu-latest
@@ -54,16 +72,35 @@ jobs:
           message: |
             Latest deployment available at ${{ needs.deploy.outputs.url }}
 
-  test:
-    name: Test
-    needs: [deploy, lint]
+  smoke-test:
+    name: Smoke Test
+    needs: [deploy]
     uses: ./.github/workflows/playwright.yml
     with:
       url: ${{ needs.deploy.outputs.url }}
 
+  test-status:
+    name: Test Status
+    needs: [lint, smoke-test, unit-test]
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    env:
+      STATUS: "${{ contains(needs.*.result, 'failure') && 'failed' || 'passed'}}"
+    steps:
+      - name: Add test status to PR
+        if: github.event_name == 'pull_request'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          Append: true
+          message: |
+            Test suite ${{ env.STATUS }}
+      - name: Failing deploy
+        if: ${{ env.STATUS == 'failed' }}
+        run: exit 1
+
   promote:
     name: Promote deployment to production
-    needs: [deploy, test]
+    needs: [test-status]
     if: ${{ github.ref == 'refs/heads/main' }}
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -84,22 +121,3 @@ jobs:
       - name: Add test status to job summary
         run: |
           echo "Test suite ${{ env.STATUS }}"
-
-  status:
-    name: Test Status
-    needs: [test]
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    env:
-      STATUS: "${{ contains(needs.*.result, 'failure') && 'failed' || 'passed'}}"
-    steps:
-      - name: Add test status to PR
-        if: github.event_name == 'pull_request'
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          Append: true
-          message: |
-            Test suite ${{ env.STATUS }}
-      - name: Failing deploy
-        if: ${{ env.STATUS == 'failed' }}
-        run: exit 1
