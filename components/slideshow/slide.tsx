@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import { useIsVisible } from "@/lib/hooks"
+import { useIsVisible } from "@/hooks/is-visible"
 import { CNProps, cn } from "@/lib/utils"
 
 export const Slide = ({ children, className }: CNProps) => {

@@ -2,7 +2,7 @@
 
 import { useRef } from "react"
 import { CNProps, cn } from "@/lib/utils"
-import { useIsVisible } from "@/lib/hooks"
+import { useIsVisible } from "@/hooks/is-visible"
 
 export const FadeOnVisible = ({
   children,

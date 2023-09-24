@@ -6,12 +6,13 @@ import { defineConfig, devices } from "@playwright/test"
  */
 import dotenv from "dotenv"
 dotenv.config({ path: ".env.local" })
-
+// testMatch: "@(app|test/playwright)/**/*.spec.?(c|m)[jt]s?(x)",
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: "./test/playwright",
+  testDir: "./",
+  testMatch: "@(app|components)/**/*.spec.?(c|m)[jt]s?(x)",
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
