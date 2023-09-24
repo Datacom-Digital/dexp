@@ -33,7 +33,7 @@ export default async function Page() {
       <h1 className="place-self-start pt-4 text-5xl">Datacom Digital</h1>
       <h2 className="place-self-end pb-20 text-5xl">Experience Platforms</h2>
 
-      <ul className="mx-auto flex max-w-md flex-wrap justify-center gap-10 place-self-center align-middle">
+      <ul className="mx-auto flex max-w-lg flex-wrap justify-center gap-6 place-self-center align-middle">
         {technologies
           .map((item) => ({ sort: Math.random(), ...item }))
           .sort((a, b) => a.sort - b.sort)
