@@ -17,7 +17,6 @@ jobs:
     container:
       # should match the installed version
       image: mcr.microsoft.com/playwright:v1.38.1-jammy
-    if: ${{ inputs.tag == '@smoke' }}
     env:
       # Must be the length of the shardIndex array
       SHARD_INDEX_LENGTH: 1
