@@ -56,18 +56,18 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     env:
-      STATUS: ${{ contains(needs.*.result, 'failure') && "failed" || "passed" }}
-      MESSAGE: ${{ contains(needs.*.result, 'failure') && "Deploy failed" || "Latest deployment available at ${{ needs.deploy.outputs.url }}" }}
+      STATUS: "${{ contains(needs.*.result, 'failure') && 'failed' || 'passed' }}"
+      MESSAGE: "Latest deployment available at ${{ needs.deploy.outputs.url }}"
     steps:
       - name: Add preview URL to job summary
         run: |
-          echo "${{ env.MESSAGE }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "${{ env.STATUS == 'failed' && 'Deploy Failed' || env.MESSAGE }}"
       - name: Add preview URL to PR
         if: github.event_name == 'pull_request'
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: |
-            "${{ env.MESSAGE }}"
+            "${{ env.STATUS == 'failed' && 'Deploy Failed' || env.MESSAGE }}"
       - name: Failing deploy
         if: ${{ env.STATUS == 'failed' }}
         run: exit 1
@@ -119,6 +119,3 @@ jobs:
           cache: "npm"
       - name: Alias build to production
         run: echo "$(npx vercel alias ${{ needs.deploy.outputs.url }} ${{ vars.VERCEL_ALIAS }} --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }})" >> "$GITHUB_STEP_SUMMARY"
-      - name: Add test status to job summary
-        run: |
-          echo "Test suite ${{ env.STATUS }}"
