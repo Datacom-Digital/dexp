@@ -56,12 +56,12 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     env:
-      STATUS: contains(needs.*.result, 'failure') && "failed" || "passed"
-      MESSAGE: contains(needs.*.result, 'failure') && "Deploy failed" || "Latest deployment available at ${{ needs.deploy.outputs.url }}"
+      STATUS: ${{ contains(needs.*.result, 'failure') && "failed" || "passed" }}
+      MESSAGE: ${{ contains(needs.*.result, 'failure') && "Deploy failed" || "Latest deployment available at ${{ needs.deploy.outputs.url }}" }}
     steps:
       - name: Add preview URL to job summary
         run: |
-          echo ""${{ env.MESSAGE }}"" >> "$GITHUB_STEP_SUMMARY"
+          echo "${{ env.MESSAGE }}" >> "$GITHUB_STEP_SUMMARY"
       - name: Add preview URL to PR
         if: github.event_name == 'pull_request'
         uses: marocchino/sticky-pull-request-comment@v2
