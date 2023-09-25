@@ -14,6 +14,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  deploy:
+    name: Deploy
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
+    with:
+      environment: "${{ ( github.ref == 'refs/heads/main' && github.event_name == 'push' ) && 'production' || 'preview' }} "
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -42,13 +49,6 @@ jobs:
     with:
       url: ""
       tag: "@component"
-
-  deploy:
-    name: Deploy
-    uses: ./.github/workflows/deploy.yml
-    secrets: inherit
-    with:
-      environment: "${{ ( github.ref == 'refs/heads/main' && github.event_name == 'push' ) && 'production' || 'preview' }} "
 
   deploy-status:
     name: Deploy Status
