@@ -18,7 +18,8 @@
     "test:unit:ci": "jest --ci",
     "test:smoke": "npx playwright test --grep @smoke",
     "test:components": "npx playwright test --grep @component",
-    "add": "npx shadcn-ui@latest add --"
+    "add": "npx shadcn-ui@latest add --",
+    "test-ct": "playwright test -c playwright-ct.config.ts"
   },
   "dependencies": {
     "@datacom-digital/ui-sample-components": "^0.2.0",
@@ -43,6 +44,7 @@
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.6.0",
+    "@playwright/experimental-ct-react": "^1.38.1",
     "@playwright/test": "^1.38.1",
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^18.17.1",
