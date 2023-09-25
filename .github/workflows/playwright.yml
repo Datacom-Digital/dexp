@@ -12,7 +12,7 @@ on:
 
 jobs:
   playwright:
-    name: Playwright smoke test
+    name: Playwright test
     runs-on: ubuntu-latest
     container:
       # should match the installed version
