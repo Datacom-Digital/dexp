@@ -1,4 +1,6 @@
-import { defineConfig, devices } from "@playwright/test"
+import { resolve } from "path"
+import { defineConfig, devices } from "@playwright/experimental-ct-react"
+import react from "@vitejs/plugin-react"
 
 /**
  * Read environment variables from file.
@@ -6,7 +8,7 @@ import { defineConfig, devices } from "@playwright/test"
  */
 import dotenv from "dotenv"
 dotenv.config({ path: ".env.local" })
-// testMatch: "@(app|test/playwright)/**/*.spec.?(c|m)[jt]s?(x)",
+
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -18,11 +20,11 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 1 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : 3,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [["html", { outputFolder: "./test/report" }]],
+  reporter: [["html", { outputFolder: "./test/playwright/report" }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -32,9 +34,20 @@ export default defineConfig({
     },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
+    ctTemplateDir: "test/playwright",
+    /* Port to use for Playwright component endpoint. */
+    ctPort: 3100,
+    ctViteConfig: {
+      plugins: [react()],
+      resolve: {
+        alias: {
+          "@": resolve(__dirname, "./"),
+        },
+      },
+    },
   },
 
-  outputDir: "./test/results",
+  outputDir: "./test/playwright/results",
 
   /* Configure projects for major browsers */
   projects: [

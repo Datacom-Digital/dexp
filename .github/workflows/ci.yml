@@ -14,6 +14,43 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  deploy:
+    name: Deploy
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
+    with:
+      environment: "${{ ( github.ref == 'refs/heads/main' && github.event_name == 'push' ) && 'production' || 'preview' }} "
+
+  deploy-status:
+    name: Deploy Status
+    needs: [deploy]
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    env:
+      STATUS: "${{ contains(needs.*.result, 'failure') && 'failed' || 'passed' }}"
+      MESSAGE: "Latest deployment available at ${{ needs.deploy.outputs.url }}"
+    steps:
+      - name: Add preview URL to job summary
+        run: |
+          echo "${{ env.STATUS == 'failed' && 'Deploy Failed' || env.MESSAGE }}"
+      - name: Add preview URL to PR
+        if: github.event_name == 'pull_request'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          message: |
+            "${{ env.STATUS == 'failed' && 'Deploy Failed' || env.MESSAGE }}"
+      - name: Failing deploy
+        if: ${{ env.STATUS == 'failed' }}
+        run: exit 1
+
+  smoke-test:
+    name: Smoke Test
+    needs: [deploy]
+    uses: ./.github/workflows/playwright.yml
+    with:
+      url: ${{ needs.deploy.outputs.url }}
+      tag: "@smoke"
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -34,54 +71,18 @@ jobs:
 
   unit-test:
     name: Unit Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18.x"
-          cache: "npm"
-      - name: Install
-        run: npm ci
-      - name: Package
-        run: npm run test:unit:ci
+    uses: ./.github/workflows/jest.yml
 
-  deploy:
-    name: Deploy
-    uses: ./.github/workflows/deploy.yml
-    secrets: inherit
-    with:
-      environment: "${{ ( github.ref == 'refs/heads/main' && github.event_name == 'push' ) && 'production' || 'preview' }} "
-
-  deploy-status:
-    name: Deploy Status
-    needs: [deploy]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Add preview URL to job summary
-        run: |
-          echo "Deployed to ${{ needs.deploy.outputs.url }}" >> "$GITHUB_STEP_SUMMARY"
-      - name: Add preview URL to PR
-        if: github.event_name == 'pull_request'
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          message: |
-            Latest deployment available at ${{ needs.deploy.outputs.url }}
-
-  smoke-test:
-    name: Smoke Test
-    needs: [deploy]
+  component-test:
+    name: Component Test
     uses: ./.github/workflows/playwright.yml
     with:
-      url: ${{ needs.deploy.outputs.url }}
+      url: ""
+      tag: "@component"
 
   test-status:
     name: Test Status
-    needs: [lint, smoke-test, unit-test]
+    needs: [smoke-test, lint, unit-test, component-test]
     if: success() || failure()
     runs-on: ubuntu-latest
     env:
@@ -118,6 +119,3 @@ jobs:
           cache: "npm"
       - name: Alias build to production
         run: echo "$(npx vercel alias ${{ needs.deploy.outputs.url }} ${{ vars.VERCEL_ALIAS }} --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }})" >> "$GITHUB_STEP_SUMMARY"
-      - name: Add test status to job summary
-        run: |
-          echo "Test suite ${{ env.STATUS }}"
