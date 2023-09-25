@@ -56,8 +56,8 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     env:
-      STATUS: "${{ contains(needs.*.result, 'failure') && 'failed' || 'passed'}}"
-      MESSAGE: "${{ contains(needs.*.result, 'failure') && 'Deploy failed' || 'Latest deployment available at ' + needs.deploy.outputs.url  }}"
+      STATUS: contains(needs.*.result, 'failure') && "failed" || "passed"
+      MESSAGE: contains(needs.*.result, 'failure') && "Deploy failed" || "Latest deployment available at ${{ needs.deploy.outputs.url }}"
     steps:
       - name: Add preview URL to job summary
         run: |
