@@ -53,21 +53,28 @@ jobs:
   deploy-status:
     name: Deploy Status
     needs: [deploy]
+    if: success() || failure()
     runs-on: ubuntu-latest
+    env:
+      STATUS: "${{ contains(needs.*.result, 'failure') && 'failed' || 'passed'}}"
+      MESSAGE: "${{ contains(needs.*.result, 'failure') && 'Deploy failed' || 'Latest deployment available at ' + needs.deploy.outputs.url  }}"
     steps:
       - name: Add preview URL to job summary
         run: |
-          echo "Deployed to ${{ needs.deploy.outputs.url }}" >> "$GITHUB_STEP_SUMMARY"
+          echo ""${{ env.MESSAGE }}"" >> "$GITHUB_STEP_SUMMARY"
       - name: Add preview URL to PR
         if: github.event_name == 'pull_request'
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: |
-            Latest deployment available at ${{ needs.deploy.outputs.url }}
+            "${{ env.MESSAGE }}"
+      - name: Failing deploy
+        if: ${{ env.STATUS == 'failed' }}
+        run: exit 1
 
   smoke-test:
     name: Smoke Test
-    needs: [deploy]
+    needs: [deploy-status]
     uses: ./.github/workflows/playwright.yml
     with:
       url: ${{ needs.deploy.outputs.url }}
