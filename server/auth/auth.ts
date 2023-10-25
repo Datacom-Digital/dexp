@@ -37,11 +37,12 @@ export const {
             from: emailFrom,
             to: email,
             subject: "One time login to dexp.nz",
-            text: `Sign in to dexp.nz\n${url}\n\n`,
+            text: `Sign in to dexp.nz\n ${url} \n\n`,
           })
-          if (data?.id) {
+          if (!data?.id) {
             throw Error("Signin email failed to send")
           }
+          console.log(`Sent email id ${data.id}`)
         } catch (error) {
           console.log(error)
         }
