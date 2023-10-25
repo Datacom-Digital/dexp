@@ -19,6 +19,7 @@ const getClient = async () => {
   const client = await getClient()
 
   if (!client) {
+    console.log("No Database Connection Configured")
     return
   }
 
