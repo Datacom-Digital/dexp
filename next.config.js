@@ -5,6 +5,7 @@ const nextConfig = {
   experimental: {
     typedRoutes: true,
     serverActions: true,
+    instrumentationHook: true,
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if

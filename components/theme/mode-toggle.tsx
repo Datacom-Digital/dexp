@@ -24,6 +24,7 @@ export const ApplyMode = () => (
     }
     return window?.matchMedia("(prefers-color-scheme: dark)").matches
   };
+  console.log("!!", isDarkMode());
   if (isDarkMode()) document.documentElement.classList.add("dark");
   `,
     }}
