@@ -10,10 +10,7 @@ const masterEmail = process.env.MASTER_EMAIL || null
 const emailFrom = process.env.EMAIL_FROM || "noreply@dexp.nz"
 const resend = new Resend(process.env.RESEND_SECRET)
 
-export const {
-  handlers: { GET, POST },
-  auth,
-} = NextAuth({
+export const { handlers, auth } = NextAuth({
   providers: [
     {
       id: "email",
@@ -40,11 +37,11 @@ export const {
             text: `Sign in to dexp.nz\n ${url} \n\n`,
           })
           if (!data?.id) {
-            throw Error("Signin email failed to send")
+            console.log("Resend did return valid response")
           }
           console.log(`Sent email id ${data.id}`)
         } catch (error) {
-          console.log(error)
+          console.log("Signin email failed to send")
         }
       },
     },
