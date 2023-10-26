@@ -9,7 +9,7 @@
 
     /* light */
     --background: 0 0% 100%;
-    --foreground: 230 100% 50%;
+    --foreground: 210 100% 4%;
     --card: 0 0% 100%;
     --card-foreground: 210 100% 4%;
     --popover: 0 0% 100%;
@@ -30,7 +30,7 @@
   }
   .dark {
     --background: 210 100% 4%;
-    --foreground: 224 90% 74%;
+    --foreground: 60 9% 90%;
     --card: 210 100% 4%;
     --card-foreground: 0 0% 100%;
     --popover: 210 100% 4%;

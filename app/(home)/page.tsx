@@ -20,13 +20,17 @@ const technologies: Array<{ label: string; href: Route }> = [
   { label: "Cloudflare", href: "https://www.cloudflare.com" },
   { label: "Github", href: "https://github.com/datacom-digital" },
   {
-    label: "npm",
+    label: "DatacomUI",
     href: "https://www.npmjs.com/package/@datacom-digital/ui-sample-components",
   },
   { label: "Playwright", href: "https://playwright.dev" },
-  { label: "Jest", href: "https://jestjs.io/" },
+  { label: "Jest", href: "https://jestjs.io" },
+  { label: "Drizzle", href: "https://orm.drizzle.team/" },
+  { label: "Auth.js", href: "https://authjs.dev/" },
+  { label: "Turso", href: "https://turso.tech/" },
+  { label: "Resend", href: "https://resend.com/" },
 ]
-const textSizes = ["text-xl", "text-2xl", "text-3xl", "text-4xl"]
+const textSizes = ["text-l", "text-xl", "text-2xl", "text-3xl"]
 
 export default async function Page() {
   return (
@@ -34,7 +38,7 @@ export default async function Page() {
       <h1 className="place-self-start pt-4 text-5xl">Datacom Digital</h1>
       <h2 className="place-self-end pb-20 text-5xl">Experience Platforms</h2>
 
-      <ul className="mx-auto flex max-w-lg flex-wrap justify-center gap-6">
+      <ul className="mx-auto flex max-w-sm flex-wrap place-content-center gap-x-2">
         {technologies
           .map((item) => ({ sort: Math.random(), ...item }))
           .sort((a, b) => a.sort - b.sort)

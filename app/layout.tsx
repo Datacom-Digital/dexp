@@ -2,7 +2,6 @@ import "@/app/globals.css"
 import { Montserrat } from "next/font/google"
 import Providers from "./providers"
 import { cn } from "@/lib/utils"
-import { PageLayout } from "@/components/page-layout"
 import { ApplyMode } from "@/components/theme/mode-toggle"
 
 const font = Montserrat({ subsets: ["latin"] })
@@ -19,9 +18,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         <ApplyMode />
       </head>
       <body className={cn(font.className, "bg-background text-foreground")}>
-        <Providers>
-          <PageLayout>{children}</PageLayout>
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
