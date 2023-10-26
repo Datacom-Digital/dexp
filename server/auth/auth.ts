@@ -1,5 +1,6 @@
 import "server-only"
 
+import { randomBytes } from "crypto"
 import { Resend } from "resend"
 import NextAuth from "next-auth"
 
@@ -17,10 +18,15 @@ export const { handlers, auth } = NextAuth({
       type: "email",
       from: "notused",
       server: {},
-      maxAge: 24 * 60 * 60,
+      maxAge: 4 * 60 * 60,
       name: "Email",
       options: {},
-      sendVerificationRequest: async ({ identifier: email, url }) => {
+      generateVerificationToken: () => {
+        return parseInt(randomBytes(3).toString("hex"), 16)
+          .toString()
+          .slice(0, 6)
+      },
+      sendVerificationRequest: async ({ identifier: email, url, token }) => {
         if (process.env.NODE_ENV !== "production") {
           console.log(
             `sendVerificationRequest email not sent in ${process.env.NODE_ENV}`,
@@ -34,7 +40,7 @@ export const { handlers, auth } = NextAuth({
             from: emailFrom,
             to: email,
             subject: "One time login to dexp.nz",
-            text: `Sign in to dexp.nz\n ${url} \n\n`,
+            text: `Sign in with code\n\n${token}\n\n ${url} \n\n`,
           })
           if (!data?.id) {
             console.log("Resend did return valid response")

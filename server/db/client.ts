@@ -29,7 +29,7 @@ const getClient = () => {
     const { createClient } = require("@libsql/client")
 
     return createClient({
-      url: "file://.db/dexp.db",
+      url: "file:.db/dexp.db",
     })
   }
   throw new Error("No Database Connection Configured")

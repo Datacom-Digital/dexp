@@ -8,6 +8,6 @@ export default {
   out: "./server/db/migrations",
   driver: "libsql",
   dbCredentials: {
-    url: "file:.db/dexp.db",
+    url: "file://.db/dexp.db",
   },
 } satisfies Config
