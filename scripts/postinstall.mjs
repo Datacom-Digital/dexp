@@ -1,4 +1,5 @@
 import "dotenv"
+import { mkdir } from "fs/promises"
 import { createClient } from "@libsql/client"
 import { drizzle } from "drizzle-orm/libsql"
 import { migrate } from "drizzle-orm/libsql/migrator"
@@ -7,8 +8,10 @@ import { migrate } from "drizzle-orm/libsql/migrator"
     return
   }
 
+  await mkdir(".db", { recursive: true })
+
   const db = createClient({
-    url: "file:dexp.db",
+    url: "file:.db/dexp.db",
   })
 
   await db.execute(`PRAGMA journal_mode=WAL;`)
