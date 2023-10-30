@@ -29,6 +29,7 @@ const technologies: Array<{ label: string; href: Route }> = [
   { label: "Auth.js", href: "https://authjs.dev/" },
   { label: "Turso", href: "https://turso.tech/" },
   { label: "Resend", href: "https://resend.com/" },
+  { label: "React Hook Form", href: "https://react-hook-form.com/" },
 ]
 const textSizes = ["text-l", "text-xl", "text-2xl", "text-3xl"]
 

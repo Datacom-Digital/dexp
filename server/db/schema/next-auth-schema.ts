@@ -8,7 +8,9 @@ export const users = sqliteTable("user", {
   email: text("email").notNull(),
   emailVerified: integer("emailVerified", { mode: "timestamp_ms" }),
   image: text("image"),
-  role: text("role").notNull().default("user"),
+  role: text("role", { enum: ["admin", "user"] })
+    .notNull()
+    .default("user"),
 })
 
 export const accounts = sqliteTable(

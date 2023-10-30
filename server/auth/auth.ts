@@ -43,11 +43,11 @@ export const { handlers, auth } = NextAuth({
             text: `Sign in with code\n\n${token}\n\n ${url} \n\n`,
           })
           if (!data?.id) {
-            console.log("Resend did return valid response")
+            console.error("Resend did not return valid response")
           }
           console.log(`Sent email id ${data.id}`)
         } catch (error) {
-          console.log("Signin email failed to send")
+          console.error("Signin email failed to send")
         }
       },
     },
@@ -58,6 +58,11 @@ export const { handlers, auth } = NextAuth({
   adapter,
   callbacks: {
     async signIn({ user, profile }) {
+      // Master user override
+      if (user?.email && masterEmail && user.email === masterEmail) {
+        user.role = "admin"
+        return true
+      }
       // Existing user or email verification
       if (user?.role) {
         return true
@@ -70,17 +75,11 @@ export const { handlers, auth } = NextAuth({
       ) {
         return true
       }
-      // Master user override
-      if (user?.email && masterEmail && user.email === masterEmail) {
-        user.role = "admin"
-        return true
-      }
-
       return false
     },
     jwt({ token, user }) {
       if (user) {
-        token.role = user.role
+        token.role = user.email === masterEmail ? "admin" : user.role
       }
       return token
     },
