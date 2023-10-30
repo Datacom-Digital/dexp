@@ -3,7 +3,8 @@ import { notFound } from "next/navigation"
 import { Render, resolvePuckPath } from "@/lib/puck/render"
 import { getAllPaths, getPageData } from "@/server/puck/actions"
 
-export const dynamicParams = false
+// uncomment to prevent generating new dynamic segments on demand
+// export const dynamicParams = false
 
 export async function generateStaticParams() {
   return getAllPaths()
