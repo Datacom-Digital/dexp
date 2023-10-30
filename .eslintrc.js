@@ -1,5 +1,6 @@
 module.exports = {
   plugins: ["@typescript-eslint"],
+  ignorePatterns: [".next/**/*", ".vercel/**/*", "node_modules/**/8"],
   extends: [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/strict",

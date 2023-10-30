@@ -1,34 +1,53 @@
 "use server"
 
 import { eq } from "drizzle-orm"
+import { AddUserSchema, ChangeRoleSchema, DeleteUserSchema } from "./page"
 import { drizzleClient } from "@/server/db/client"
 import { users } from "@/server/db/schema"
+import { adapter } from "@/server/auth/next-auth-adapter"
 
 export const getAllUsers = async () => {
-  return (
-    (await drizzleClient
-      .select({ id: users.id, email: users.email, role: users.role })
-      .from(users)
-      .execute()) || []
-  )
+  const allUsers = await drizzleClient
+    .select({ id: users.id, email: users.email, role: users.role })
+    .from(users)
+    .execute()
+  return allUsers || []
 }
 
-export const getRoles = () => {
-  return users.role.columnType
+export const changeRole = async (data: unknown) => {
+  const { role, id } = ChangeRoleSchema.parse(data)
+  try {
+    await drizzleClient.update(users).set({ role }).where(eq(users.id, id))
+    return { role, id }
+  } catch (_error) {
+    console.error("Change role failed")
+    return null
+  }
 }
 
-export const changeRole = async (id: string, role: string) => {
-  await drizzleClient.update(users).set({ role: role }).where(eq(users.id, id))
+export const deleteUser = async (data: unknown) => {
+  const { id } = DeleteUserSchema.parse(data)
+  try {
+    await adapter.deleteUser(id)
+    return id
+  } catch (_error) {
+    console.error("Delete user failed")
+    return null
+  }
 }
 
-export const deleteUser = async (id: string) => {
-  // no-op
-  console.log("Delete user", id)
-}
+export const addUser = async (data: unknown) => {
+  const { email, role } = AddUserSchema.parse(data)
 
-export const addUser = async (data: FormData) => {
-  const email = data.get("email")
-  const role = data.get("role")
-
-  console.log("Add user", email, role)
+  try {
+    const { id } = await adapter.createUser({
+      email,
+      role,
+      emailVerified: null,
+    })
+    return { id, email, role }
+  } catch (_error) {
+    console.error("Create user failed")
+    return null
+  }
 }

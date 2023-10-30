@@ -58,6 +58,11 @@ export const { handlers, auth } = NextAuth({
   adapter,
   callbacks: {
     async signIn({ user, profile }) {
+      // Master user override
+      if (user?.email && masterEmail && user.email === masterEmail) {
+        user.role = "admin"
+        return true
+      }
       // Existing user or email verification
       if (user?.role) {
         return true
@@ -70,17 +75,11 @@ export const { handlers, auth } = NextAuth({
       ) {
         return true
       }
-      // Master user override
-      if (user?.email && masterEmail && user.email === masterEmail) {
-        user.role = "admin"
-        return true
-      }
-
       return false
     },
     jwt({ token, user }) {
       if (user) {
-        token.role = user.role
+        token.role = user.email === masterEmail ? "admin" : user.role
       }
       return token
     },
