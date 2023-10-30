@@ -1,16 +1,8 @@
 "use client"
 
-import dynamic from "next/dynamic"
+import React from "react"
 
-const DCDashboard = dynamic(
-  () =>
-    import("@datacom-digital/ui-sample-components/dashboard").then(
-      (mod) => mod.Dashboard,
-    ),
-  {
-    ssr: false,
-  },
-)
+import { Dashboard as DCDashboard } from "@datacom-digital/ui-sample-components"
 
 export const Dashboard = () => {
   return <DCDashboard />

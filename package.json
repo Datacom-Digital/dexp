@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^0.3.4",
-    "@datacom-digital/ui-sample-components": "^0.2.0",
+    "@datacom-digital/ui-sample-components": "^0.3.2",
     "@hookform/resolvers": "^3.3.2",
     "@libsql/client": "^0.3.6",
     "@measured/puck": "^0.10.0",
