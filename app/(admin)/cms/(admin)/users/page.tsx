@@ -9,7 +9,6 @@ export const UserSchema = z.object({
   email: z.string().email(),
   role: z.enum(["user", "admin"]),
 })
-
 export const AddUserSchema = UserSchema.pick({ email: true, role: true })
 export const ChangeRoleSchema = UserSchema.pick({ id: true, role: true })
 export const DeleteUserSchema = UserSchema.pick({ id: true })

@@ -43,11 +43,11 @@ export const { handlers, auth } = NextAuth({
             text: `Sign in with code\n\n${token}\n\n ${url} \n\n`,
           })
           if (!data?.id) {
-            console.log("Resend did return valid response")
+            console.error("Resend did not return valid response")
           }
           console.log(`Sent email id ${data.id}`)
         } catch (error) {
-          console.log("Signin email failed to send")
+          console.error("Signin email failed to send")
         }
       },
     },
