@@ -1,4 +1,5 @@
-import "dotenv"
+/* eslint-disable import/order */
+import dotenv from "dotenv"
 dotenv.config({ path: ".env.local" })
 
 import { mkdir } from "fs/promises"
