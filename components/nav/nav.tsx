@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { ModeToggle } from "@/components/theme/mode-toggle"
 import { ThemeEditorMenu } from "@/components/theme/theme-editor-menu"
+
 const menu: Array<{ href: Route | URL; label: string }> = [
   { href: "/", label: "D" },
   { href: "/slides", label: "Slides" },

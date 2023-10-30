@@ -16,6 +16,6 @@ export const text: PuckFields<typeof Text> = {
     },
   },
   defaultProps: {
-    text: "Forcem Ipsum",
+    text: "Text",
   },
 }
