@@ -21,7 +21,7 @@ on:
         required: true
       TURSO_TOKEN:
         required: true
-      RESEND_TOKEN:
+      RESEND_SECRET:
         required: true
 
 jobs:
@@ -33,7 +33,7 @@ jobs:
       PROD_FLAG: "${{ inputs.environment == 'production' && '--prod' || '' }}"
       TURSO_URL: ${{ secrets.TURSO_URL }}
       TURSO_TOKEN: ${{ secrets.TURSO_TOKEN }}
-      RESEND_TOKEN: ${{ secrets.RESEND_TOKEN }}
+      RESEND_SECRET: ${{ secrets.RESEND_SECRET }}
     outputs:
       url: ${{ steps.deploy.outputs.url }}
     runs-on: ubuntu-latest
