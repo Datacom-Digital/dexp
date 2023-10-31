@@ -25,7 +25,7 @@ const getClient = async () => {
 
   const db = drizzle(client)
 
-  await migrate(db, { migrationsFolder: "./server/db/migrations" })
+  await migrate(db, { migrationsFolder: "./src/server/db/migrations" })
 
   client.close()
 

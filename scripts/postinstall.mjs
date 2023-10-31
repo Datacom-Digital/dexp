@@ -1,4 +1,7 @@
-import "dotenv"
+/* eslint-disable import/order */
+import dotenv from "dotenv"
+dotenv.config({ path: ".env.local" })
+
 import { mkdir } from "fs/promises"
 import { createClient } from "@libsql/client"
 import { drizzle } from "drizzle-orm/libsql"
@@ -18,7 +21,7 @@ import { migrate } from "drizzle-orm/libsql/migrator"
 
   const client = drizzle(db)
 
-  await migrate(client, { migrationsFolder: "./server/db/migrations" })
+  await migrate(client, { migrationsFolder: "./src/server/db/migrations" })
 
   console.log("Database migrations completed")
 })()

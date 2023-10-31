@@ -1,6 +1,6 @@
 import { Data } from "@measured/puck"
-import { components } from "@/lib/puck/components"
 import { PageLayout } from "@/components/page-layout"
+import { components } from "@/lib/puck/components"
 
 // TODO: need this exported from puck
 const rootDroppableId = "default-zone"
@@ -64,8 +64,10 @@ async function RenderDropZone({
   )
 }
 
-export const resolvePuckPath = (puckPath: string[] = []) =>
-  `/${puckPath.join("/")}`
+export const resolvePuckPath = (puckPath: string[] = []) => {
+  const path = `/${puckPath.join("/")}`
+  return path === "/" ? "/puck" : path
+}
 
 export async function Render({ data }: { data: Data }) {
   return (

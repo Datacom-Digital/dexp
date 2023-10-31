@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react"
 import { redirect } from "next/navigation"
-import Providers from "@/app/(admin)/cms/providers"
+import Providers from "./providers"
 import { auth } from "@/server/auth/auth"
 
 export default async function AdminLayout({ children }: PropsWithChildren) {

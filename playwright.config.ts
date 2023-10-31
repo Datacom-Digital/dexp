@@ -13,7 +13,7 @@ dotenv.config({ path: ".env.local" })
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: "./",
+  testDir: "./src",
   testMatch: "@(app|components)/**/*.spec.?(c|m)[jt]s?(x)",
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -41,7 +41,7 @@ export default defineConfig({
       plugins: [react()],
       resolve: {
         alias: {
-          "@": resolve(__dirname, "./"),
+          "@": resolve(__dirname, "./src"),
         },
       },
     },
