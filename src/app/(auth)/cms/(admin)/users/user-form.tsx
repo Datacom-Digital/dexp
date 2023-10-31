@@ -6,7 +6,7 @@ import { z } from "zod"
 import { Fragment } from "react"
 import { addUser, changeRole, deleteUser } from "./actions"
 
-import { AddUserSchema, User, roles } from "./page"
+import { User } from "./page"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
@@ -26,6 +26,17 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 
+export const UserSchema = z.object({
+  id: z.string(),
+  email: z.string().email(),
+  role: z.enum(["user", "admin"]),
+})
+export const AddUserSchema = UserSchema.pick({ email: true, role: true })
+export const ChangeRoleSchema = UserSchema.pick({ id: true, role: true })
+export const DeleteUserSchema = UserSchema.pick({ id: true })
+
+export const roles = ["user", "admin"] as const
+
 export default function UserForm({ users }: { users: User[] }) {
   const form = useForm<z.infer<typeof AddUserSchema>>({
     resolver: zodResolver(AddUserSchema),
@@ -41,11 +52,11 @@ export default function UserForm({ users }: { users: User[] }) {
         onSubmit={form.handleSubmit((data) => addUser(data))}
         className="space-y-8"
       >
-        <div className="grid grid-cols-[auto_auto_auto_minmax(0,1fr)] items-baseline gap-1">
+        <div className="grid w-fit grid-cols-[auto_auto_auto] items-center gap-1">
           {users.map(({ role, id, email }) => {
             return (
               <Fragment key={id}>
-                <div>{email}</div>
+                <div className="pr-6">{email}</div>
                 <Select onValueChange={(role) => changeRole({ id, role })}>
                   <SelectTrigger>
                     <SelectValue placeholder={role} />
@@ -58,8 +69,13 @@ export default function UserForm({ users }: { users: User[] }) {
                     ))}
                   </SelectContent>
                 </Select>
-                <Button onClick={() => deleteUser(id)}>Delete</Button>
-                <div></div>
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  onClick={() => deleteUser(id)}
+                >
+                  Delete
+                </Button>
               </Fragment>
             )
           })}
@@ -103,7 +119,9 @@ export default function UserForm({ users }: { users: User[] }) {
             )}
           />
 
-          <Button type="submit">Add</Button>
+          <Button type="submit" size="sm">
+            Add
+          </Button>
         </div>
       </form>
     </Form>

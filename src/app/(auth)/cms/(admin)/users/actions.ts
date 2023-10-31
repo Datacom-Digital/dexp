@@ -1,7 +1,8 @@
 "use server"
 
 import { eq } from "drizzle-orm"
-import { AddUserSchema, ChangeRoleSchema, DeleteUserSchema } from "./page"
+
+import { ChangeRoleSchema, DeleteUserSchema, AddUserSchema } from "./user-form"
 import { drizzleClient } from "@/server/db/client"
 import { users } from "@/server/db/schema"
 import { adapter } from "@/server/auth/next-auth-adapter"
