@@ -4,7 +4,6 @@
 const nextConfig = {
   experimental: {
     typedRoutes: true,
-    serverActions: true,
     instrumentationHook: true,
   },
   eslint: {

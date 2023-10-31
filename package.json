@@ -12,7 +12,7 @@
     "lint:next": "next lint",
     "lint:types": "tsc -p tsconfig.json --pretty --noEmit",
     "lint:prettier": "prettier --check \"**/*.{ts,tsx,js,jsx,css,md,json}\"",
-    "postinstall": "node ./scripts/postinstall.mjs",
+    "postinstall": "patch-package && node ./scripts/postinstall.mjs",
     "test:unit": "jest --watch",
     "test:unit:ci": "jest --ci",
     "test:smoke": "npx playwright test --grep @smoke",
@@ -21,6 +21,7 @@
     "test-ct": "playwright test -c playwright-ct.config.ts"
   },
   "dependencies": {
+    "@auth/core": "^0.18.0",
     "@auth/drizzle-adapter": "^0.3.4",
     "@datacom-digital/ui-sample-components": "^0.3.2",
     "@hookform/resolvers": "^3.3.2",
@@ -39,8 +40,9 @@
     "drizzle-orm": "^0.28.6",
     "forcem-ipsum": "^3.0.0",
     "lodash": "^4.17.21",
-    "next": "^13.5.1",
-    "next-auth": "^0.0.0-manual.dacbe24d",
+    "next": "^14.0.1",
+    "next-auth": "^5.0.0-beta.3",
+    "patch-package": "^8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
