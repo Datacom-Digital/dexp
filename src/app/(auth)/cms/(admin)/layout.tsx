@@ -1,7 +1,6 @@
 import { PropsWithChildren } from "react"
-import Providers from "@/app/(admin)/cms/providers"
+import Unauthorised from "./error"
 import { auth } from "@/server/auth/auth"
-import Unauthorised from "@/app/(admin)/cms/(admin)/error"
 
 export default async function AdminLayout({ children }: PropsWithChildren) {
   const session = await auth()
@@ -10,5 +9,5 @@ export default async function AdminLayout({ children }: PropsWithChildren) {
     return <Unauthorised />
   }
 
-  return <Providers>{children}</Providers>
+  return <>{children}</>
 }
