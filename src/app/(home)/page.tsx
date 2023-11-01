@@ -17,7 +17,7 @@ const technologies: Array<{ label: string; href: Route }> = [
   { label: "Zod", href: "https://zod.dev/" },
   { label: "Radix", href: "https://www.radix-ui.com/" },
   { label: "DOMPurify", href: "https://www.npmjs.com/package/dompurify" },
-  { label: "Cloudflare", href: "https://www.cloudflare.com" },
+  { label: "Vercel", href: "https://vercel.com/" },
   { label: "Github", href: "https://github.com/datacom-digital" },
   {
     label: "DatacomUI",
