@@ -59,8 +59,12 @@ export const technologies: Array<{
     href: "https://resend.com/",
     desc: "Email provider and templating",
   },
-  { label: "shadcn/ui", href: "https://ui.shadcn.com/" },
-  { label: "tailwindcss", href: "https://tailwindcss.com/" },
+  {
+    label: "shadcn/ui",
+    href: "https://ui.shadcn.com/",
+    desc: "Component generation (not a library)",
+  },
+  { label: "tailwindcss", href: "https://tailwindcss.com/", desc: "CSS" },
   { label: "Turso", href: "https://turso.tech/", desc: "Database hosting" },
   { label: "TypeScript", href: "https://www.typescriptlang.org/" },
   {
@@ -73,5 +77,5 @@ export const technologies: Array<{
     href: "https://vercel.com/",
     desc: "Domain and site hosting",
   },
-  { label: "Zod", href: "https://zod.dev/" },
+  { label: "Zod", href: "https://zod.dev/", desc: "Validation" },
 ]
