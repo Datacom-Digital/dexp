@@ -1,38 +1,12 @@
-import { Route } from "next"
 import Link from "next/link"
 import { getRandomInt } from "@/lib/utils"
+import { technologies } from "@/lib/technologies"
 
 export const metadata = {
   title: "Any Old Type - forcem",
   description: "Descussing typescript types and any other unknowns",
 }
 
-const technologies: Array<{ label: string; href: Route }> = [
-  { label: "Next.js", href: "https://nextjs.org/" },
-  { label: "TypeScript", href: "https://www.typescriptlang.org/" },
-  { label: "tailwindcss", href: "https://tailwindcss.com/" },
-  { label: "ESLint", href: "https://eslint.org/" },
-  { label: "Prettier", href: "https://prettier.io/" },
-  { label: "shadcn/ui", href: "https://ui.shadcn.com/" },
-  { label: "Zod", href: "https://zod.dev/" },
-  { label: "Radix", href: "https://www.radix-ui.com/" },
-  { label: "DOMPurify", href: "https://www.npmjs.com/package/dompurify" },
-  { label: "Vercel", href: "https://vercel.com/" },
-  { label: "Github", href: "https://github.com/datacom-digital" },
-  {
-    label: "DatacomUI",
-    href: "https://www.npmjs.com/package/@datacom-digital/ui-sample-components",
-  },
-  { label: "Playwright", href: "https://playwright.dev" },
-  { label: "Jest", href: "https://jestjs.io" },
-  { label: "Drizzle", href: "https://orm.drizzle.team/" },
-  { label: "Auth.js", href: "https://authjs.dev/" },
-  { label: "Turso", href: "https://turso.tech/" },
-  { label: "Resend", href: "https://resend.com/" },
-  { label: "React Hook Form", href: "https://react-hook-form.com/" },
-  { label: "Uploadthing", href: "https://uploadthing.com/" },
-  { label: "Puck", href: "https://puck-editor-demo.vercel.app/" },
-]
 const textSizes = ["text-lg", "text-xl", "text-2xl", "text-3xl"]
 
 export default async function Page() {
