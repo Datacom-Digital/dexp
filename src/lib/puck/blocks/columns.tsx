@@ -13,7 +13,7 @@ export const Columns: ComponentConfig<ColumnsProps> = {
   fields: {
     columns: {
       type: "array",
-      getItemSummary: (col, id) =>
+      getItemSummary: (col, id = 0) =>
         `Column ${id + 1}, span ${
           col.span ? Math.max(Math.min(col.span, 12), 1) : "auto"
         }`,
@@ -32,7 +32,7 @@ export const Columns: ComponentConfig<ColumnsProps> = {
     //span ${Math.max(Math.min(span, 12), 1)}
     return (
       <div className="flex flex-auto gap-6">
-        {columns.map(({ span }, idx) => {
+        {columns.map(({ span: _ }, idx) => {
           return (
             <div key={idx}>
               <DropZone zone={`column-${idx}`} />
