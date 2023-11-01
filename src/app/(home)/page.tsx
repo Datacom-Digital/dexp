@@ -1,6 +1,6 @@
 import { Route } from "next"
 import Link from "next/link"
-import { cn, getRandomInt } from "@/lib/utils"
+import { getRandomInt } from "@/lib/utils"
 
 export const metadata = {
   title: "Any Old Type - forcem",
