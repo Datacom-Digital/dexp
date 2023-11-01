@@ -17,7 +17,7 @@ const technologies: Array<{ label: string; href: Route }> = [
   { label: "Zod", href: "https://zod.dev/" },
   { label: "Radix", href: "https://www.radix-ui.com/" },
   { label: "DOMPurify", href: "https://www.npmjs.com/package/dompurify" },
-  { label: "Cloudflare", href: "https://www.cloudflare.com" },
+  { label: "Vercel", href: "https://vercel.com/" },
   { label: "Github", href: "https://github.com/datacom-digital" },
   {
     label: "DatacomUI",
@@ -30,8 +30,10 @@ const technologies: Array<{ label: string; href: Route }> = [
   { label: "Turso", href: "https://turso.tech/" },
   { label: "Resend", href: "https://resend.com/" },
   { label: "React Hook Form", href: "https://react-hook-form.com/" },
+  { label: "Uploadthing", href: "https://uploadthing.com/" },
+  { label: "Puck", href: "https://puck-editor-demo.vercel.app/" },
 ]
-const textSizes = ["text-l", "text-xl", "text-2xl", "text-3xl"]
+const textSizes = ["text-lg", "text-xl", "text-2xl", "text-3xl"]
 
 export default async function Page() {
   return (
@@ -39,7 +41,7 @@ export default async function Page() {
       <h1 className="place-self-start pt-4 text-5xl">Datacom Digital</h1>
       <h2 className="place-self-end pb-20 text-5xl">Experience Platforms</h2>
 
-      <ul className="mx-auto flex max-w-sm flex-wrap place-content-center gap-x-2">
+      <ul className="mx-auto flex max-w-sm flex-wrap place-content-center place-items-center gap-x-3">
         {technologies
           .map((item) => ({ sort: Math.random(), ...item }))
           .sort((a, b) => a.sort - b.sort)

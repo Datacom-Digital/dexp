@@ -37,7 +37,7 @@ export default function Client({ path, data }: { path: string; data?: Data }) {
             newTab
             variant="secondary"
           >
-            View page
+            Preview
           </Button>
         </>
       )}
