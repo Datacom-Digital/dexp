@@ -1,13 +1,17 @@
-import { text, Text } from "./blocks/text"
+import { Text } from "./blocks/text"
+import { Prose } from "@/lib/puck/blocks/prose"
+import { Columns } from "@/lib/puck/blocks/columns"
 
-import { PuckConfig } from "./types"
+export const resolvePuckPath = (puckPath: string[] = []) => {
+  const path = `/${puckPath.join("/")}`
+  return path === "/" ? "/puck" : path
+}
 
 // We avoid the name config as next gets confused
-export const puckConfig: PuckConfig = {
+export const puckConfig = {
   components: {
-    Text: {
-      ...text,
-      render: Text,
-    },
+    Text,
+    Columns,
+    Prose,
   },
 }

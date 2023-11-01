@@ -1,9 +1,9 @@
 "use client"
 
-import { Data } from "@measured/puck"
+import { Data, Render } from "@measured/puck"
 import { notFound } from "next/navigation"
 import { useLocalData } from "@/lib/puck/hooks"
-import { Render } from "@/lib/puck/render"
+import { puckConfig } from "@/lib/puck/config"
 
 export default function Preview({ path, data }: { path: string; data?: Data }) {
   const localData = useLocalData(path)[0] || data
@@ -12,5 +12,5 @@ export default function Preview({ path, data }: { path: string; data?: Data }) {
     return notFound()
   }
 
-  return <Render data={localData} />
+  return <Render data={localData} config={puckConfig} />
 }

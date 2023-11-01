@@ -1,21 +1,21 @@
-import { Prose } from "@/components/ui/prose"
-import { PuckComponent, PuckFields } from "@/lib/puck/types"
+"use client"
 
-export const Text: PuckComponent<{ text: string }> = ({
-  text,
-}: {
-  text: string
-}) => {
-  return <Prose>{text}</Prose>
-}
+import { ComponentConfig } from "@measured/puck"
 
-export const text: PuckFields<typeof Text> = {
+export const Text: ComponentConfig<{ text: string; className?: string }> = {
   fields: {
     text: {
       type: "textarea",
     },
+
+    className: {
+      type: "text",
+    },
   },
   defaultProps: {
     text: "Text",
+  },
+  render: ({ text, className }) => {
+    return <div className={className}>{text}</div>
   },
 }

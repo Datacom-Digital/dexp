@@ -1,7 +1,9 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { Render, resolvePuckPath } from "@/lib/puck/render"
+
+import { ClientRender } from "./client"
 import { getAllPaths, getPageData } from "@/server/puck/actions"
+import { puckConfig, resolvePuckPath } from "@/lib/puck/config"
 
 // uncomment to prevent generating new dynamic segments on demand
 // export const dynamicParams = false
@@ -37,5 +39,5 @@ export default async function Page({
     return notFound()
   }
 
-  return <Render data={data} />
+  return <ClientRender data={data} config={puckConfig} />
 }

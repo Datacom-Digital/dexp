@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import Client from "./client"
 import Preview from "./preview"
 import { getPageData } from "@/server/puck/actions"
-import { resolvePuckPath } from "@/lib/puck/render"
+import { resolvePuckPath } from "@/lib/puck/config"
 
 export async function generateMetadata({
   params: { puckPath },
