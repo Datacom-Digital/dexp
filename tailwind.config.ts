@@ -6,9 +6,7 @@ const config: Config = {
     hoverOnlyWhenSupported: true,
   },
   content: [
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@datacom-digital/ui-sample-components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
