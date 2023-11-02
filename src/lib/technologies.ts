@@ -85,5 +85,5 @@ export const technologies: Array<{
     href: "https://vercel.com/",
     desc: "Domain and site hosting",
   },
-  { label: "Zod", href: "https://zod.dev/", desc: "Validation" },
+  { label: "Zod", href: "https://zod.dev/", desc: "Typed validation" },
 ]
