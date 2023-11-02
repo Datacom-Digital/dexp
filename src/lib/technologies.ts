@@ -3,7 +3,7 @@ import { Route } from "next"
 export const technologies: Array<{
   label: string
   href: Route
-  desc?: string
+  desc: string
 }> = [
   {
     label: "Auth.js",
@@ -25,7 +25,11 @@ export const technologies: Array<{
     href: "https://orm.drizzle.team/",
     desc: "TypeScript ORM",
   },
-  { label: "ESLint", href: "https://eslint.org/" },
+  {
+    label: "ESLint",
+    href: "https://eslint.org/",
+    desc: "Code style and footguns",
+  },
   {
     label: "Github",
     href: "https://github.com/datacom-digital",
@@ -53,7 +57,11 @@ export const technologies: Array<{
     href: "https://www.radix-ui.com/",
     desc: "Unstyled, accessible React primitives",
   },
-  { label: "React Hook Form", href: "https://react-hook-form.com/" },
+  {
+    label: "React Hook Form",
+    href: "https://react-hook-form.com/",
+    desc: "Form validation framework",
+  },
   {
     label: "Resend",
     href: "https://resend.com/",
@@ -66,7 +74,7 @@ export const technologies: Array<{
   },
   { label: "tailwindcss", href: "https://tailwindcss.com/", desc: "CSS" },
   { label: "Turso", href: "https://turso.tech/", desc: "Database hosting" },
-  { label: "TypeScript", href: "https://www.typescriptlang.org/" },
+  { label: "TypeScript", href: "https://www.typescriptlang.org/", desc: "..." },
   {
     label: "Uploadthing",
     href: "https://uploadthing.com/",
