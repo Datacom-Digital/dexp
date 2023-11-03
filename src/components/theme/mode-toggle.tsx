@@ -50,6 +50,16 @@ export const setMode = (theme: "light" | "dark" | "system") => {
   }
 }
 
+export const getMode = (): "light" | "dark" | "system" => {
+  if (typeof localStorage !== "undefined" && localStorage.theme === "dark") {
+    return "dark"
+  }
+  if (typeof localStorage !== "undefined" && localStorage.theme === "light") {
+    return "light"
+  }
+  return "system"
+}
+
 export const ModeToggle = () => {
   return (
     <DropdownMenu>

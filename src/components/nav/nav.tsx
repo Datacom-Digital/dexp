@@ -9,7 +9,6 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { ModeToggle } from "@/components/theme/mode-toggle"
 import { ThemeEditorMenu } from "@/components/theme/theme-editor-menu"
 
 const menu: Array<{ href: Route | URL; label: string }> = [
@@ -45,7 +44,6 @@ export const Nav = ({ className }: CNProps) => {
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <ModeToggle />
         <ThemeEditorMenu />
       </NavigationMenuList>
     </NavigationMenu>

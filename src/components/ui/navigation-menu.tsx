@@ -12,7 +12,7 @@ const NavigationMenu = React.forwardRef<
   <NavigationMenuPrimitive.Root
     ref={ref}
     className={cn(
-      "fixed z-10 grid w-full grid-flow-col items-center justify-between bg-background p-1",
+      "grid w-full grid-flow-col items-center justify-between bg-background p-1",
       className,
     )}
     {...props}
