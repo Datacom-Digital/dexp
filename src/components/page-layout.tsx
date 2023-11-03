@@ -16,10 +16,10 @@ export const PageLayout = ({ children }: PropsWithChildren) => {
         className={cn(
           "h-12 opacity-100 transition-all duration-300 ease-in",
           isHidden &&
-            "delay-700 hover:opacity-100 hover:delay-0 [@media(any-hover:hover)]:opacity-0",
+            "fixed z-10 delay-700 hover:opacity-100 hover:delay-0 [@media(any-hover:hover)]:opacity-0",
         )}
       />
-      <div className={cn(!isHidden && "pt-nav")}>{children}</div>
+      {children}
     </div>
   )
 }

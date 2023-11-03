@@ -1,7 +1,9 @@
 import { Metadata } from "next"
+
 import Client from "./client"
 import Preview from "./preview"
-import { getPageData } from "@/server/puck/actions"
+import { PageList } from "./page-list"
+import { getAllKeys, getPageData } from "@/server/puck/actions"
 import { resolvePuckPath } from "@/lib/puck/config"
 
 export async function generateMetadata({
@@ -29,7 +31,7 @@ export default async function Page({
   searchParams,
 }: {
   params: { framework: string; uuid: string; puckPath: string[] }
-  searchParams: { mode?: "preview" }
+  searchParams: { mode?: "preview" | "edit" }
 }) {
   const path = resolvePuckPath(puckPath)
 
@@ -39,5 +41,11 @@ export default async function Page({
     return <Preview path={path} data={data} />
   }
 
-  return <Client path={path} data={data} />
+  if (searchParams?.mode === "edit") {
+    return <Client path={path} data={data} />
+  }
+
+  const paths = await getAllKeys()
+
+  return <PageList paths={paths} />
 }

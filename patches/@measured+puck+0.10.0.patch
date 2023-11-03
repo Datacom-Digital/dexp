@@ -1,0 +1,31 @@
+diff --git a/node_modules/@measured/puck/dist/index.d.ts b/node_modules/@measured/puck/dist/index.d.ts
+index 65a5131..c4a4de6 100644
+--- a/node_modules/@measured/puck/dist/index.d.ts
++++ b/node_modules/@measured/puck/dist/index.d.ts
+@@ -275,6 +275,12 @@ declare function Puck({ config, data: initialData, onChange, onPublish, plugins,
+         children: ReactNode;
+         dispatch: (action: PuckAction) => void;
+         state: AppState;
++        history: {
++            canForward: boolean;
++            canRewind: boolean;
++            rewind: () => void;
++            forward: () => void;
++          };
+     }) => ReactElement;
+     renderHeaderActions?: (props: {
+         state: AppState;
+diff --git a/node_modules/@measured/puck/dist/index.js b/node_modules/@measured/puck/dist/index.js
+index c59bee9..2dae328 100644
+--- a/node_modules/@measured/puck/dist/index.js
++++ b/node_modules/@measured/puck/dist/index.js
+@@ -4758,7 +4759,8 @@ function Puck({
+                           }
+                         ),
+                         dispatch,
+-                        state: appState
++                        state: appState,
++                        history: { canForward, canRewind, rewind, forward },
+                       }) : /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(
+                         "div",
+                         {
