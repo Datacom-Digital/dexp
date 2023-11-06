@@ -1,4 +1,3 @@
-import "server-only"
 import { integer, sqliteTable, text, primaryKey } from "drizzle-orm/sqlite-core"
 import type { AdapterAccount } from "@auth/core/adapters"
 

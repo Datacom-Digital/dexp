@@ -19,6 +19,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "baseUrl": ".",
+    "target": "es2015",
     "plugins": [
       {
         "name": "next"

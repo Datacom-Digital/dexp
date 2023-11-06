@@ -44,7 +44,7 @@ export const Nav = ({ className }: CNProps) => {
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <ThemeEditorMenu />
+        <ThemeEditorMenu className="h-9" />
       </NavigationMenuList>
     </NavigationMenu>
   )

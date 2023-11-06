@@ -1,3 +1,3 @@
-import "server-only"
 export * from "./next-auth-schema"
 export * from "./puck-schema"
+export * from "./uploadthing-schema"
