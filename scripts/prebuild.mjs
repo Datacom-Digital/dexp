@@ -23,6 +23,8 @@ const getClient = async () => {
 }
 
 ;(async () => {
+  console.log("Migrating database")
+
   const client = await getClient()
 
   if (!client) {
@@ -40,6 +42,10 @@ const getClient = async () => {
     })
     .from(pages)
 
+  client.close()
+
+  console.log("Extracting tailwind classes")
+
   const regex = /"className":"([^"]*)"/gm
 
   var outFile = createWriteStream("tailwind.classes.txt")
@@ -56,7 +62,5 @@ const getClient = async () => {
   outFile.write("\n")
   outFile.end()
 
-  client.close()
-
-  console.log("Database migrations completed")
+  console.log("Prebuild script complete")
 })()
