@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import { getPageData } from "@/puck/src/actions"
-import { ClientPageProps } from "@/puck/types"
+import { ClientPageProps } from "@/puck/src/types"
 import { resolvePuckPath } from "@/puck/src/utils"
 import { Preview } from "@/puck/src/components/preview"
 

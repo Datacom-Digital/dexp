@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import { Data } from "@measured/puck"
-import { clientConfig } from "@/lib/puck"
+import { clientConfig } from "@/lib/puck.config"
 
 export const useLocalData = (path: string) => {
   // unique b64 key that updates each time we add / remove components

@@ -39,3 +39,6 @@ export const roles = ["user", "admin"] as const
 export type ClientPageProps = {
   params: { framework: string; uuid: string; puckPath: string[] }
 }
+
+export const primitives = ["div", "p", "h1", "h2", "h3", "ul", "li"] as const
+export type Primitive = (typeof primitives)[number]

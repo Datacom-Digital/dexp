@@ -14,7 +14,7 @@ import {
   ChangeRoleSchema,
   DeleteUserSchema,
   AddUserSchema,
-} from "@/puck/types"
+} from "@/puck/src/types"
 import { adapter } from "@/puck/src/auth/next-auth-adapter"
 import { ourUploadthing } from "@/puck/src/uploadthing/api"
 import { db } from "@/db/client"

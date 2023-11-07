@@ -9,7 +9,7 @@ import { UploadFileResponse } from "uploadthing/client"
 import { Button } from "@/components/ui/button"
 
 import { UploadDropzone } from "@/puck/src/uploadthing/components"
-import { Asset } from "@/puck/types"
+import { Asset } from "@/puck/src/types"
 import { deleteAsset } from "@/puck/src/actions"
 
 export function Assets({ assets: initialAssets }: { assets: Asset[] }) {

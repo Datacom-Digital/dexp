@@ -6,7 +6,7 @@ import { z } from "zod"
 import { Fragment, useState } from "react"
 import { addUser, changeRole, deleteUser } from "../actions"
 
-import { AddUserSchema, User, roles } from "../../types"
+import { AddUserSchema, User, roles } from "../types"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 

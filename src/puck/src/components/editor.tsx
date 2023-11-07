@@ -10,7 +10,7 @@ import { PuckMenu } from "@/puck/src/components/puck-menu"
 //import { publishPageData } from "@/puck/actions"
 import { useLocalData } from "@/puck/src/hooks"
 import { publishPageData } from "@/puck/src/actions"
-import { clientConfig } from "@/lib/puck"
+import { clientConfig } from "@/lib/puck.config"
 
 export function Editor({ path, data }: { path: string; data?: Data }) {
   const [localData, setLocalData] = useLocalData(path)

@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import { getPageData } from "@/puck/src/actions"
 import { Editor } from "@/puck/src/components/editor"
-import { ClientPageProps } from "@/puck/types"
+import { ClientPageProps } from "@/puck/src/types"
 import { resolvePuckPath } from "@/puck/src/utils"
 
 export async function generateMetadata({

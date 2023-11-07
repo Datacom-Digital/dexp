@@ -2,9 +2,7 @@
 
 import { ComponentConfig } from "@measured/puck"
 import React from "react"
-
-const primitives = ["p", "h1", "h2", "h3", "div"] as const
-type Primitive = (typeof primitives)[number]
+import { Primitive, primitives } from "@/puck/src/types"
 
 export const Text: ComponentConfig<{
   text: string
