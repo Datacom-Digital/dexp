@@ -32,7 +32,7 @@ const getClient = async () => {
 
   const db = drizzle(client)
 
-  await migrate(db, { migrationsFolder: "./src/server/db/migrations" })
+  await migrate(db, { migrationsFolder: "./src/db/migrations" })
 
   const results = await db
     .select({
@@ -40,7 +40,7 @@ const getClient = async () => {
     })
     .from(pages)
 
-  const regex = /"className":"([^"]*)"/gim
+  const regex = /"className":"([^"]*)"/gm
 
   var outFile = createWriteStream("tailwind.classes.txt")
 

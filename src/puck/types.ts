@@ -35,3 +35,7 @@ export const DeleteUserSchema = UserSchema.pick({ id: true })
 export type User = z.infer<typeof UserSchema>
 
 export const roles = ["user", "admin"] as const
+
+export type ClientPageProps = {
+  params: { framework: string; uuid: string; puckPath: string[] }
+}

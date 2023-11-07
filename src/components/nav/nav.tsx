@@ -12,7 +12,7 @@ import {
 import { ThemeEditorMenu } from "@/components/theme/theme-editor-menu"
 
 const menu: Array<{ href: Route | URL; label: string }> = [
-  { href: "/", label: "D" },
+  { href: "/" as Route, label: "D" },
   { href: "/slides", label: "Slides" },
   { href: "/dashboard", label: "Cards" },
   { href: "/forcem", label: "Forcem" },
