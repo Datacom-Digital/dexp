@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { PropsWithChildren } from "react"
-import { Route } from "next"
 import { signOut, useSession } from "next-auth/react"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { ThemeEditorMenu } from "@/components/theme/theme-editor-menu"
@@ -20,15 +19,7 @@ export const PuckMenu = ({
   return (
     <header className="grid w-full grid-cols-3 items-center bg-background p-2 text-foreground">
       <div className="flex justify-start gap-1">{children}</div>
-      <div className="flex justify-center">
-        {path ? (
-          <Link href={path as Route} target="_blank" prefetch={false}>
-            {title || path}
-          </Link>
-        ) : (
-          title
-        )}
-      </div>
+      <div className="flex justify-center">{title}</div>
       <div className="flex justify-end gap-1">
         <Link
           className={buttonVariants({ variant: "outline", size: "sm" })}
