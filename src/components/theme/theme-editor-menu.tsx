@@ -19,6 +19,7 @@ export const ThemeEditorMenu = ({ className }: { className?: string }) => {
   const [selectedMode, setSelectedMode] = useState(getMode())
 
   const onModeClick = (mode: "light" | "dark" | "system") => {
+    console.log("omc")
     setSelectedMode(mode)
     setMode(mode)
   }

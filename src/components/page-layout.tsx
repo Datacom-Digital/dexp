@@ -11,7 +11,7 @@ export const PageLayout = ({ children }: PropsWithChildren) => {
   } = useContext(ThemeContext)
 
   return (
-    <div>
+    <>
       <Nav
         className={cn(
           "h-12 opacity-100 transition-all duration-300 ease-in",
@@ -20,6 +20,6 @@ export const PageLayout = ({ children }: PropsWithChildren) => {
         )}
       />
       {children}
-    </div>
+    </>
   )
 }

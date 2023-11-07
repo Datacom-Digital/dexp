@@ -23,6 +23,10 @@ on:
         required: true
       RESEND_SECRET:
         required: true
+      UPLOADTHING_APP_ID:
+        required: true
+      UPLOADTHING_SECRET:
+        required: true
 
 jobs:
   deploy:
@@ -34,6 +38,8 @@ jobs:
       TURSO_URL: ${{ secrets.TURSO_URL }}
       TURSO_TOKEN: ${{ secrets.TURSO_TOKEN }}
       RESEND_SECRET: ${{ secrets.RESEND_SECRET }}
+      UPLOADTHING_APP_ID: ${{ secrets.UPLOADTHING_APP_ID }}
+      UPLOADTHING_SECRET: ${{ secrets.UPLOADTHING_SECRET }}
     outputs:
       url: ${{ steps.deploy.outputs.url }}
     runs-on: ubuntu-latest

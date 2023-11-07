@@ -21,7 +21,7 @@ import { migrate } from "drizzle-orm/libsql/migrator"
 
   const client = drizzle(db)
 
-  await migrate(client, { migrationsFolder: "./src/server/db/migrations" })
+  await migrate(client, { migrationsFolder: "./src/db/migrations" })
 
   console.log("Database migrations completed")
 })()
