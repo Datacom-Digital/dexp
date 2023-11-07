@@ -21,7 +21,7 @@ export async function generateMetadata({
   const data = await getPageData(path)
 
   return {
-    title: data?.root.title || "",
+    title: data?.root.title || "Datacom Digital Experience Platforms",
   }
 }
 
