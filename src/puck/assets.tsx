@@ -9,9 +9,8 @@ export async function AssetsPage() {
   return (
     <>
       <PuckMenu title="Assets" path="/cms/assets" />
-      <Prose className="mx-auto">
-        <Assets assets={assets} />
-      </Prose>
+
+      <Assets assets={assets} />
     </>
   )
 }

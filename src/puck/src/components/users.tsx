@@ -33,7 +33,7 @@ export function Users({ users: initialUsers }: { users: User[] }) {
     resolver: zodResolver(AddUserSchema),
     defaultValues: {
       email: "",
-      role: "user",
+      role: "admin",
     },
   })
 
@@ -48,7 +48,7 @@ export function Users({ users: initialUsers }: { users: User[] }) {
         })}
         className="space-y-8"
       >
-        <div className="grid w-fit grid-cols-[auto_auto_auto] items-center gap-1">
+        <div className="mx-auto grid w-fit grid-cols-[auto_auto_auto] items-center gap-1 pt-3">
           {users.map(({ role, id, email }) => {
             return (
               <Fragment key={id}>
@@ -117,10 +117,7 @@ export function Users({ users: initialUsers }: { users: User[] }) {
               </FormItem>
             )}
           />
-
-          <Button type="submit" size="sm">
-            Add
-          </Button>
+          <Button type="submit">Add</Button>
         </div>
       </form>
     </Form>

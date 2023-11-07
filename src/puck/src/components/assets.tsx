@@ -16,7 +16,7 @@ export function Assets({ assets: initialAssets }: { assets: Asset[] }) {
   const [assets, setAssets] = useState(initialAssets)
 
   return (
-    <div className="grid w-fit grid-cols-[auto_auto_auto] items-center gap-3">
+    <div className="mx-auto grid w-fit grid-cols-[auto_auto_auto] items-center gap-3 pt-3">
       {assets.map(({ key, name, size, url }) => {
         return (
           <Fragment key={key}>
@@ -41,7 +41,7 @@ export function Assets({ assets: initialAssets }: { assets: Asset[] }) {
         )
       })}
 
-      <div className="col-span-4">
+      <div className="col-span-3">
         <UploadDropzone
           endpoint="imageUploader"
           onClientUploadComplete={(res) => {

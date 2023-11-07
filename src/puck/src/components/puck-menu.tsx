@@ -11,7 +11,9 @@ export const PuckMenu = ({
   title,
   path,
   children,
-}: PropsWithChildren<{ title: string; path: string }>) => {
+}: PropsWithChildren<
+  { title?: string; path: string } | { title: string; path?: string }
+>) => {
   const { data: session } = useSession()
   const isAdmin = session?.user.role === "admin"
 
@@ -19,9 +21,13 @@ export const PuckMenu = ({
     <header className="grid w-full grid-cols-3 items-center bg-background p-2 text-foreground">
       <div className="flex justify-start gap-1">{children}</div>
       <div className="flex justify-center">
-        <Link href={path as Route} target="_blank" prefetch={false}>
-          {title || path}
-        </Link>
+        {path ? (
+          <Link href={path as Route} target="_blank" prefetch={false}>
+            {title || path}
+          </Link>
+        ) : (
+          title
+        )}
       </div>
       <div className="flex justify-end gap-1">
         <Link

@@ -71,9 +71,7 @@ export function Editor({ path, data }: { path: string; data?: Data }) {
             </Button>
             <Button
               onClick={() =>
-                window
-                  .open(join("/cms", path, "?mode=preview"), "_blank")
-                  ?.focus()
+                window.open(join("/cms/preview", path), "_blank")?.focus()
               }
               variant="outline"
               size="sm"

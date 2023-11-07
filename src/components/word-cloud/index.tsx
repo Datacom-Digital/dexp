@@ -1,7 +1,6 @@
 "use client"
-import Link from "next/link"
 
-export const dynamic = "force-static"
+import Link from "next/link"
 
 import { useState, useEffect } from "react"
 import { Route } from "next"
@@ -15,11 +14,7 @@ export function WordCloud() {
     Array<{ href: Route; label: string; textSize: string }>
   >([])
 
-  console.count("...")
-
   useEffect(() => {
-    console.count("___")
-
     setCloud(
       technologies
         .map((item) => ({ sort: Math.random(), ...item }))
