@@ -1,21 +1,21 @@
 This is a [Next.js](https://nextjs.org/) for [Datacom Digital Experience Platforms](https://dexp.nz/)
 
-## Getting started
+# Getting started
 
 This repository is designed for kickstarting new projects
 
-# install
+### install
 
 ```bash
 npm i
 ```
 
-# set up
+### set up
 
 Copy .env.local.example to .env.local
 Set all environment variables as documented in .env.local.example
 
-# run the dev server
+### run the dev server
 
 ```bash
 npm dev
@@ -23,21 +23,21 @@ npm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-# Deploying
+### Deploying
 
-### Setting up a new project
+# Setting up a new project
 
-# Email sending
+## Email sending
 
 [resend](https://resend.com/api-keys)
 Create new api key with sending permission and domain scope
 
-# Storage bucket
+## Storage bucket
 
 [uploadthing](https://uploadthing.com/)
 Create new app and api key
 
-# Database
+## Database
 
 [turso](https://docs.turso.tech/tutorials/get-started-turso-cli/)
 Can be done entirely from the command line, but...
