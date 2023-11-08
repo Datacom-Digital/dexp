@@ -119,5 +119,5 @@ jobs:
           cache: "npm"
       - name: Alias build to production
         run: |
-        npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }})
-        echo "$(npx vercel alias $DOMAIN ${{ vars.VERCEL_ALIAS }} --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }})" >> "$GITHUB_STEP_SUMMARY"
+          npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }})
+          echo "$(npx vercel alias $DOMAIN ${{ vars.VERCEL_ALIAS }} --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }})" >> "$GITHUB_STEP_SUMMARY"
