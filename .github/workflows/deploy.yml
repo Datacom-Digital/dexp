@@ -27,7 +27,6 @@ jobs:
       VERCEL_API_TOKEN: ${{ secrets.VERCEL_API_TOKEN }}
       VERCEL_SCOPE: ${{ vars.VERCEL_SCOPE }}
       ENVIRONMENT: ${{ inputs.environment }}
-
     outputs:
       url: ${{ steps.deploy.outputs.url }}
     runs-on: ubuntu-latest
