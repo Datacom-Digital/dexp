@@ -11,7 +11,7 @@ if [[ -n $ENVIRONMENT ]]
 then
 ENV_FLAG=--environment=$ENVIRONMENT
 else
-ENV_FLAG=--environment=Developement
+ENV_FLAG=--environment=developement
 fi
 
 if [[ $ENVIRONMENT == "production" ]]
