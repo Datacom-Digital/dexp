@@ -17,16 +17,6 @@ on:
         required: true
       VERCEL_PROJECT_ID:
         required: true
-      TURSO_URL:
-        required: true
-      TURSO_TOKEN:
-        required: true
-      RESEND_SECRET:
-        required: true
-      UPLOADTHING_APP_ID:
-        required: true
-      UPLOADTHING_SECRET:
-        required: true
 
 jobs:
   deploy:
@@ -34,12 +24,10 @@ jobs:
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-      PROD_FLAG: "${{ inputs.environment == 'production' && '--prod' || '' }}"
-      TURSO_URL: ${{ secrets.TURSO_URL }}
-      TURSO_TOKEN: ${{ secrets.TURSO_TOKEN }}
-      RESEND_SECRET: ${{ secrets.RESEND_SECRET }}
-      UPLOADTHING_APP_ID: ${{ secrets.UPLOADTHING_APP_ID }}
-      UPLOADTHING_SECRET: ${{ secrets.UPLOADTHING_SECRET }}
+      VERCEL_API_TOKEN: ${{ secrets.VERCEL_API_TOKEN }}
+      VERCEL_SCOPE: ${{ vars.VERCEL_SCOPE }}
+      ENVIRONMENT: ${{ inputs.environment }}
+
     outputs:
       url: ${{ steps.deploy.outputs.url }}
     runs-on: ubuntu-latest
@@ -61,10 +49,8 @@ jobs:
           cache: "npm"
       - name: Install
         run: npm ci
-      - name: Pull Vercel Environment Information
-        run: npx vercel pull --yes --environment=${{ inputs.environment }} --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }}
-      - name: Build Project Artifacts
-        run: npx vercel build ${{ env.PROD_FLAG }} --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }}
-      - name: Deploy Project Artifacts to Vercel
+      - name: Build and deploy
         id: deploy
-        run: echo "url=$(npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_API_TOKEN }} --scope ${{ vars.VERCEL_SCOPE }})" >> "$GITHUB_OUTPUT"
+        run: |
+          npm run deploy
+          echo "url=$(tail .vercel/DEPLOY_LOG)" >> "$GITHUB_OUTPUT"
