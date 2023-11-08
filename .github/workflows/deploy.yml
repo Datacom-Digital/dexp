@@ -51,4 +51,4 @@ jobs:
         run: npm ci
       - name: Build and deploy
         id: deploy
-        run: npm run deploy
+        run: echo "url=${npm run deploy)" >> "$GITHUB_OUTPUT"
