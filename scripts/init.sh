@@ -10,6 +10,7 @@ SCOPE=datacom-digital
 EMAIL_FROM=no-reply@dexp.nz
 
 read -p "Project name: " PROJECT_NAME
+read -p "Domain: " DOMAIN
 read -p "Master email: " MASTER_EMAIL
 read -p "Uploadthing secret: " UPLOADTHING_SECRET
 read -p "Uploadthing app id: " UPLOADTHING_APP_ID
@@ -37,13 +38,16 @@ openssl rand -hex 32 | npx vercel env add AUTH_SECRET development
 openssl rand -hex 32 | npx vercel env add AUTH_SECRET preview
 openssl rand -hex 32 | npx vercel env add AUTH_SECRET production
 
-echo "$EMAIL_FROM" | npx vercel env add EMAIL_FROM development
-echo "$EMAIL_FROM" | npx vercel env add EMAIL_FROM preview
-echo "$EMAIL_FROM" | npx vercel env add EMAIL_FROM production
+echo "$DOMAIN" | npx vercel env add DOMAIN production
 
 echo "$MASTER_EMAIL" | npx vercel env add MASTER_EMAIL development
 echo "$MASTER_EMAIL" | npx vercel env add MASTER_EMAIL preview
 echo "$MASTER_EMAIL" | npx vercel env add MASTER_EMAIL production
+
+echo "$EMAIL_FROM" | npx vercel env add EMAIL_FROM development
+echo "$EMAIL_FROM" | npx vercel env add EMAIL_FROM preview
+echo "$EMAIL_FROM" | npx vercel env add EMAIL_FROM production
+
 
 echo "$UPLOADTHING_SECRET" | npx vercel env add UPLOADTHING_SECRET development
 echo "$UPLOADTHING_SECRET" | npx vercel env add UPLOADTHING_SECRET preview
