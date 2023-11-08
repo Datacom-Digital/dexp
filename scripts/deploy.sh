@@ -30,11 +30,11 @@ fi
 
 if [[ -n $VERCEL_SCOPE ]]
 then
-SCOPE_FLAG=--token=$VERCEL_API_TOKEN
+SCOPE_FLAG=--scope=$VERCEL_SCOPE
 else
 SCOPE_FLAG=
 fi
 
 npx vercel pull --yes --environment=$ENVIRONMENT $SCOPE_FLAG $TOKEN_FLAG
 npx vercel build $PROD_FLAG $SCOPE_FLAG $TOKEN_FLAG
-npx vercel deploy --prebuilt $SCOPE_FLAG $TOKEN_FLAG
+npx vercel deploy --prebuilt $SCOPE_FLAG $TOKEN_FLAG > .vercel/DEPLOY_LOG

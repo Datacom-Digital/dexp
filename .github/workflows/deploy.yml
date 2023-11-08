@@ -51,4 +51,6 @@ jobs:
         run: npm ci
       - name: Build and deploy
         id: deploy
-        run: echo "url=$(npm run deploy)" >> "$GITHUB_OUTPUT"
+        run: |
+          npm run deploy
+          echo "url=$(tail .vercel/DEPLOY_LOG)" >> "$GITHUB_OUTPUT"
