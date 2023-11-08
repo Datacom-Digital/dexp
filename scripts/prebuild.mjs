@@ -23,7 +23,9 @@ const getClient = async () => {
 }
 
 ;(async () => {
-  console.log("Migrating database")
+  console.log(
+    `Migrating database env=${process.env.ENVIRONMENT}] url=${process.env.TURSO_URL}`,
+  )
 
   const client = await getClient()
 
