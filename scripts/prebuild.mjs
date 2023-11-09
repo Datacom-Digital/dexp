@@ -4,6 +4,9 @@ import { drizzle } from "drizzle-orm/libsql"
 import { migrate } from "drizzle-orm/libsql/migrator"
 import { sqliteTable, text } from "drizzle-orm/sqlite-core"
 
+dotenv.config({ path: ".env.local" })
+
+/*
 switch (process.env.VERCEL_ENVIRONMENT) {
   case "development":
     dotenv.config({ path: "./.vercel/.env.development.local" })
@@ -16,7 +19,7 @@ switch (process.env.VERCEL_ENVIRONMENT) {
     break
   default:
     dotenv.config({ path: ".env.local" })
-}
+}*/
 
 const pages = sqliteTable("pages", {
   key: text("key").notNull().primaryKey(),
