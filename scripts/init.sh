@@ -27,7 +27,7 @@ wait $CURL_PID
 turso auth login
 
 wait $NPM_PID
-npx vercel login --yes
+npx vercel login
 
 npx vercel project add $PROJECT_NAME --scope=$SCOPE
 npx vercel link -p $PROJECT_NAME --scope=$SCOPE --yes
