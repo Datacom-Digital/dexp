@@ -6,12 +6,12 @@ echo "vercel and turso require a unix shell (eg wsl2)"
 exit 1
 fi
 
-npm i -D vercel > /dev/null &
+npx vercel --yes -v > /dev/null 2>&1 &
 NPM_PID=$!
 
 if ! command -v turso &> /dev/null
 then
-curl -sSfL https://get.tur.so/install.sh | bash &
+curl -sSfL https://get.tur.so/install.sh | bash > /dev/null 2>&1 &
 CURL_PID=$!
 fi
 
@@ -22,11 +22,11 @@ read -p "Project name: " PROJECT_NAME
 read -p "Domain: " DOMAIN
 read -p "Master email: " MASTER_EMAIL
 
-wait $NPM_PID
-npx --yes login
-
 wait $CURL_PID
 turso auth login
+
+wait $NPM_PID
+npx --yes login
 
 npx vercel project add $PROJECT_NAME --scope=$SCOPE
 npx vercel link -p $PROJECT_NAME --scope=$SCOPE --yes
