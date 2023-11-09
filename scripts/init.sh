@@ -6,6 +6,8 @@ echo "vercel and turso require a unix shell (eg wsl2)"
 exit 1
 fi
 
+npm i
+
 SCOPE=datacom-digital
 EMAIL_FROM=no-reply@dexp.nz
 
