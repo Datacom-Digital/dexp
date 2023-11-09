@@ -1,5 +1,9 @@
 #! /bin/bash
 
+
+SCOPE=datacom-digital
+EMAIL_FROM=no-reply@dexp.nz
+
 if [[ "$OSTYPE" == "msys" ]] 
 then
 echo "vercel and turso require a unix shell (eg wsl2)"
@@ -15,9 +19,6 @@ curl -sSfL https://get.tur.so/install.sh | bash > /dev/null 2>&1 &
 CURL_PID=$!
 fi
 
-SCOPE=datacom-digital
-EMAIL_FROM=no-reply@dexp.nz
-
 read -p "Project name: " PROJECT_NAME
 read -p "Domain: " DOMAIN
 read -p "Master email: " MASTER_EMAIL
@@ -26,7 +27,7 @@ wait $CURL_PID
 turso auth login
 
 wait $NPM_PID
-npx --yes login
+npx vercel login --yes
 
 npx vercel project add $PROJECT_NAME --scope=$SCOPE
 npx vercel link -p $PROJECT_NAME --scope=$SCOPE --yes
@@ -59,7 +60,3 @@ npx vercel pull
 
 echo "Initialisation complete - add project id to github repository secrets:"
 echo "VERCEL_PROJECT_ID=$(sed -n "s/.*projectId.*\"\([^\"].*\)\".*/\1/p" .vercel/project.json)"
-
-read -p "Press any key to install dependencies"
-
-npm i
