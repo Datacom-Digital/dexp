@@ -6,13 +6,13 @@ import { sqliteTable, text } from "drizzle-orm/sqlite-core"
 
 switch (process.env.VERCEL_ENVIRONMENT) {
   case "development":
-    dotenv.config({ path: ".vercel/.env.development.local" })
+    dotenv.config({ path: "./.vercel/.env.development.local" })
     break
   case "preview":
-    dotenv.config({ path: ".vercel/.env.preview.local" })
+    dotenv.config({ path: "./.vercel/.env.preview.local" })
     break
   case "production":
-    dotenv.config({ path: ".vercel/.env.production.local" })
+    dotenv.config({ path: "./.vercel/.env.production.local" })
     break
   default:
     dotenv.config({ path: ".env.local" })
@@ -36,7 +36,7 @@ const getClient = async () => {
 
 ;(async () => {
   console.log(
-    `Migrating database env=${process.env.VERCEL_ENVIRONMENT} domain=${process.env.DOMAIN} url=${process.env.TURSO_URL}`,
+    `Migrating database env=${process.env.VERCEL_ENVIRONMENT} scope=${process.env.VERCEL_SCOPE} domain=${process.env.DOMAIN} url=${process.env.TURSO_URL}`,
   )
 
   const client = await getClient()
