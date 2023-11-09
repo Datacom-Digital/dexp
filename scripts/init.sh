@@ -48,7 +48,6 @@ echo "$EMAIL_FROM" | npx vercel env add EMAIL_FROM development
 echo "$EMAIL_FROM" | npx vercel env add EMAIL_FROM preview
 echo "$EMAIL_FROM" | npx vercel env add EMAIL_FROM production
 
-
 echo "$UPLOADTHING_SECRET" | npx vercel env add UPLOADTHING_SECRET development
 echo "$UPLOADTHING_SECRET" | npx vercel env add UPLOADTHING_SECRET preview
 echo "$UPLOADTHING_SECRET" | npx vercel env add UPLOADTHING_SECRET production
@@ -57,5 +56,7 @@ echo "$UPLOADTHING_APP_ID" | npx vercel env add UPLOADTHING_APP_ID development
 echo "$UPLOADTHING_APP_ID" | npx vercel env add UPLOADTHING_APP_ID preview
 echo "$UPLOADTHING_APP_ID" | npx vercel env add UPLOADTHING_APP_ID production
 
+npx vercel pull
 
-npx vercel pull .env.local
+echo "Initialisation complete - please VERCEL_PROJECT_ID to repository secrets:"
+echo "VERCEL_PROJECT_ID=$(sed -n "s/.*projectId.*\"\([^\"].*\)\".*/\1/p" .vercel/project.json)"
