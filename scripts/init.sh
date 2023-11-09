@@ -12,8 +12,6 @@ EMAIL_FROM=no-reply@dexp.nz
 read -p "Project name: " PROJECT_NAME
 read -p "Domain: " DOMAIN
 read -p "Master email: " MASTER_EMAIL
-read -p "Uploadthing secret: " UPLOADTHING_SECRET
-read -p "Uploadthing app id: " UPLOADTHING_APP_ID
 
 npx vercel project add $PROJECT_NAME --scope=$SCOPE
 npx vercel link -p $PROJECT_NAME --scope=$SCOPE --yes
@@ -48,15 +46,7 @@ echo "$EMAIL_FROM" | npx vercel env add EMAIL_FROM development
 echo "$EMAIL_FROM" | npx vercel env add EMAIL_FROM preview
 echo "$EMAIL_FROM" | npx vercel env add EMAIL_FROM production
 
-echo "$UPLOADTHING_SECRET" | npx vercel env add UPLOADTHING_SECRET development
-echo "$UPLOADTHING_SECRET" | npx vercel env add UPLOADTHING_SECRET preview
-echo "$UPLOADTHING_SECRET" | npx vercel env add UPLOADTHING_SECRET production
-
-echo "$UPLOADTHING_APP_ID" | npx vercel env add UPLOADTHING_APP_ID development
-echo "$UPLOADTHING_APP_ID" | npx vercel env add UPLOADTHING_APP_ID preview
-echo "$UPLOADTHING_APP_ID" | npx vercel env add UPLOADTHING_APP_ID production
-
 npx vercel pull
 
-echo "Initialisation complete - please VERCEL_PROJECT_ID to repository secrets:"
+echo "Initialisation complete - add project id to github repository secrets:"
 echo "VERCEL_PROJECT_ID=$(sed -n "s/.*projectId.*\"\([^\"].*\)\".*/\1/p" .vercel/project.json)"
