@@ -7,14 +7,14 @@ echo "vercel build requires unix shell (eg wsl2)"
 exit 1
 fi
 
-if [[ -n $ENVIRONMENT ]]
+if [[ -n $VERCEL_ENVIRONMENT ]]
 then
-ENV_FLAG=--environment=$ENVIRONMENT
+ENV_FLAG=--environment=$VERCEL_ENVIRONMENT
 else
 ENV_FLAG=--environment=developement
 fi
 
-if [[ $ENVIRONMENT == "production" ]]
+if [[ $VERCEL_ENVIRONMENT == "production" ]]
 then
 PROD_FLAG=--prod
 else
@@ -35,7 +35,7 @@ else
 SCOPE_FLAG=
 fi
 
-echo "!1 $ENVIRONMENT $SCOPE_FLAG
-npx vercel pull --yes --environment=$ENVIRONMENT $SCOPE_FLAG $TOKEN_FLAG .env.local
+echo "!1 $VERCEL_ENVIRONMENT $SCOPE_FLAG
+npx vercel pull --yes --environment=$VERCEL_ENVIRONMENT $SCOPE_FLAG $TOKEN_FLAG
 npx vercel build $PROD_FLAG $SCOPE_FLAG $TOKEN_FLAG
 npx vercel deploy --prebuilt $PROD_FLAG $SCOPE_FLAG $TOKEN_FLAG > .vercel/DEPLOY_LOG

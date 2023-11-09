@@ -24,7 +24,9 @@ jobs:
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-      PROD_FLAG: "${{ inputs.environment == 'production' && '--prod' || '' }}"
+      VERCEL_API_TOKEN: ${{ secrets.VERCEL_API_TOKEN }}
+      VERCEL_SCOPE: ${{ vars.VERCEL_SCOPE }}
+      VERCEL_ENVIRONMENT: ${{ inputs.environment }}
     outputs:
       url: ${{ steps.deploy.outputs.url }}
     runs-on: ubuntu-latest
@@ -49,6 +51,5 @@ jobs:
       - name: Build and deploy
         id: deploy
         run: |
-          npx vercel pull --yes --environment=${{ env.ENVIRONMENT }} --scope=${{ vars.VERCEL_SCOPE }} --token=${{ secrets.VERCEL_API_TOKEN }} .env.local
-          npx vercel build ${{ env.PROD_FLAG }} --scope=${{ vars.VERCEL_SCOPE }} --token=${{ secrets.VERCEL_API_TOKEN }}
-          echo "url=$(npx vercel deploy --prebuilt ${{ env.PROD_FLAG }} --scope=${{ vars.VERCEL_SCOPE }} --token=${{ secrets.VERCEL_API_TOKEN }})" >> "$GITHUB_OUTPUT"
+          npm run deploy
+          echo "url=$(tail .vercel/DEPLOY_LOG)" >> "$GITHUB_OUTPUT"

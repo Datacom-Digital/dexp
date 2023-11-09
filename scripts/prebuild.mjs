@@ -1,10 +1,22 @@
-import dotenv from "dotenv"
-dotenv.config({ path: ".env.local" })
-
 import { createWriteStream } from "fs"
+import dotenv from "dotenv"
 import { drizzle } from "drizzle-orm/libsql"
 import { migrate } from "drizzle-orm/libsql/migrator"
 import { sqliteTable, text } from "drizzle-orm/sqlite-core"
+
+switch (process.env.VERCEL_ENVIRONMENT) {
+  case "development":
+    dotenv.config({ path: ".vercel/.env.development.local" })
+    break
+  case "preview":
+    dotenv.config({ path: ".vercel/.env.preview.local" })
+    break
+  case "production":
+    dotenv.config({ path: ".vercel/.env.production.local" })
+    break
+  default:
+    dotenv.config({ path: ".env.local" })
+}
 
 const pages = sqliteTable("pages", {
   key: text("key").notNull().primaryKey(),
@@ -24,7 +36,7 @@ const getClient = async () => {
 
 ;(async () => {
   console.log(
-    `Migrating database env=${process.env.ENVIRONMENT} domain=${process.env.DOMAIN} url=${process.env.TURSO_URL}`,
+    `Migrating database env=${process.env.VERCEL_ENVIRONMENT} domain=${process.env.DOMAIN} url=${process.env.TURSO_URL}`,
   )
 
   const client = await getClient()
