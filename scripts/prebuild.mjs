@@ -36,7 +36,7 @@ const getClient = async () => {
 
 ;(async () => {
   console.log(
-    `Migrating database env=${process.env.VERCEL_ENVIRONMENT} scope=${process.env.VERCEL_SCOPE} domain=${process.env.DOMAIN} url=${process.env.TURSO_URL}`,
+    `Migrating database env=|${process.env.VERCEL_ENVIRONMENT}| scope=${process.env.VERCEL_SCOPE} domain=${process.env.DOMAIN} url=${process.env.TURSO_URL}`,
   )
 
   const client = await getClient()
