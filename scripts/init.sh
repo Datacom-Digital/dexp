@@ -6,8 +6,6 @@ echo "vercel and turso require a unix shell (eg wsl2)"
 exit 1
 fi
 
-npm i
-
 SCOPE=datacom-digital
 EMAIL_FROM=no-reply@dexp.nz
 
@@ -15,14 +13,16 @@ read -p "Project name: " PROJECT_NAME
 read -p "Domain: " DOMAIN
 read -p "Master email: " MASTER_EMAIL
 
-npx vercel project add $PROJECT_NAME --scope=$SCOPE
-npx vercel link -p $PROJECT_NAME --scope=$SCOPE --yes
-
 if ! command -v turso &> /dev/null
 then
 curl -sSfL https://get.tur.so/install.sh | bash
 fi
 turso auth login
+
+npm i
+
+npx vercel project add $PROJECT_NAME --scope=$SCOPE
+npx vercel link -p $PROJECT_NAME --scope=$SCOPE --yes
 
 DEV_DB_NAME="$PROJECT_NAME-dev"
 turso db create $DEV_DB_NAME
