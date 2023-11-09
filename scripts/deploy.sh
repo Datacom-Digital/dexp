@@ -35,7 +35,6 @@ else
 SCOPE_FLAG=
 fi
 
-echo "!1 $VERCEL_ENVIRONMENT $SCOPE_FLAG
 npx vercel pull --yes --environment=$VERCEL_ENVIRONMENT $SCOPE_FLAG $TOKEN_FLAG
 npx vercel build $PROD_FLAG $SCOPE_FLAG $TOKEN_FLAG
 npx vercel deploy --prebuilt $PROD_FLAG $SCOPE_FLAG $TOKEN_FLAG > .vercel/DEPLOY_LOG
