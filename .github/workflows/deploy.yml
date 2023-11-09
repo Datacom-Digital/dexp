@@ -49,6 +49,6 @@ jobs:
       - name: Build and deploy
         id: deploy
         run: |
-          npx vercel pull --yes --environment=${{ env.ENVIRONMENT }} --scope=${{ vars.VERCEL_SCOPE }} --token=${{ secrets.VERCEL_API_TOKEN }}
+          npx vercel pull --yes --environment=${{ env.ENVIRONMENT }} --scope=${{ vars.VERCEL_SCOPE }} --token=${{ secrets.VERCEL_API_TOKEN }} .env.local
           npx vercel build ${{ env.PROD_FLAG }} --scope=${{ vars.VERCEL_SCOPE }} --token=${{ secrets.VERCEL_API_TOKEN }}
           echo "url=$(npx vercel deploy --prebuilt ${{ env.PROD_FLAG }} --scope=${{ vars.VERCEL_SCOPE }} --token=${{ secrets.VERCEL_API_TOKEN }})" >> "$GITHUB_OUTPUT"
