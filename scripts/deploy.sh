@@ -35,7 +35,7 @@ else
 SCOPE_FLAG=
 fi
 
-echo "!1 $ENVIRONMENT $SCOPE_FLAG $( [[ -z $VERCEL_API_TOKEN ]] )"
-npx vercel pull --yes --environment=$ENVIRONMENT $SCOPE_FLAG $TOKEN_FLAG
+echo "!1 $ENVIRONMENT $SCOPE_FLAG
+npx vercel pull --yes --environment=$ENVIRONMENT $SCOPE_FLAG $TOKEN_FLAG .env.local
 npx vercel build $PROD_FLAG $SCOPE_FLAG $TOKEN_FLAG
 npx vercel deploy --prebuilt $PROD_FLAG $SCOPE_FLAG $TOKEN_FLAG > .vercel/DEPLOY_LOG
