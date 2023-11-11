@@ -8,6 +8,7 @@ import { cache } from "react"
 import { eq } from "drizzle-orm"
 import { Route } from "next"
 
+import { revalidatePath } from "next/cache"
 import {
   Asset,
   DeleteAssetSchema,
@@ -45,6 +46,7 @@ export const getAllPaths = cache(async () => {
 export const getAllKeys = cache(async () => {
   const result = await db.select({ key: pages.key }).from(pages)
   const data = result.sort(sortPages).map(({ key }) => key as Route)
+  console.log(data)
   return data
 })
 
@@ -75,11 +77,14 @@ export const publishPageData = async ({
     .insert(pages)
     .values({ key, data: dataJSON })
     .onConflictDoUpdate({ target: pages.key, set: { data: dataJSON } })
+
+  revalidatePath(key)
 }
 
 // TODO: zod
 export const deletePage = async (key: string) => {
   await db.delete(pages).where(eq(pages.key, key))
+  revalidatePath(key)
 }
 
 /*

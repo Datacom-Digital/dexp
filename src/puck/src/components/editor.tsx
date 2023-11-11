@@ -2,12 +2,10 @@
 
 import "@measured/puck/dist/index.css"
 
-import { join } from "path"
 import { Data, Puck } from "@measured/puck"
 import { useTransition } from "react"
 import { Button } from "@/components/ui/button"
 import { PuckMenu } from "@/puck/src/components/puck-menu"
-//import { publishPageData } from "@/puck/actions"
 import { useLocalData } from "@/puck/src/hooks"
 import { publishPageData } from "@/puck/src/actions"
 import { clientConfig } from "@/lib/puck"
@@ -71,7 +69,7 @@ export function Editor({ path, data }: { path: string; data?: Data }) {
             </Button>
             <Button
               onClick={() =>
-                window.open(join("/cms/preview", path), "_blank")?.focus()
+                window.open(`/cms/preview${path}`, "_blank")?.focus()
               }
               variant="outline"
               size="sm"
@@ -79,13 +77,19 @@ export function Editor({ path, data }: { path: string; data?: Data }) {
               Preview
             </Button>
             <Button
+              onClick={() => window.open(path, "_blank")?.focus()}
+              variant="outline"
+              size="sm"
+            >
+              View
+            </Button>
+            <Button
               disabled={transitioning}
               onClick={() => {
                 localData &&
-                  startTransition(
-                    async () =>
-                      await publishPageData({ key: path, data: state.data }),
-                  )
+                  startTransition(async () => {
+                    await publishPageData({ key: path, data: state.data })
+                  })
                 // TODO notify? dissable button?
               }}
               size="sm"

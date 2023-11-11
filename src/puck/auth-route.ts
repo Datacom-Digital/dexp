@@ -15,7 +15,7 @@ export const GET = (req: NextRequest) => {
   ) {
     return new Response(
       redirect(
-        `/api/confirm?${new URLSearchParams(
+        `/api/auth/confirm?${new URLSearchParams(
           req.nextUrl.searchParams,
         ).toString()}`,
       ),

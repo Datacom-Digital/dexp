@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
 // safe links bot workaround https://github.com/nextauthjs/next-auth/issues/4965
-export default function Confirm({
+export function ConfirmPage({
   searchParams: { callbackUrl, email, token: queryToken },
 }: {
   searchParams: {
