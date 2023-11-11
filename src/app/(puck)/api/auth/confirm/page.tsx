@@ -1,3 +1,3 @@
-import { ConfirmPage } from "@/puck/confirm-page"
+import { ConfirmPage } from "@/puck/confirm"
 
 export default ConfirmPage

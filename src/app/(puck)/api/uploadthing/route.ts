@@ -1,1 +1,1 @@
-export { GET, POST } from "@/puck/uploadthing-route"
+export { GET, POST } from "@/puck/uploadthing"

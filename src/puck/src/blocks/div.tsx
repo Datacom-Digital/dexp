@@ -1,7 +1,4 @@
-"use client"
-
-import { ComponentConfig, DropZone } from "@measured/puck"
-import React from "react"
+import { ComponentConfig } from "@datacom-digital/puck"
 import { cn } from "@/lib/utils"
 
 export const Div: ComponentConfig<{
@@ -13,7 +10,7 @@ export const Div: ComponentConfig<{
     },
   },
   defaultProps: {},
-  render: ({ className }) => {
+  render: ({ className, puck: { renderDropZone: DropZone } }) => {
     return (
       <div className={cn("min-h-3 min-w-3", className)}>
         <DropZone zone="0" />

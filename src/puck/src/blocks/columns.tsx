@@ -1,7 +1,4 @@
-"use client"
-
-import React from "react"
-import { ComponentConfig, DropZone } from "@measured/puck"
+import { ComponentConfig } from "@datacom-digital/puck"
 
 export type ColumnsProps = {
   columns: {
@@ -28,7 +25,7 @@ export const Columns: ComponentConfig<ColumnsProps> = {
   defaultProps: {
     columns: [{}, {}],
   },
-  render: ({ columns }) => {
+  render: ({ columns, puck: { renderDropZone: DropZone } }) => {
     //span ${Math.max(Math.min(span, 12), 1)}
     return (
       <div className="flex flex-auto gap-6 p-6">

@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useState } from "react"
-import { Data } from "@measured/puck"
-import { clientConfig } from "@/lib/puck"
+import { Config, Data } from "@datacom-digital/puck"
 
-export const useLocalData = (path: string) => {
+export const useLocalData = (path: string, config: Config) => {
   // unique b64 key that updates each time we add / remove components
   const componentKey = Buffer.from(
-    Object.keys(clientConfig.components).join("-"),
+    Object.keys(config.components).join("-"),
   ).toString("base64")
 
   const key = `puck-demo:${componentKey}:${path}`

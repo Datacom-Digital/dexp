@@ -1,6 +1,4 @@
-"use client"
-
-import { ComponentConfig, DropZone } from "@measured/puck"
+import { ComponentConfig } from "@datacom-digital/puck"
 import { Prose as ProseUI } from "@/components/ui/prose"
 
 export const Prose: ComponentConfig<{ className?: string }> = {
@@ -9,7 +7,7 @@ export const Prose: ComponentConfig<{ className?: string }> = {
       type: "text",
     },
   },
-  render: ({ className }) => {
+  render: ({ className, puck: { renderDropZone: DropZone } }) => {
     return (
       <div className={className}>
         <ProseUI>
