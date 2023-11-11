@@ -1,7 +1,4 @@
-"use client"
-
-import { ComponentConfig } from "@measured/puck"
-import React from "react"
+import { ComponentConfig } from "@datacom-digital/puck"
 
 const primitives = ["p", "h1", "h2", "h3", "div"] as const
 type Primitive = (typeof primitives)[number]

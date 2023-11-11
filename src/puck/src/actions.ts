@@ -2,7 +2,7 @@
 
 //import "server-only"
 
-import { Data } from "@measured/puck"
+import { Data } from "@datacom-digital/puck"
 
 import { cache } from "react"
 import { eq } from "drizzle-orm"

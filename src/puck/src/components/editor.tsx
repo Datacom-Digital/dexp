@@ -1,23 +1,30 @@
 "use client"
 
-import "@measured/puck/dist/index.css"
+import "@datacom-digital/puck/dist/index.css"
 
-import { Data, Puck } from "@measured/puck"
+import { Config, Data, Puck } from "@datacom-digital/puck"
 import { useTransition } from "react"
 import { Button } from "@/components/ui/button"
 import { PuckMenu } from "@/puck/src/components/puck-menu"
 import { useLocalData } from "@/puck/src/hooks"
 import { publishPageData } from "@/puck/src/actions"
-import { clientConfig } from "@/lib/puck"
 
-export function Editor({ path, data }: { path: string; data?: Data }) {
-  const [localData, setLocalData] = useLocalData(path)
+export function Editor({
+  path,
+  data,
+  config,
+}: {
+  path: string
+  data?: Data
+  config: Config
+}) {
+  const [localData, setLocalData] = useLocalData(path, config)
   const [transitioning, startTransition] = useTransition()
 
   /* TODO types need fixing */
   return (
     <Puck
-      config={clientConfig}
+      config={config}
       data={
         localData ||
         data || { content: [], root: { title: "", props: {} }, zones: {} }

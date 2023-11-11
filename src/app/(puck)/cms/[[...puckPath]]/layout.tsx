@@ -1,3 +1,3 @@
-import { PuckLayout } from "@/puck/client-layout"
+import { PuckLayout } from "@/puck/layout"
 
 export default PuckLayout

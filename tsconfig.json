@@ -26,7 +26,8 @@
       }
     ],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "*": ["node_modules/@types/*", "*"]
     }
   },
   "include": ["*.ts", "src/**/*", "scripts/**/*", ".next/types/**/*.ts"],
