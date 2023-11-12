@@ -83,10 +83,10 @@ jobs:
   test-status:
     name: Test Status
     needs: [smoke-test, lint, unit-test, component-test]
-    if: ${{ always() }}
+    if: success() || failure()
     runs-on: ubuntu-latest
     env:
-      STATUS: "${{ success() && 'passed' || 'failed' }}"
+      STATUS: "${{ ( contains(needs.*.result, 'failure') || contains(needs.*.result, 'skipped') ) && 'failed' || 'passed'}}"
     steps:
       - name: Add test status to PR
         if: github.event_name == 'pull_request'
