@@ -1,7 +1,4 @@
-"use client"
-
-import { ComponentConfig, DropZone } from "@datacom-digital/puck"
-import React from "react"
+import { ComponentConfig } from "@datacom-digital/puck"
 import { cn } from "@/lib/utils"
 import { Primitive, primitives } from "@/puck/types"
 
@@ -21,7 +18,7 @@ export const Zone: ComponentConfig<{
   defaultProps: {
     primitive: "div",
   },
-  render: ({ className, primitive }) => {
+  render: ({ className, primitive, puck: { renderDropZone: DropZone } }) => {
     const Comp = primitive || "div"
     return (
       <Comp className={cn("min-h-3 min-w-3", className)}>

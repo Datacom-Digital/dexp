@@ -1,18 +1,19 @@
 import type { Config } from "@datacom-digital/puck"
 import { Text } from "@/puck/src/blocks/text"
 import { Prose } from "@/puck/src/blocks/prose"
-import { Columns } from "@/puck/src/blocks/columns"
-import { Div } from "@/puck/src/blocks/div"
 import { WordCloud } from "@/components/word-cloud"
+import { Slide, SlideDeck } from "@/puck/src/blocks/slides"
+import { Zone } from "@/puck/src/blocks/zone"
 
 export const renderConfig = {
   components: {
-    Text,
-    Columns,
     Prose,
-    Div,
+    Text,
+    Zone,
+    Slide,
+    SlideDeck,
     Wordcloud: {
-      render: WordCloud,
+      render: () => <WordCloud />,
     },
   },
 } as Config

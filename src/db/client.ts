@@ -15,7 +15,7 @@ declare global {
 
 const getClient = () => {
   if (
-    process.env.NODE_ENV === "production" &&
+    //process.env.NODE_ENV === "production" &&
     process.env.TURSO_URL &&
     process.env.TURSO_TOKEN
   ) {
