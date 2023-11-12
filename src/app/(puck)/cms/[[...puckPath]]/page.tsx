@@ -27,6 +27,5 @@ export default async function ClientPage({
   const route = puckPath[0] || ""
   const path = resolvePuckPath(puckPath.slice(1))
 
-  //return <PuckClient route={route} path={path} Editor={PuckEditor} />
   return <PuckClient route={route} path={path} config={clientConfig} />
 }
