@@ -78,6 +78,7 @@ export const publishPageData = async ({
     .values({ key, data: dataJSON })
     .onConflictDoUpdate({ target: pages.key, set: { data: dataJSON } })
 
+  console.log(`Revalidating ${key}`)
   revalidatePath(key)
 }
 
