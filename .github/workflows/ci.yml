@@ -86,7 +86,7 @@ jobs:
     if: success() || failure()
     runs-on: ubuntu-latest
     env:
-      STATUS: "${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'skipped') && 'failed' || 'passed'}}"
+      STATUS: "${{ ( contains(needs.*.result, 'failure') || contains(needs.*.result, 'skipped') ) && 'failed' || 'passed'}}"
     steps:
       - name: Add test status to PR
         if: github.event_name == 'pull_request'
