@@ -4,7 +4,7 @@ import { notFound } from "next/navigation"
 import { getAllPaths, getPageData } from "@/puck/src/actions"
 
 import { PuckRender } from "@/puck/puck-render"
-import { resolvePuckPath } from "@/lib/puck/resolve-puck-path."
+import { resolvePuckPath } from "@/lib/puck/resolve-puck-path"
 import { renderConfig } from "@/lib/puck/renderConfig"
 
 export async function generateStaticParams() {
