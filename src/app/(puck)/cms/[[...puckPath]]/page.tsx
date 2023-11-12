@@ -3,7 +3,7 @@ import { Metadata } from "next"
 import { getTitle } from "@/puck/utils"
 
 import { PuckClient } from "@/puck/puck-client"
-import { resolvePuckPath } from "@/lib/puck/resoleve-puck-path."
+import { resolvePuckPath } from "@/lib/puck/resolve-puck-path."
 import { clientConfig } from "@/lib/puck/clientConfig"
 
 export async function generateMetadata({
