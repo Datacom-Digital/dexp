@@ -46,7 +46,6 @@ export const getAllPaths = cache(async () => {
 export const getAllKeys = cache(async () => {
   const result = await db.select({ key: pages.key }).from(pages)
   const data = result.sort(sortPages).map(({ key }) => key as Route)
-  console.log(data)
   return data
 })
 

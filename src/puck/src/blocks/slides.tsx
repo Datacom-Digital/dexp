@@ -22,7 +22,10 @@ export const Slide: ComponentConfig<{ className?: string }> = {
   defaultProps: {},
   render: ({ className, puck: { renderDropZone: DropZone } }) => (
     <SlideComp
-      className={cn("flex flex-col items-center pt-nav lg:pt-32", className)}
+      className={cn(
+        "min-h-3 min-w-3 flex flex-col items-center pt-nav lg:pt-32",
+        className,
+      )}
     >
       <DropZone zone="slide-content" />
     </SlideComp>
