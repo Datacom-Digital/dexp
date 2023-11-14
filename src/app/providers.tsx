@@ -27,7 +27,6 @@ export default function Providers({ children }: PropsWithChildren) {
         },
         mode: {
           setMode: (theme) => {
-            console.log("p s m", theme)
             setMode(theme)
           },
         },

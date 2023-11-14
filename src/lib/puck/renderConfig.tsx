@@ -4,6 +4,7 @@ import { Prose } from "@/puck/src/blocks/prose"
 import { WordCloud } from "@/components/word-cloud"
 import { Slide, SlideDeck } from "@/puck/src/blocks/slides"
 import { Zone } from "@/puck/src/blocks/zone"
+import { Image } from "@/puck/src/blocks/image"
 
 export const renderConfig = {
   components: {
@@ -15,5 +16,6 @@ export const renderConfig = {
     Wordcloud: {
       render: () => <WordCloud />,
     },
+    Image,
   },
 } as Config

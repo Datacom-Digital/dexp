@@ -1,3 +1,5 @@
+"use client"
+
 import { generateComponents } from "@uploadthing/react"
 import { OurFileRouter } from "@/puck/src/uploadthing/file-router"
 

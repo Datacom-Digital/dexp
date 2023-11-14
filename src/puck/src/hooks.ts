@@ -20,7 +20,8 @@ export const useLocalData = (path: string, config: Config) => {
   }, [key])
 
   const setLocalData = useCallback(
-    (data: Data) => localStorage.setItem(key, JSON.stringify(data)),
+    (data: Data) =>
+      localStorage.setItem(key, JSON.stringify(JSON.stringify(data))),
     [key],
   )
 

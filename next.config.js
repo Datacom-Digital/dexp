@@ -18,6 +18,21 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "utfs.io",
+        port: "",
+        pathname: "/f/**",
+      },
+    ],
+  },
 }
 
-module.exports = nextConfig
+const withNextBundleAnalyzer = process.env.ANALYZE
+  ? // eslint-disable-next-line @typescript-eslint/no-var-requires
+    require("@next/bundle-analyzer")()
+  : (config) => config
+
+module.exports = withNextBundleAnalyzer(nextConfig)

@@ -25,10 +25,7 @@ export function Editor({
   return (
     <Puck
       config={config}
-      data={
-        localData ||
-        data || { content: [], root: { title: "", props: {} }, zones: {} }
-      }
+      data={data || localData || { content: [], root: { title: "" } }}
       onChange={(data: Data) => {
         setLocalData(data)
       }}
@@ -43,7 +40,7 @@ export function Editor({
         const { leftSideBarVisible } = state.ui
 
         return (
-          <PuckMenu title={state.data.root?.title} path={path}>
+          <PuckMenu title={state.data.root.title} path={path}>
             <Button
               onClick={() =>
                 dispatch({
@@ -95,6 +92,7 @@ export function Editor({
               onClick={() => {
                 localData &&
                   startTransition(async () => {
+                    console.log("pub", state.data)
                     await publishPageData({ key: path, data: state.data })
                   })
                 // TODO notify? dissable button?

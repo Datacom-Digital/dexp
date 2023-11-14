@@ -9,11 +9,9 @@ export const Prose: ComponentConfig<{ className?: string }> = {
   },
   render: ({ className, puck: { renderDropZone: DropZone } }) => {
     return (
-      <div className={className}>
-        <ProseUI>
-          <DropZone zone="prose" />
-        </ProseUI>
-      </div>
+      <ProseUI className={className}>
+        <DropZone zone="prose" />
+      </ProseUI>
     )
   },
 }
