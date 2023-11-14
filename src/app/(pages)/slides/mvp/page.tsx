@@ -44,7 +44,9 @@ export default function Page() {
             <li>Every change has a deployed preview</li>
             <ul>
               Configured and automated
+              <li>CodeQL</li>
               <li>Linting</li>
+              <li>Dependabot</li>
               <li>Unit testing</li>
               <li>Component testing</li>
               <li>Integration testing</li>
