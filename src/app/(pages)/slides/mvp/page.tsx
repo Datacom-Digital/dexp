@@ -14,8 +14,11 @@ export default function Page() {
           <h2 className="place-self-start">Dexp MVP</h2>
           <h2 className="place-self-end">Dexp CMS</h2>
 
-          <p>Fast Prototyping Starter Kit</p>
+          <p className="place-self-start">Fast Prototyping Starter Kit</p>
           <p className="place-self-end">Content editor framework</p>
+          <p className="place-self-center">
+            A new approach to developing websites
+          </p>
         </Prose>
       </Slide>
 
