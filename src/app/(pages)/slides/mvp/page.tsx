@@ -13,11 +13,10 @@ export default function Page() {
         <Prose className="grid w-full max-w-2xl lg:prose-2xl">
           <h2 className="place-self-start">Dexp MVP</h2>
           <h2 className="place-self-end">Dexp CMS</h2>
-
           <p className="place-self-start">Fast Prototyping Starter Kit</p>
           <p className="place-self-end">Content editor framework</p>
           <p className="place-self-center">
-            A new approach to developing websites
+            A better approach to developing websites
           </p>
         </Prose>
       </Slide>
@@ -42,15 +41,17 @@ export default function Page() {
           <h2>Rapid development with confidence</h2>
           <ul>
             <li>Every change has a deployed preview</li>
-            <ul>
+            <li>
               Configured and automated
-              <li>CodeQL</li>
-              <li>Linting</li>
-              <li>Dependabot</li>
-              <li>Unit testing</li>
-              <li>Component testing</li>
-              <li>Integration testing</li>
-            </ul>
+              <ul>
+                <li>CodeQL</li>
+                <li>Linting</li>
+                <li>Dependabot</li>
+                <li>Unit testing</li>
+                <li>Component testing</li>
+                <li>Integration testing</li>
+              </ul>
+            </li>
             <li>Code review and deployment protection</li>
           </ul>
         </Prose>
@@ -60,12 +61,16 @@ export default function Page() {
         <Prose className="h-full w-full max-w-3xl lg:prose-2xl">
           <h2>Extensible and maintainable</h2>
           <div className="float-left">
-            <h4>React components</h4>
-            <h4>Open source</h4>
-            <h4>Typescript</h4>
             <h4>Nextjs</h4>
+            <h4>Typescript</h4>
+            <h4>React components</h4>
+            <h4>Customisable theming</h4>
+            <ul>
+              <li>Sensible defaults</li>
+              <li>Theme switching</li>
+              <li>Dark mode</li>
+            </ul>
           </div>
-
           <div className="float-right">
             <h4>Data sources</h4>
             <ul>
@@ -122,10 +127,10 @@ export default function Page() {
         <Prose className="grid w-full lg:prose-2xl">
           <h2 className="mx-auto">Next steps</h2>
           <ul>
-            <li>Enterprise accounts on the platforms?</li>
-            <li>Is there demand for this?</li>
+            <li>Is there demand?</li>
             <li>How to package?</li>
-            <li>Invest in our own CMS?</li>
+            <li>Invest in Puck CMS?</li>
+            <li>Enterprise accounts on the platforms?</li>
             <li>Is this a product, a platform or a service?</li>
           </ul>
         </Prose>
